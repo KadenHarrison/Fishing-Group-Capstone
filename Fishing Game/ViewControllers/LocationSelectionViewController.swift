@@ -4,7 +4,7 @@
 //
 //  Created by Jane Madsen on 4/2/25.
 //
-//THIS IS SUPPOSED TO WORK!!!!!!!!!
+// THIS WOEKDED
 import UIKit
 
 class LocationSelectionViewController: UIViewController {
