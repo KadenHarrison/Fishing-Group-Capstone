@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// View controller that shows each each fish caught and how much money the user made that day.
 class SummaryScreenViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
@@ -36,6 +37,7 @@ extension SummaryScreenViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Once every fish has been displayed, a cell summarizing the total value of all caught fish is displayed
         if indexPath.section <= caughtFish.count - 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CaughtFishCell") as! CaughtFishTableViewCell
             

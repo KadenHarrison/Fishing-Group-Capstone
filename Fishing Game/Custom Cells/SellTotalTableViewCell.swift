@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Cell that displays the total amount made by the user from a list of fish.
 class SellTotalTableViewCell: UITableViewCell {
 
     @IBOutlet var totalLabel: UILabel!

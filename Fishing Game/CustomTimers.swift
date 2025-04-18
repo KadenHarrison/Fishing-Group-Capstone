@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: FishAppearsTimer
+/// A timer that gradually increases the probability of triggering a given event. Once triggered, the timer stops and resets.
 class FishAppearsTimer {
     var maxTime: TimeInterval
     
@@ -15,11 +17,16 @@ class FishAppearsTimer {
     private let timeInterval: TimeInterval = 1
     private let eventHandler: () -> Void
     
+    /// Initializes the timer.
+    /// - Parameters:
+    ///   - maxTime: The time after which the event is guaranteed to trigger.
+    ///   - eventHandler: The closure to call when the event occurs.
     init(maxTime: TimeInterval, eventHandler: @escaping () -> Void) {
         self.maxTime = maxTime
         self.eventHandler = eventHandler
     }
     
+    /// Starts the timer, resetting it if already active.
     func start() {
         stop()
         
@@ -28,16 +35,17 @@ class FishAppearsTimer {
         }
     }
     
+    /// Stops the timer and resets the elapsed time.
     func stop() {
         timer?.invalidate()
         timer = nil
         elapsedTime = 0
     }
     
+    /// Increments elapsed time and randomly decides if the event should trigger based on increasing probability. If triggered, stops the timer.
     private func tick() {
         elapsedTime += timeInterval
         let probability = min(elapsedTime / maxTime, 1.0)
-
         let diceRoll = Double.random(in: 0...1)
 
         if diceRoll < probability {
@@ -47,6 +55,8 @@ class FishAppearsTimer {
     }
 }
 
+// MARK: HookTimer
+/// A timer that runs for a random duration between 1 and 3 seconds, then triggers a completion handler.
 class HookTimer {
     private var timer: Timer?
     private var elapsedTime: TimeInterval = 0
@@ -54,12 +64,15 @@ class HookTimer {
     private var maxTime: TimeInterval = 0
     private let completionHandler: () -> Void
     
+    /// Initializes the timer with a completion handler.
+    /// - Parameter completionHandler: The closure to call when the timer completes.
     init(completionHandler: @escaping () -> Void) {
         self.completionHandler = completionHandler
     }
     
+    /// Starts the timer with a random max duration between 1 and 3 seconds. If already running, resets the timer.
     func start() {
-            stop()
+        stop()
         
         self.maxTime = TimeInterval.random(in: 1...3)
         
@@ -68,11 +81,14 @@ class HookTimer {
         }
     }
     
+    /// Stops the timer and resets internal state.
     func stop() {
         timer?.invalidate()
         timer = nil
+        elapsedTime = 0
     }
     
+    /// Increments elapsed time and triggers completion handler if maxTime is exceeded.
     private func tick() {
         elapsedTime += timeInterval
                 
@@ -83,6 +99,8 @@ class HookTimer {
     }
 }
 
+// MARK: CatchTimeTimer
+/// A countdown timer that repeatedly reports elapsed time and calls a completion handler when finished.
 class CatchTimeTimer {
     private var timer: Timer?
     private var startTime = Date.now
@@ -91,12 +109,18 @@ class CatchTimeTimer {
     private let tickHandler: (TimeInterval) -> Void
     private let completionHandler: () -> Void
     
+    /// Initializes the timer.
+    /// - Parameters:
+    ///   - countdownTime: Total time before completion handler is called.
+    ///   - tickHandler: Called every tick with elapsed time.
+    ///   - completionHandler: Called once countdown is complete.
     init(countdownTime: TimeInterval, tickHandler: @escaping (TimeInterval) -> Void, completionHandler: @escaping () -> Void) {
         self.countdownTime = countdownTime
         self.tickHandler = tickHandler
         self.completionHandler = completionHandler
     }
     
+    /// Starts the countdown timer. If already running, resets it.
     func start() {
         stop()
         startTime = Date.now
@@ -106,15 +130,16 @@ class CatchTimeTimer {
         }
     }
     
+    /// Stops the timer.
     func stop() {
         timer?.invalidate()
         timer = nil
     }
     
+    /// Calls the tick handler with elapsed time and checks for countdown completion.
     private func tick() {
         let timeSinceStart = Date.now.timeIntervalSince(startTime)
-        
-        self.tickHandler(timeSinceStart)
+        tickHandler(timeSinceStart)
         
         if timeSinceStart > countdownTime {
             completionHandler()
@@ -123,19 +148,26 @@ class CatchTimeTimer {
     }
 }
 
-class DayCycleTimer {    
+// MARK: DayCycleTimer
+/// Timer simulating a day/night cycle. Calls tick updates every 15 seconds and completes after a full cycle.
+class DayCycleTimer {
     private var timer: Timer?
     private var startTime = Date.now
-    private var countdownTime: TimeInterval = 225
+    private var countdownTime: TimeInterval = 225 // Default full cycle time
     private let timeInterval: TimeInterval = 15
     private let tickHandler: (TimeInterval) -> Void
     private let completionHandler: () -> Void
     
+    /// Initializes the timer.
+    /// - Parameters:
+    ///   - tickHandler: Called every `timeInterval` with elapsed time.
+    ///   - completionHandler: Called when the full cycle completes.
     init(tickHandler: @escaping (TimeInterval) -> Void, completionHandler: @escaping () -> Void) {
         self.tickHandler = tickHandler
         self.completionHandler = completionHandler
     }
     
+    /// Starts the day cycle timer, resetting if already running.
     func start() {
         stop()
         startTime = Date.now
@@ -145,15 +177,16 @@ class DayCycleTimer {
         }
     }
     
+    /// Stops the timer.
     func stop() {
         timer?.invalidate()
         timer = nil
     }
     
+    /// Calls the tick handler and checks for cycle completion.
     private func tick() {
         let timeSinceStart = Date.now.timeIntervalSince(startTime)
-        
-        self.tickHandler(timeSinceStart)
+        tickHandler(timeSinceStart)
         
         if timeSinceStart > countdownTime {
             completionHandler()
@@ -161,3 +194,4 @@ class DayCycleTimer {
         }
     }
 }
+

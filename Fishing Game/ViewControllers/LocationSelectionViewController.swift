@@ -7,6 +7,7 @@
 // THIS WOEKDED
 import UIKit
 
+/// View controller that displays a list of fishing locations for user selection. Bars access to a location if the user doesn't meet minimum requirements.
 class LocationSelectionViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -37,6 +38,8 @@ class LocationSelectionViewController: UIViewController {
     }
 }
 
+// MARK: LocationsTableView
+
 extension LocationSelectionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Location.list.count
@@ -58,6 +61,7 @@ extension LocationSelectionViewController: UITableViewDelegate, UITableViewDataS
         
         let location = Location.list[indexPath.row]
         
+        // User must meet requirements to call performSegue
         if location.requiredLicense.rawValue <= Tacklebox.shared.fishingLicense.rawValue {
             performSegue(withIdentifier: "goToLocationSegue", sender: indexPath)
         }

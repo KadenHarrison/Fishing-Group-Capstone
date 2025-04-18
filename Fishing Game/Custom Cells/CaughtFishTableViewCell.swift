@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Cell that displays information about a fish including fish name, image, and price.
 class CaughtFishTableViewCell: UITableViewCell {
 
     @IBOutlet var fishImageView: UIImageView!
