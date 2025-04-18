@@ -9,8 +9,10 @@ import UIKit
 
 class FishCaughtViewController: UIViewController {
     
+    //get the fish class we are going to be using
     var fish: Fish?
     
+    //the outlets connecting to storyboard
     @IBOutlet weak var fishDisplayImageView: UIImageView!
     
     @IBOutlet weak var fishNameLabel: UILabel!
@@ -23,6 +25,9 @@ class FishCaughtViewController: UIViewController {
         // TODO: Handle errors if fish is nil
         guard let fish else { return }
         
+        
+        ///Setting the elements for the fish caught screen
+        //set the image for the fish
         fishDisplayImageView.image = fish.image
         
         fishNameLabel.text = "You caught a \(fish.type.rawValue.capitalized)!"
