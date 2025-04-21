@@ -124,6 +124,7 @@ struct Fish: Codable, CustomStringConvertible {
         self.size = size
     }
     
+    /// Generates a random fish from the given type, rarity, and size
     static func generateRandomFish(from types: [FishType]) -> Fish {
         let type = types.randomElement() ?? .salmon
         let rarity = FishType.randomRarity()

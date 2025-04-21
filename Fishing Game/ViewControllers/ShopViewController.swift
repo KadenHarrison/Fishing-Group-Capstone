@@ -79,6 +79,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(tacklebox.cash)"
     }
     
+    /// decreases the user's bait after they get a bite on a fish
     @IBAction func decreaseBaitCount(_ sender: Any) {
         baitCount -= 1
         
@@ -93,6 +94,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
+    /// Removes cash from the player and exchanges it for bait that the user can use
     @IBAction func increaseBaitCount(_ sender: Any) {
         let cash = tacklebox.cash
         
@@ -107,6 +109,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
+    /// Determines wheter or not the player has selected to upgrade their hook.
     @IBAction func upgradeHook(_ sender: UIButton) {
         let cash = tacklebox.cash
         
@@ -128,6 +131,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
+    /// Determines wheter or not the player has selected to upgrade their line.
     @IBAction func upgradeLine(_ sender: UIButton) {
         let cash = tacklebox.cash
         
@@ -149,6 +153,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
+    /// Determines wheter or not the player has selected to upgrade their boat.
     @IBAction func upgradeBoat(_ sender: UIButton) {
         let cash = tacklebox.cash
         
@@ -170,6 +175,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
+    /// Determines wheter or not the player has selected to upgrade their license.
     @IBAction func upgradeLicense(_ sender: UIButton) {
         let cash = tacklebox.cash
         
@@ -191,6 +197,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
+    /// Asks you to confirm that you are finished shopping, and then call the completeCheckout function
     @IBAction func checkout(_ sender: Any) {
         let alert = UIAlertController(title: "Checkout", message: "Are you sure you want to checkout?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Yes", style: .default) { _ in
@@ -202,6 +209,7 @@ class ShopViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    /// Grabs the total ammount of cash that the user has spent on upgrades and bait, and then subtracts it from the cash that the player has
     func completeCheckout() {
         let tacklebox = tacklebox
         

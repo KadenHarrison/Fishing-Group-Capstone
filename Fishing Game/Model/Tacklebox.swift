@@ -26,12 +26,14 @@ class Tacklebox: Codable {
     
     static var shared: Tacklebox = Tacklebox()
     
+    /// Loads the user's tacklebox
     static func load() {
         if let tacklebox = try? SaveDataManager.shared.loadTacklebox() {
             Tacklebox.shared = tacklebox
         }
     }
     
+    /// Saves the user's tacklebox
     static func save() {
         do {
             try SaveDataManager.shared.save(tacklebox: Tacklebox.shared)
@@ -55,6 +57,7 @@ enum Hook: Int, Codable {
         }
     }
     
+    /// Determines the upgrade for the fishing hook that the user currently has
     mutating func upgrade() {
         guard let nextHook = Hook(rawValue: self.rawValue + 1) else { return }
         
@@ -76,6 +79,7 @@ enum Line: Int, Codable {
         }
     }
     
+    /// Determines the upgrade for the fishing line that the user currently has
     mutating func upgrade() {
         guard let nextLine = Line(rawValue: self.rawValue + 1) else { return }
         
@@ -99,6 +103,7 @@ enum Boat: Int, Codable {
         }
     }
     
+    /// Determines the upgrade for the fishing boat that the user currently has
     mutating func upgrade() {
         guard let nextBoat = Boat(rawValue: self.rawValue + 1) else { return }
         
@@ -124,6 +129,7 @@ enum FishingLicense: Int, Codable {
         }
     }
     
+    /// Determines the locations the player can fish at based on the different liscenses they have in their tacklebox
     mutating func upgrade() {
         guard let nextLicense = FishingLicense(rawValue: self.rawValue + 1) else { return }
         

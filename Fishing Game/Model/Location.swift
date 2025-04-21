@@ -32,6 +32,7 @@ class Location: Codable {
 extension Location {
     static var list: [Location] = [mountain, valley, river, shore, deepSea]
 
+    /// Loads all of the locations that the user has unlocked
     static func load() {
         do {
             if let locationList = try SaveDataManager.shared.loadLocations() {
@@ -42,6 +43,7 @@ extension Location {
         }
     }
     
+    /// Saves all of the locations the user previously had as well as any new locations they unlocked
     static func save() {
         do {
             try SaveDataManager.shared.save(locations: Location.list)
