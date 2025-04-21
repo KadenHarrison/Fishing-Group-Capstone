@@ -12,7 +12,7 @@ class FishCaughtViewController: UIViewController {
     //get the fish class we are going to be using
     var fish: Fish?
     
-    //the outlets connecting to storyboard
+    // MARK: the outlets connecting to storyboard
     @IBOutlet weak var fishDisplayImageView: UIImageView!
     
     @IBOutlet weak var fishNameLabel: UILabel!

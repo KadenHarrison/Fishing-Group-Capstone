@@ -8,16 +8,14 @@
 import Foundation
 import UIKit
 
-//make the fish rarity safer for code
 enum FishRarity: String, Codable {
     case normal, rare
 }
 
-//make the fish type safer for code
 enum FishType: String, Codable, CaseIterable {
     case salmon, trout, cod, tuna, perch, catfish, bass, loach, piranha, anglerfish, eel, bluegill, carp, koi, walleye, spacefish
     
-    //randomly makes the rarity of the fish
+    /// gets the fishes rarity based on a random int generator
     static func randomRarity() -> FishRarity {
         let r = Int.random(in: 1...100)
         
@@ -110,7 +108,7 @@ enum FishType: String, Codable, CaseIterable {
     }
 }
 
-//the fish structure to keep all the fish the same data type to be used the same
+
 struct Fish: Codable, CustomStringConvertible {
     //data needed to create the fish
     var type: FishType
@@ -131,7 +129,7 @@ struct Fish: Codable, CustomStringConvertible {
         self.size = size
     }
     
-    //generates the fish from above data randomly
+    //generates the data from helper functions
     static func generateRandomFish(from types: [FishType]) -> Fish {
         let type = types.randomElement() ?? .salmon
         let rarity = FishType.randomRarity()
