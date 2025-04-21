@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Cell that displays information about a location, including location image, name, and if the location is unlocked.
 class LocationTableViewCell: UITableViewCell {
 
     private var location: Location?
@@ -33,6 +34,7 @@ class LocationTableViewCell: UITableViewCell {
         self.locationThumbnailImageView.image = UIImage(named: location.thumbnailName)
         self.locationLabel.text = location.name
         
+        // Checks if the user has a valuable enough license and boat for the location
         let unlockedLicense = location.requiredLicense.rawValue <= Tacklebox.shared.fishingLicense.rawValue
         let unlockedBoat = location.requiredBoat.rawValue <= Tacklebox.shared.boat.rawValue
         if unlockedLicense && unlockedBoat {

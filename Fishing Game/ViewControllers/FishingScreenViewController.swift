@@ -11,8 +11,7 @@ class FishingScreenViewController: UIViewController {
     var location: Location?
     
     private let tacklebox = Tacklebox.shared
-    
-    
+
     // Tracks timers for game flow
     private var fishAppearsTimer: FishAppearsTimer?
     private var hookTimer: HookTimer?
