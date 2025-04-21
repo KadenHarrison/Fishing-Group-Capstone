@@ -11,12 +11,14 @@ class Location: Codable {
     var name: String
     var thumbnailName: String
     var backgroundName: String {
-        thumbnailName + "bg"
+        thumbnailName + "bg" // Name of the background image
     }
     var requiredLicense: FishingLicense
     var requiredBoat: Boat
-    var availableFish: [FishType]
-    var caughtFish: [FishType] = []
+/// Types of fish that can be caught at this location
+    var availableFish: [FishType] 
+/// Types of fish the user has caught
+    var caughtFish: [FishType] = [] 
     
     init(name: String, thumbnailName: String, requiredLicense: FishingLicense, requiredBoat: Boat, availableFish: [FishType]) {
         self.name = name
@@ -48,6 +50,8 @@ extension Location {
         }
     }
 }
+
+// MARK: Locations
 
 fileprivate let mountain = Location(
     name: "Mountain",

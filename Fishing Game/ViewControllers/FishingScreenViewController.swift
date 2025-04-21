@@ -12,10 +12,10 @@ class FishingScreenViewController: UIViewController {
     
     private let tacklebox = Tacklebox.shared
     
-    private weak var fishAppearsTimer: FishAppearsTimer?
-    private weak var hookTimer: HookTimer?
-    private weak var catchTimeTimer: CatchTimeTimer?
-    private weak var dayCycleTimer: DayCycleTimer?
+    private var fishAppearsTimer: FishAppearsTimer?
+    private var hookTimer: HookTimer?
+    private var catchTimeTimer: CatchTimeTimer?
+    private var dayCycleTimer: DayCycleTimer?
     
     private var fishHasAppeared = false
     private var reelingInFish = false
