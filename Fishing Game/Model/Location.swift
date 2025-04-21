@@ -17,7 +17,8 @@ class Location: Codable {
     var requiredBoat: Boat
 /// Types of fish that can be caught at this location
     var availableFish: [FishType] 
-    var caughtFish: [FishType] = [] // Types of fish the user has caught
+/// Types of fish the user has caught
+    var caughtFish: [FishType] = [] 
     
     init(name: String, thumbnailName: String, requiredLicense: FishingLicense, requiredBoat: Boat, availableFish: [FishType]) {
         self.name = name
