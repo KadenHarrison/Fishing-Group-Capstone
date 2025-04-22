@@ -3,7 +3,6 @@
 //  Fishing Game
 //
 //  Created by Jane Madsen on 2/2/25.
-//
 
 import UIKit
 
@@ -34,17 +33,17 @@ class FishingScreenViewController: UIViewController {
     }
     
     // All the different images used in the game
-    @IBOutlet var boatImageView: UIImageView!
-    @IBOutlet var radarDisplayImageView: UIImageView!
-    @IBOutlet var fishingProgressImageView: UIImageView!
-    @IBOutlet var spinningReelImageView: UIImageView!
+    @IBOutlet weak var boatImageView: UIImageView!
+    @IBOutlet weak var radarDisplayImageView: UIImageView!
+    @IBOutlet weak var fishingProgressImageView: UIImageView!
+    @IBOutlet weak var spinningReelImageView: UIImageView!
     
     // Tracks where the user has tapped or swiped on the screen
     @IBOutlet var gestureRecognizer: UIPanGestureRecognizer!
     // Labels to display the time, distance, and remaining bait
-    @IBOutlet var distanceToFishLabel: UILabel!
-    @IBOutlet var timeRemainingLabel: UILabel!
-    @IBOutlet var baitRemainingLabel: UILabel!
+    @IBOutlet weak var distanceToFishLabel: UILabel!
+    @IBOutlet weak var timeRemainingLabel: UILabel!
+    @IBOutlet weak var baitRemainingLabel: UILabel!
     
     // Displays your progress in the game
     @IBOutlet var clockLabel: UILabel!
@@ -109,7 +108,7 @@ class FishingScreenViewController: UIViewController {
         
         moveReelToDefaultNoFishPosition()
     }
-    ///When the view is about to appear it makes sure everything is updated and reset for the next fish
+    /// When the view is about to appear it makes sure everything is updated and reset for the next fish
     override func viewWillAppear(_ animated: Bool) {
         resetFish()
         
@@ -132,7 +131,7 @@ class FishingScreenViewController: UIViewController {
         NSLog("Generated \(fish))")
     }
     
-    ///haha your a bad fisherman. The fish you "almost" got is gone forever and totally reset for another random fish
+    /// haha your a bad fisherman. The fish you "almost" got is gone forever and totally reset for another random fish
     private func fishGotAway() {
         //I think this resets the fish
         resetFish()
@@ -142,12 +141,12 @@ class FishingScreenViewController: UIViewController {
         hookTimer?.stop()
         catchTimeTimer?.stop()
         
-        //Gives you 5 seconds to contemplate your fisherman skills
+        // Gives you 5 seconds to contemplate your fisherman skills
         catchTimeTimer = CatchTimeTimer(countdownTime: 5) { timeSinceStart in
             let timeRemaining = TimeInterval(5) - timeSinceStart
             self.timeRemainingLabel.text = "Missed... \(timeRemaining.rounded(toPlaces: 1))"
         } completionHandler: {
-            //resets everything after losing
+            // resets everything after losing
             self.timeRemainingLabel.text = ""
             self.checkBait()
             self.toggleBoatHidden(false)
@@ -157,7 +156,7 @@ class FishingScreenViewController: UIViewController {
         self.catchTimeTimer?.start()
     }
     
-    //Switches elements to show the fish took a bite "view"
+    // Switches elements to show the fish took a bite "view"
     private func showFishAppeared() {
         fishHasAppeared = true
         toggleBoatHidden(true)
@@ -174,7 +173,7 @@ class FishingScreenViewController: UIViewController {
         hookTimer?.start()
     }
     
-    // The fish is hooked; now reel it in
+    // The fish is hooked now the user needs to reel it in
     private func startReelingFish() {
         hookTimer?.stop()
         
@@ -193,14 +192,14 @@ class FishingScreenViewController: UIViewController {
         //gets catch time
         let catchTime = calculateCatchTime()
         
-        //starts catch time
+        // starts catch time
         catchTimeTimer = CatchTimeTimer(countdownTime: catchTime) { timeSinceStart in
             //counts down timer
             let timeRemaining = catchTime - timeSinceStart
-            //updates timer label
+            // updates timer label
             self.timeRemainingLabel.text = "⏱️ \(Int(timeRemaining.rounded(toPlaces: 1)))s"
         } completionHandler: {
-            //if time runs out fish gets away
+            // if time runs out fish gets away
             self.fishGotAway()
         }
         
@@ -377,7 +376,7 @@ extension FishingScreenViewController {
         return atan2(currentTouchPoint.y - centerOfReel.y, currentTouchPoint.x - centerOfReel.x) - atan2(previousTouchPoint.y - centerOfReel.y, previousTouchPoint.x - centerOfReel.x)
     }
     
-    //updates how much left to catch fish and animates the reel
+    // Updates how much left to catch fish and animates the reel
     private func updateFishingProgress() {
         distanceToFishLabel.text = "\(totalRotations)/\(requiredSpins)"
         
@@ -388,7 +387,7 @@ extension FishingScreenViewController {
     private func animateReelProgress() {
         guard let image = fishingProgressImageView.image else { return }
         
-        //create the constants
+        // Create the constants
         let progress = Double(totalRotations) / Double(requiredSpins)
         let imageHeight = image.size.height
         let clippingBoundsHeight = fishingProgressImageView.frame.height
@@ -399,7 +398,7 @@ extension FishingScreenViewController {
         
         let currentPositionOfContentsRect = fishingProgressImageView.layer.contentsRect
                 
-        //animates the progress and reel
+        // Animates the progress and reel
         UIView.animate(withDuration: 0.1) {
             self.fishingProgressImageView.layer.contentsRect = currentPositionOfContentsRect.applying(CGAffineTransform(translationX: 0, y: changeInOffsetForCurrentProgress))        }
         
