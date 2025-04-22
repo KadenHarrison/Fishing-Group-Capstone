@@ -216,7 +216,8 @@ class FishingScreenViewController: UIViewController {
             
             location.caughtFish.append(contentsOf: newFishTypes)
             
-            Location.save()
+            // Location.save()
+            // Need to refactor saving and loading still
         }
         
         if early {
