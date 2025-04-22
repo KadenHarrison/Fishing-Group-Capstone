@@ -109,7 +109,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
-    /// Determines wheter or not the player has selected to upgrade their hook.
+    /// Determines whether or not the player has selected to upgrade their hook.
     @IBAction func upgradeHook(_ sender: UIButton) {
         let cash = tacklebox.cash
         
@@ -131,7 +131,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
-    /// Determines wheter or not the player has selected to upgrade their line.
+    /// Determines whether or not the player has selected to upgrade their line.
     @IBAction func upgradeLine(_ sender: UIButton) {
         let cash = tacklebox.cash
         
@@ -153,7 +153,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
-    /// Determines wheter or not the player has selected to upgrade their boat.
+    /// Determines whether or not the player has selected to upgrade their boat.
     @IBAction func upgradeBoat(_ sender: UIButton) {
         let cash = tacklebox.cash
         
@@ -175,7 +175,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(cash - amountSpent)"
     }
     
-    /// Determines wheter or not the player has selected to upgrade their license.
+    /// Determines whether or not the player has selected to upgrade their license.
     @IBAction func upgradeLicense(_ sender: UIButton) {
         let cash = tacklebox.cash
         
