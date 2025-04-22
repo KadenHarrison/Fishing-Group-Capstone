@@ -15,6 +15,7 @@ enum FishRarity: String, Codable {
 enum FishType: String, Codable, CaseIterable {
     case salmon, trout, cod, tuna, perch, catfish, bass, loach, piranha, anglerfish, eel, bluegill, carp, koi, walleye, spacefish
     
+    /// Gets the fishes rarity based on a random int generator
     static func randomRarity() -> FishRarity {
         let r = Int.random(in: 1...100)
         
@@ -25,10 +26,12 @@ enum FishType: String, Codable, CaseIterable {
         }
     }
     
+    /// Creates a random size for the fish
     func randomSize(rarity: FishRarity) -> Double {
         Double.random(in: rarity == .normal ? self.sizeRange.average : self.sizeRange.rare)
     }
     
+    /// Base price for each fish type
     var basePrice: Double {
         switch self {
         case .salmon:
@@ -66,6 +69,7 @@ enum FishType: String, Codable, CaseIterable {
         }
     }
     
+    // Size range for each fish types
     var sizeRange: (average: ClosedRange<Double>, rare: ClosedRange<Double>) {
         switch self {
         case .salmon:
@@ -104,7 +108,9 @@ enum FishType: String, Codable, CaseIterable {
     }
 }
 
+/// This detirmines what fish it is and how rare and big the fish is and gets the price from 10% of fish type base price and the random size
 struct Fish: Codable, CustomStringConvertible {
+    // Data needed to create the fish. price is 10% of base price times size as a general pricing for fish
     var type: FishType
     var rarity: FishRarity
     var size: Double
@@ -112,6 +118,7 @@ struct Fish: Codable, CustomStringConvertible {
         return type.basePrice * size * 0.1
     }
     
+    // Auto creates the description from other values
     var description: String {
         "\(rarity.rawValue.capitalized) \(type.rawValue.capitalized), size \(size)"
     }
@@ -122,6 +129,7 @@ struct Fish: Codable, CustomStringConvertible {
         self.size = size
     }
     
+    // Generates the data from helper functions
     static func generateRandomFish(from types: [FishType]) -> Fish {
         let type = types.randomElement() ?? .salmon
         let rarity = FishType.randomRarity()
