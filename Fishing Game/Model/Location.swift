@@ -16,7 +16,7 @@ class Location: Codable {
     var requiredLicense: FishingLicense
     var requiredBoat: Boat
 /// Types of fish that can be caught at this location
-    var availableFish: [FishType] 
+    var availableFish: [FishType]
 /// Types of fish the user has caught
     var caughtFish: [FishType] = [] 
     
@@ -61,7 +61,7 @@ enum AllLocations: CaseIterable {
     case valley
     case shore
     case deepSea
-
+    
     var location: Location {
         switch self {
         case .mountain:
