@@ -15,7 +15,6 @@ enum FishRarity: String, Codable {
 enum FishType: String, Codable, CaseIterable {
     case salmon, trout, cod, tuna, perch, catfish, bass, loach, piranha, anglerfish, eel, bluegill, carp, koi, walleye, spacefish
     
-    /// Grabs a random rarity for the fish that was caught by the player
     static func randomRarity() -> FishRarity {
         let r = Int.random(in: 1...100)
         
@@ -26,7 +25,6 @@ enum FishType: String, Codable, CaseIterable {
         }
     }
     
-    /// Adds random size
     func randomSize(rarity: FishRarity) -> Double {
         Double.random(in: rarity == .normal ? self.sizeRange.average : self.sizeRange.rare)
     }
@@ -124,7 +122,6 @@ struct Fish: Codable, CustomStringConvertible {
         self.size = size
     }
     
-    /// Generates a random fish from the given type, rarity, and size
     static func generateRandomFish(from types: [FishType]) -> Fish {
         let type = types.randomElement() ?? .salmon
         let rarity = FishType.randomRarity()
