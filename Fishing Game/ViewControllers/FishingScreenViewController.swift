@@ -109,7 +109,7 @@ class FishingScreenViewController: UIViewController {
         
         moveReelToDefaultNoFishPosition()
     }
-    ///When the view loads it makes sure everything is updated and reset for the next fish
+    ///When the view is about to appear it makes sure everything is updated and reset for the next fish
     override func viewWillAppear(_ animated: Bool) {
         resetFish()
         
