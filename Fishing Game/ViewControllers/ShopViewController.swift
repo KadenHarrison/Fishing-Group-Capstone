@@ -79,7 +79,7 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(tacklebox.cash)"
     }
     
-    /// decreases the user's bait after they get a bite on a fish
+    /// Decreases the bait count of the user once called
     @IBAction func decreaseBaitCount(_ sender: Any) {
         baitCount -= 1
         
