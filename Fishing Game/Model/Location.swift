@@ -53,7 +53,7 @@ class Location: Codable {
 
 // Refactoring locations load and save functions.
 
-// MARK: Locations
+// MARK: AllLocations
 
 enum AllLocations: CaseIterable {
     case mountain
