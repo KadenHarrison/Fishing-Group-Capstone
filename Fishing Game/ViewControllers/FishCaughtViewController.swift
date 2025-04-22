@@ -9,7 +9,7 @@ import UIKit
 
 class FishCaughtViewController: UIViewController {
     
-    // Get the fish class we are going to be using
+    // Gets the fish you caught and from that gets the according image and fill the labels in
     var fish: Fish?
     
     // MARK: The outlets connecting to storyboard

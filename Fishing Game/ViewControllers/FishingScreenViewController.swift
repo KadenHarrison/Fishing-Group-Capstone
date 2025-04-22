@@ -10,11 +10,14 @@ class FishingScreenViewController: UIViewController {
     var location: Location?
     
     private let tacklebox = Tacklebox.shared
-
-    // Tracks timers for game flow
+//MARK: Timers
+    // Time the user has to wait until a fish appears
     private var fishAppearsTimer: FishAppearsTimer?
+    // Tine the user has to grab the hook to start catching the fish
     private var hookTimer: HookTimer?
+    // Time the user has to reel the fish in
     private var catchTimeTimer: CatchTimeTimer?
+    // Time the user has to fish until the session ends
     private var dayCycleTimer: DayCycleTimer?
     
     // Tracks the progress and current state of the player
@@ -133,7 +136,7 @@ class FishingScreenViewController: UIViewController {
     
     /// haha your a bad fisherman. The fish you "almost" got is gone forever and totally reset for another random fish
     private func fishGotAway() {
-        //I think this resets the fish
+        // I think this resets the fish😉
         resetFish()
         
         radarDisplayImageView.image = UIImage(named: "radar")
@@ -164,7 +167,7 @@ class FishingScreenViewController: UIViewController {
         radarDisplayImageView.image = UIImage(named: "fishAppeared")
     }
     
-    // You have a certain amount of time before the fish gets away
+    // You have a certain amount of time that is calculated based on the fish before it gets away
     private func startHookTimer() {
         hookTimer = HookTimer() {
             self.fishGotAway()

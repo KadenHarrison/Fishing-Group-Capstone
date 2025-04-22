@@ -31,7 +31,7 @@ enum FishType: String, Codable, CaseIterable {
         Double.random(in: rarity == .normal ? self.sizeRange.average : self.sizeRange.rare)
     }
     
-    /// base price for each fish type
+    /// Base price for each fish type
     var basePrice: Double {
         switch self {
         case .salmon:
@@ -108,9 +108,9 @@ enum FishType: String, Codable, CaseIterable {
     }
 }
 
-
+/// This detirmines what fish it is and how rare and big the fish is and gets the price from 10% of fish type base price and the random size
 struct Fish: Codable, CustomStringConvertible {
-    // Data needed to create the fish
+    // Data needed to create the fish. price is 10% of base price times size as a general pricing for fish
     var type: FishType
     var rarity: FishRarity
     var size: Double
