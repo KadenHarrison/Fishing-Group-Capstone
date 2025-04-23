@@ -15,22 +15,6 @@ enum FishRarity: String, Codable {
 enum FishType: String, Codable, CaseIterable {
     case salmon, trout, cod, tuna, perch, catfish, bass, loach, piranha, anglerfish, eel, bluegill, carp, koi, walleye, spacefish
     
-    /// Gets the fishes rarity based on a random int generator
-    static func randomRarity() -> FishRarity {
-        let r = Int.random(in: 1...100)
-        
-        if r < 85 {
-            return .normal
-        } else {
-            return .rare
-        }
-    }
-    
-    /// Creates a random size for the fish
-    func randomSize(rarity: FishRarity) -> Double {
-        Double.random(in: rarity == .normal ? self.sizeRange.average : self.sizeRange.rare)
-    }
-    
     /// Base price for each fish type
     var basePrice: Double {
         switch self {
@@ -129,20 +113,39 @@ struct Fish: Codable, CustomStringConvertible {
         self.size = size
     }
     
-    // Generates the data from helper functions
-    static func generateRandomFish(from types: [FishType]) -> Fish {
-        let type = types.randomElement() ?? .salmon
-        let rarity = FishType.randomRarity()
-        let size = type.randomSize(rarity: rarity)
-        
-        return Fish(type: type, rarity: rarity, size: size)
-    }
-    
     var image: UIImage? {
         UIImage(named: self.type.rawValue)
     }
     
     static var fishAppearedImage: UIImage {
         UIImage(named: "fishAppeared")!
+    }
+}
+
+
+class FishFactory {
+    // Generates the data from helper functions
+    static func generateRandomFish(from types: [FishType]) -> Fish {
+        let type = types.randomElement() ?? .salmon
+        let rarity = randomRarity()
+        let size = randomSize(rarity: rarity, fishType: type)
+        
+        return Fish(type: type, rarity: rarity, size: size)
+    }
+    
+    /// Gets the fishes rarity based on a random int generator
+    static func randomRarity() -> FishRarity {
+        let r = Int.random(in: 1...100)
+        
+        if r < 85 {
+            return .normal
+        } else {
+            return .rare
+        }
+    }
+    
+    /// Creates a random size for the fish
+    static func randomSize(rarity: FishRarity, fishType: FishType) -> Double {
+        Double.random(in: rarity == .normal ? fishType.sizeRange.average : fishType.sizeRange.rare)
     }
 }

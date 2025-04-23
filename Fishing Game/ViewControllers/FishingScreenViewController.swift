@@ -124,7 +124,7 @@ class FishingScreenViewController: UIViewController {
     
     
     private func generateRandomFish() {
-        fish = Fish.generateRandomFish(from: location?.availableFish ?? FishType.allCases)
+        fish = FishFactory.generateRandomFish(from: location?.availableFish ?? FishType.allCases)
         
         guard let fish else { return }
         
