@@ -18,7 +18,7 @@ class Location: Codable {
 /// Types of fish that can be caught at this location
     var availableFish: [FishType]
 /// Types of fish the user has caught
-    var caughtFish: [FishType] = [] 
+    var locationCaughtFish: LocationCaughtFish?
     
     init(name: String, thumbnailName: String, requiredLicense: FishingLicense, requiredBoat: Boat, availableFish: [FishType]) {
         self.name = name
@@ -105,5 +105,17 @@ enum AllLocations: CaseIterable {
                 availableFish: [.anglerfish, .tuna, .cod, .eel, .spacefish]
             )
         }
+    }
+}
+
+// MARK: LocationCaughtFish
+
+class LocationCaughtFish: Codable {
+    var location: Location
+    var caughtFish: Set<FishType>
+    
+    init(location: Location, caughtFish: Set<FishType>) {
+        self.location = location
+        self.caughtFish = caughtFish
     }
 }
