@@ -245,17 +245,22 @@ class FishingScreenViewController: UIViewController {
         
         // Saves all the fish you've caught
         if let location {
-            let newFish = caughtFish.filter { fish in
-                !location.caughtFish.contains { $0 == fish.type }
+            // Get or create the player's record for this location
+            if location.locationCaughtFish == nil {
+                location.locationCaughtFish = LocationCaughtFish(location: location, caughtFish: [])
             }
-            
-            let newFishTypes = newFish.map { fish in
-                return fish.type
-            }
-            
-            location.caughtFish.append(contentsOf: newFishTypes)
-            
-            Location.save()
+                    
+            var record = location.locationCaughtFish!
+
+            // Filter new, unique fish types
+            let newFishTypes = caughtFish
+                .map { $0.type }
+                .filter { !record.caughtFish.contains($0) }
+
+            // Update the record
+            record.caughtFish.formUnion(newFishTypes)
+            // Location.save()
+            // Need to refactor saving and loading still
         }
         
         // Sends you to the corresponding view
