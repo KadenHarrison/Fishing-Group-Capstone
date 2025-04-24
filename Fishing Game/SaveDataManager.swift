@@ -7,38 +7,52 @@
 
 import Foundation
 
-class SaveDataManager {
+final class SaveDataManager {
     static let shared = SaveDataManager()
     
-    /// Saves the user's tacklebox
-    func save(tacklebox: Tacklebox) throws {
+    private init() {}
+    
+    func save<T: Encodable>(_ object: T, forKey key: String) throws {
         let jsonEncoder = JSONEncoder()
-        
-        let json = try jsonEncoder.encode(tacklebox)
-        
-        UserDefaults.standard.set(json, forKey: "tacklebox")
+        let jsonData = try jsonEncoder.encode(object)
+        UserDefaults.standard.set(jsonData, forKey: key)
     }
     
-    /// loads the user's tacklebox
-    func loadTacklebox() throws -> Tacklebox? {
-        guard let jsonData = UserDefaults.standard.data(forKey: "tacklebox") else { return nil }
+    func load<T: Decodable>(_ type: T.Type, forKey key: String) throws -> T? {
+        guard let jsonData = UserDefaults.standard.data(forKey: key) else { return nil }
         let jsonDecoder = JSONDecoder()
-        return try jsonDecoder.decode(Tacklebox.self, from: jsonData)
+        return try jsonDecoder.decode(T.self, from: jsonData)
+    }
+}
+
+class TackleboxService {
+    static let shared = TackleboxService(repository: FileTackleboxRepository())
+
+    private let repository: TackleboxRepository
+    private(set) var tacklebox: Tacklebox
+
+    init(repository: TackleboxRepository) {
+        self.repository = repository
+        self.tacklebox = Tacklebox()
+        load()
+    }
+
+    func load() {
+        if let loaded = try? repository.loadTacklebox() {
+            tacklebox = loaded
+        }
+    }
+
+    func save() {
+        do {
+            try repository.saveTacklebox(tacklebox)
+        } catch {
+            print("Failed to save tacklebox: \(error)")
+        }
     }
     
-    /// Saves the locations that the user has unlocked
-    func save(locations: [Location]) throws {
-        let jsonEncoder = JSONEncoder()
-        
-        let json = try jsonEncoder.encode(locations)
-        
-        UserDefaults.standard.set(json, forKey: "locations")
-    }
-    
-    /// Loads the locations that the user has unlocked
-    func loadLocations() throws -> [Location]? {
-        guard let jsonData = UserDefaults.standard.data(forKey: "locations") else { return nil }
-        let jsonDecoder = JSONDecoder()
-        return try jsonDecoder.decode([Location].self, from: jsonData)
+    func reset() {
+        tacklebox = Tacklebox()
+        save()
     }
 }

@@ -35,8 +35,8 @@ class LocationTableViewCell: UITableViewCell {
         self.locationLabel.text = location.name
         
         // Checks if the user has a valuable enough license and boat for the location
-        let unlockedLicense = location.requiredLicense.rawValue <= Tacklebox.shared.fishingLicense.rawValue
-        let unlockedBoat = location.requiredBoat.rawValue <= Tacklebox.shared.boat.rawValue
+        let unlockedLicense = location.requiredLicense.rawValue <= TackleboxService.shared.tacklebox.fishingLicense.rawValue
+        let unlockedBoat = location.requiredBoat.rawValue <= TackleboxService.shared.tacklebox.boat.rawValue
         if unlockedLicense && unlockedBoat {
             lockIconImageView.isHidden = true
             availabilityLabel.text = "Fish caught: \(location.caughtFish.count) / \(location.availableFish.count)"

@@ -7,6 +7,24 @@
 
 import Foundation
 
+protocol TackleboxRepository {
+    func loadTacklebox() throws -> Tacklebox
+    func saveTacklebox(_ tacklebox: Tacklebox) throws
+}
+
+class FileTackleboxRepository: TackleboxRepository {
+    func loadTacklebox() throws -> Tacklebox {
+        guard let tacklebox = try SaveDataManager.shared.load(Tacklebox.self, forKey: "tacklebox") else {
+            return Tacklebox()
+        }
+        return tacklebox
+    }
+    
+    func saveTacklebox(_ tacklebox: Tacklebox) throws {
+        try SaveDataManager.shared.save(tacklebox, forKey: "tacklebox")
+    }
+}
+
 class Tacklebox: Codable {
     var cash: Int
     var baitCount: Int
@@ -14,8 +32,15 @@ class Tacklebox: Codable {
     var line: Line
     var boat: Boat
     var fishingLicense: FishingLicense
-
-    init(cash: Int = 0, baitCount: Int = 10, hook: Hook = .carvedWood, line: Line = .twine, boat: Boat = .canoe, fishingLicense: FishingLicense = .mountain) {
+    
+    init(
+        cash: Int = 0,
+        baitCount: Int = 10,
+        hook: Hook = .carvedWood,
+        line: Line = .twine,
+        boat: Boat = .canoe,
+        fishingLicense: FishingLicense = .mountain
+    ) {
         self.cash = cash
         self.baitCount = baitCount
         self.hook = hook
@@ -23,25 +48,9 @@ class Tacklebox: Codable {
         self.boat = boat
         self.fishingLicense = fishingLicense
     }
-    
-    static var shared: Tacklebox = Tacklebox()
-    
-    /// Loads the user's tacklebox
-    static func load() {
-        if let tacklebox = try? SaveDataManager.shared.loadTacklebox() {
-            Tacklebox.shared = tacklebox
-        }
-    }
-    
-    /// Saves the user's tacklebox
-    static func save() {
-        do {
-            try SaveDataManager.shared.save(tacklebox: Tacklebox.shared)
-        } catch {
-            NSLog("Error saving tacklebox: \(error)")
-        }
-    }
 }
+
+
 
 enum Hook: Int, Codable {
     case carvedWood, plastic, steel

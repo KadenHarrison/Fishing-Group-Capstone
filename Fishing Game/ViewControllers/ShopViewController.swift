@@ -9,7 +9,7 @@ import UIKit
 
 class ShopViewController: UIViewController {
     
-    let tacklebox = Tacklebox.shared
+    let tacklebox = TackleboxService.shared.tacklebox
     
     var baitCount = 0
     var hookUpgraded = false
@@ -43,26 +43,27 @@ class ShopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateAllUpgradeLabels()
         
         baitInventoryLabel.text = "Inventory: \(tacklebox.baitCount)"
         
-        if let nextHook = Hook(rawValue: tacklebox.hook.rawValue + 1) {
-            nextHookLabel.text = "Next: \(nextHook.displayName)"
-        } else {
-            nextHookLabel.text = "Fully Upgraded!"
-        }
-        
-        if let nextLine = Line(rawValue: tacklebox.line.rawValue + 1) {
-            nextLineLabel.text = "Next: \(nextLine.displayName)"
-        } else {
-            nextLineLabel.text = "Fully Upgraded!"
-        }
-
-        if let nextBoat = Boat(rawValue: tacklebox.boat.rawValue + 1) {
-            nextBoatLabel.text = "Next: \(nextBoat.displayName)"
-        } else {
-            nextBoatLabel.text = "Fully Upgraded!"
-        }
+//        if let nextHook = Hook(rawValue: tacklebox.hook.rawValue + 1) {
+//            nextHookLabel.text = "Next: \(nextHook.displayName)"
+//        } else {
+//            nextHookLabel.text = "Fully Upgraded!"
+//        }
+//        
+//        if let nextLine = Line(rawValue: tacklebox.line.rawValue + 1) {
+//            nextLineLabel.text = "Next: \(nextLine.displayName)"
+//        } else {
+//            nextLineLabel.text = "Fully Upgraded!"
+//        }
+//
+//        if let nextBoat = Boat(rawValue: tacklebox.boat.rawValue + 1) {
+//            nextBoatLabel.text = "Next: \(nextBoat.displayName)"
+//        } else {
+//            nextBoatLabel.text = "Fully Upgraded!"
+//        }
 
         if let nextFishingLicense = FishingLicense(rawValue: tacklebox.fishingLicense.rawValue + 1) {
             nextFishingLicenseLabel.text = "Next: \(nextFishingLicense.displayName)"
@@ -71,6 +72,24 @@ class ShopViewController: UIViewController {
         }
         
         remainingCashAmountLabel.text = "$\(tacklebox.cash)"
+    }
+    
+    func updateUpgradeLabel<T: RawRepresentable>(
+        current: T,
+        label: UILabel,
+        displayName: (T) -> String
+    ) where T.RawValue == Int {
+        if let next = T(rawValue: current.rawValue + 1) {
+            label.text = "Next: \(displayName(next))"
+        } else {
+            label.text = "Fully Upgraded!"
+        }
+    }
+    
+    func updateAllUpgradeLabels() {
+        updateUpgradeLabel(current: tacklebox.hook, label: nextHookLabel) { $0.displayName }
+        updateUpgradeLabel(current: tacklebox.line, label: nextLineLabel) { $0.displayName }
+        updateUpgradeLabel(current: tacklebox.boat, label: nextBoatLabel) { $0.displayName }
     }
 
     @IBAction func debugFreeMoney(_ sender: Any) {
@@ -233,7 +252,7 @@ class ShopViewController: UIViewController {
             tacklebox.fishingLicense.upgrade()
         }
         
-        Tacklebox.save()
+        TackleboxService.shared.save()
         
         performSegue(withIdentifier: "unwindToLocationSelection", sender: nil)
     }

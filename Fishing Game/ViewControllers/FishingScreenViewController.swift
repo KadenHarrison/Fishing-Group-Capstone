@@ -10,7 +10,7 @@ import UIKit
 class FishingScreenViewController: UIViewController {
     var location: Location?
     
-    private let tacklebox = Tacklebox.shared
+    private let tacklebox = TackleboxService.shared.tacklebox
     
     private var fishAppearsTimer: FishAppearsTimer?
     private var hookTimer: HookTimer?
@@ -230,7 +230,7 @@ class FishingScreenViewController: UIViewController {
         print("Used bait")
         
         tacklebox.baitCount -= 1
-        Tacklebox.save()
+        TackleboxService.shared.save()
         baitRemainingLabel.text = "Bait Remaining: \(tacklebox.baitCount)"
     }
     
@@ -285,8 +285,8 @@ class FishingScreenViewController: UIViewController {
     }
     
     private func transitionToCatchScreen() {
-        Tacklebox.shared.cash += caughtFish.reduce(0) { $0 + Int($1.price) }
-        Tacklebox.save()
+        TackleboxService.shared.tacklebox.cash += caughtFish.reduce(0) { $0 + Int($1.price) }
+        TackleboxService.shared.save()
         performSegue(withIdentifier: "fishCaughtSegue", sender: self)
     }
     

@@ -18,7 +18,9 @@ class Location: Codable {
 /// Types of fish that can be caught at this location
     var availableFish: [FishType]
 /// Types of fish the user has caught
-    var caughtFish: [FishType] = [] 
+    var caughtFish: [FishType] = []
+    
+    static var list: [Location] = [mountain, valley, river, shore, deepSea]
     
     init(name: String, thumbnailName: String, requiredLicense: FishingLicense, requiredBoat: Boat, availableFish: [FishType]) {
         self.name = name
@@ -29,29 +31,29 @@ class Location: Codable {
     }
 }
 
-extension Location {
-    static var list: [Location] = [mountain, valley, river, shore, deepSea]
-
-    /// Loads the list of locations
-    static func load() {
-        do {
-            if let locationList = try SaveDataManager.shared.loadLocations() {
-                Location.list = locationList
-            }
-        } catch {
-            NSLog("Error loading location list: \(error)")
-        }
-    }
-    
-    /// Saves the list of locations
-    static func save() {
-        do {
-            try SaveDataManager.shared.save(locations: Location.list)
-        } catch {
-            NSLog("Error saving location list: \(error)")
-        }
-    }
-}
+//extension Location {
+//
+//
+//    /// Loads the list of locations
+//    static func load() {
+//        do {
+//            if let locationList = try SaveDataManager.shared.load() {
+//                Location.list = locationList
+//            }
+//        } catch {
+//            NSLog("Error loading location list: \(error)")
+//        }
+//    }
+//    
+//    /// Saves the list of locations
+//    static func save() {
+//        do {
+//            try SaveDataManager.shared.save(locations: Location.list)
+//        } catch {
+//            NSLog("Error saving location list: \(error)")
+//        }
+//    }
+//}
 
 // MARK: Locations
 
