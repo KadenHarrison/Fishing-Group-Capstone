@@ -29,30 +29,6 @@ class Location: Codable {
     }
 }
 
-//extension Location {
-//    static var list: [Location] = [mountain, valley, river, shore, deepSea]
-//
-//    static func load() {
-//        do {
-//            if let locationList = try SaveDataManager.shared.loadLocations() {
-//                Location.list = locationList
-//            }
-//        } catch {
-//            NSLog("Error loading location list: \(error)")
-//        }
-//    }
-//    
-//    static func save() {
-//        do {
-//            try SaveDataManager.shared.save(locations: Location.list)
-//        } catch {
-//            NSLog("Error saving location list: \(error)")
-//        }
-//    }
-//}
-
-// Refactoring locations load and save functions.
-
 // MARK: AllLocations
 
 enum AllLocations: CaseIterable {
