@@ -39,7 +39,7 @@ class LocationTableViewCell: UITableViewCell {
         let unlockedBoat = location.requiredBoat.rawValue <= TackleboxService.shared.tacklebox.boat.rawValue
         if unlockedLicense && unlockedBoat {
             lockIconImageView.isHidden = true
-            availabilityLabel.text = "Fish caught: \(location.caughtFish.count) / \(location.availableFish.count)"
+            availabilityLabel.text = "Fish caught: \(location.locationCaughtFish?.caughtFish.count ?? 0) / \(location.availableFish.count)"
         } else {
             lockIconImageView.isHidden = false
             availabilityLabel.text = "Requires license \(location.requiredLicense.displayName) and \(location.requiredBoat.displayName)"
