@@ -32,7 +32,7 @@ class LocationSelectionViewController: UIViewController {
         
         let location = Location.list[indexPath.row]
         
-        fishingScreenViewController?.location = location
+        fishingScreenViewController?.fishingDay.location = location
         
         return fishingScreenViewController
     }
