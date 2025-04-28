@@ -30,7 +30,7 @@ class LocationSelectionViewController: UIViewController {
             fatalError("Failed to cast sender as index path in LocationSelectionViewController.goToLocation(_:sender:)")
         }
         
-        let location = Location.list[indexPath.row]
+        let location = AllLocations.allCases[indexPath.row].location
         
         fishingScreenViewController?.fishingDay.location = location
         
@@ -42,14 +42,14 @@ class LocationSelectionViewController: UIViewController {
 
 extension LocationSelectionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Location.list.count
+        return AllLocations.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell") as? LocationTableViewCell else { fatalError("Dequeue failed!")
         }
         
-        let location = Location.list[indexPath.row]
+        let location = AllLocations.allCases[indexPath.row].location
         
         cell.configureCell(for: location)
         
@@ -59,7 +59,7 @@ extension LocationSelectionViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        let location = Location.list[indexPath.row]
+        let location = AllLocations.allCases[indexPath.row].location
         
         // User must meet minimum license requirements to call performSegue
         if location.requiredLicense.rawValue <= Tacklebox.shared.fishingLicense.rawValue {
