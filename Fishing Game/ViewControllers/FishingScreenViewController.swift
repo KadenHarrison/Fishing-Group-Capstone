@@ -88,15 +88,6 @@ class FishingDay {
             self.endDay(early: true)
         }
     }
-    func generateRandomFish() {
-        viewController?.fish = FishFactory.generateRandomFish(from: self.location?.availableFish ?? FishType.allCases)
-        guard let fish = viewController?.fish else { return }
-        
-        // Calculates how many spins are needed to acquire the fish
-        fishingReel?.requiredSpins = Int(fish.size)
-        
-        NSLog("Generated \(fish))")
-    }
 }
 class FishingReel {
     weak var fishingDay: FishingDay?
@@ -120,7 +111,6 @@ class FishingReel {
     func fishGotAway() {
         // I think this resets the fish😉
         resetFish()
-        
         viewController?.radarDisplayImageView.image = UIImage(named: "radar")
         
         hookTimer?.stop()
@@ -130,12 +120,12 @@ class FishingReel {
         fishingDay?.catchTimeTimer = CatchTimeTimer(countdownTime: 5) { timeSinceStart in
             let timeRemaining = TimeInterval(5) - timeSinceStart
             self.viewController?.timeRemainingLabel.text = "Missed... \(timeRemaining.rounded(toPlaces: 1))"
-        } completionHandler: { [self] in
+        } completionHandler: {
             // resets everything after losing
-            viewController?.timeRemainingLabel.text = ""
-            fishingDay?.checkBait()
-            viewController?.toggleBoatHidden(false)
-            fishingDay?.fishAppearsTimer?.start()
+            self.viewController?.timeRemainingLabel.text = ""
+            self.fishingDay?.checkBait()
+            self.viewController?.toggleBoatHidden(false)
+            self.fishingDay?.fishAppearsTimer?.start()
         }
         
         fishingDay?.catchTimeTimer?.start()
@@ -149,23 +139,31 @@ class FishingReel {
         reelProgress = 0
         requiredSpins = 0
     }
-
+    func generateRandomFish() {
+        viewController?.fish = FishFactory.generateRandomFish(from: fishingDay?.location?.availableFish ?? FishType.allCases)
+        let fish = viewController?.fish
+        guard let fish else { return }
+        
+        // Calculates how many spins are needed to acquire the fish
+        requiredSpins = Int(fish.size)
+        
+        NSLog("Generated \(fish))")
+    }
     /// Starts the timer for how long you have to reel before the fish escapes
     func startCatchCountdown() {
         //gets catch time
         let catchTime = calculateCatchTime()
         
-        // starts catch time
+                // starts catch time
         fishingDay?.catchTimeTimer = CatchTimeTimer(countdownTime: catchTime) { timeSinceStart in
             //counts down timer
-            let timeRemaining = catchTime - timeSinceStart
+            let timeRemaining = (catchTime) - timeSinceStart
             // updates timer label
             self.viewController?.timeRemainingLabel.text = "⏱️ \(Int(timeRemaining.rounded(toPlaces: 1)))s"
         } completionHandler: {
             // if time runs out fish gets away
             self.fishGotAway()
         }
-        
         fishingDay?.catchTimeTimer?.start()
     }
 
@@ -202,12 +200,7 @@ class FishingReel {
         
         fishingDay?.tacklebox.baitCount -= 1
         Tacklebox.save()
-        if let baitCount = fishingDay?.tacklebox.baitCount {
-            viewController?.baitRemainingLabel.text = "Bait Remaining: \(baitCount)"
-        } else {
-            viewController?.baitRemainingLabel.text = "Bait Remaining: 0"
-        }
-        
+        viewController?.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay?.tacklebox.baitCount ?? 0))"
     }
 }
 extension FishingScreenViewController: FishingDayProtocol {
@@ -266,6 +259,7 @@ class FishingScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         fishingReel.viewController = self
+        fishingReel.fishingDay = fishingDay
         
         super.viewDidLoad()
         fishingDay.delegate = self
@@ -273,7 +267,7 @@ class FishingScreenViewController: UIViewController {
         toggleBoatHidden(false)
         
         // Updates the displayed bait count
-        self.baitRemainingLabel.text = "Bait Remaining: \(fishingDay.tacklebox.baitCount)"
+        self.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay.tacklebox.baitCount))"
         
         // Sets the background image based on the fishing location
         self.boatImageView.image = UIImage(named: fishingDay.location?.backgroundName ?? "boat")
@@ -295,7 +289,7 @@ class FishingScreenViewController: UIViewController {
         
         // Starts the timer for the next fish appearance
         fishingDay.fishAppearsTimer = FishAppearsTimer(maxTime: maxTimeUntilFishAppears) {
-            self.fishingDay.generateRandomFish()
+            self.fishingReel.generateRandomFish()
             self.fishingReel.useBait()
             self.showFishAppeared()
             self.fishingReel.startHookTimer()
@@ -309,7 +303,7 @@ class FishingScreenViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         fishingReel.resetFish()
         
-        fishingDay.checkBait()
+            fishingDay.checkBait()
         // Displays the view while waiting for the next bite
         toggleBoatHidden(false)
         // Starts the timer for the next fish
