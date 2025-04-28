@@ -248,7 +248,7 @@ class FishingScreenViewController: UIViewController {
         if let location {
             // Get or create the player's record for this location
             if location.locationCaughtFish == nil {
-                location.locationCaughtFish = LocationCaughtFish(location: location, caughtFish: Set(caughtFish.map({$0.type})))
+                location.locationCaughtFish = LocationCaughtFish(locationName: location.name, caughtFish: Set(caughtFish.map({$0.type})))
             }
                     
             let record = location.locationCaughtFish!
