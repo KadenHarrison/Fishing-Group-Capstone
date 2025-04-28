@@ -56,3 +56,60 @@ class TackleboxService {
         save()
     }
 }
+
+class LocationService {
+    static let shared = LocationService(repository: FileLocationRepository())
+    
+    private let repository: LocationRepository
+    private(set) var locations: [Location]
+    private(set) var caughtFishRecords: [String: LocationCaughtFish] = [:]
+    
+    init(repository: LocationRepository) {
+        self.repository = repository
+        self.locations = []
+        load()
+    }
+    
+    func save() {
+        do {
+            try repository.saveLocations(locations)
+            try repository.saveCaughtFishRecords(Array(caughtFishRecords.values))
+        } catch {
+            print("Failed to save locationsL \(error)")
+        }
+    }
+    
+    func load() {
+        do {
+            locations = try repository.loadLocations()
+            let records = try repository.loadCaughtFishRecords()
+            caughtFishRecords = Dictionary(uniqueKeysWithValues: records.map { ($0.locationName, $0) })
+        } catch {
+            print("Failed to load locations: \(error)")
+            locations = []
+            caughtFishRecords = [:]
+        }
+    }
+    
+    func resetToDefaults() {
+        locations = AllLocations.allCases.map { $0.location }
+        caughtFishRecords.removeAll()
+        save()
+    }
+    
+    func updateCaughtFish(for location: Location, caughtFish: [Fish]) {
+        let locationName = location.name
+        let fishTypes = caughtFish.map { $0.type }
+        
+        // Get or create the player's record for this location
+        if caughtFishRecords[locationName] == nil {
+            // First time catching fish at this location
+            caughtFishRecords[locationName] = LocationCaughtFish(locationName: locationName, caughtFish: Set(fishTypes))
+        } else {
+            // Already has a record - update it with new fish
+            caughtFishRecords[locationName]?.caughtFish.formUnion(fishTypes)
+        }
+        
+        save()
+    }
+}

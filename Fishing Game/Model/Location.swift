@@ -7,6 +7,32 @@
 
 import Foundation
 
+protocol LocationRepository {
+    func saveLocations(_ locations: [Location]) throws
+    func loadLocations() throws -> [Location]
+    
+    func saveCaughtFishRecords(_ records: [LocationCaughtFish]) throws
+    func loadCaughtFishRecords() throws -> [LocationCaughtFish]
+}
+
+class FileLocationRepository: LocationRepository {
+    func saveLocations(_ locations: [Location]) throws {
+        try SaveDataManager.shared.save(locations, forKey: "locations")
+    }
+    
+    func loadLocations() throws -> [Location] {
+        return try SaveDataManager.shared.load([Location].self, forKey: "locations") ?? []
+    }
+    
+    func saveCaughtFishRecords(_ records: [LocationCaughtFish]) throws {
+        try SaveDataManager.shared.save(records, forKey: "caughtFishRecords")
+    }
+    
+    func loadCaughtFishRecords() throws -> [LocationCaughtFish] {
+        return try SaveDataManager.shared.load([LocationCaughtFish].self, forKey: "caughtFishRecords") ?? []
+    }
+}
+
 class Location: Codable {
     var name: String
     var thumbnailName: String
@@ -87,11 +113,11 @@ enum AllLocations: CaseIterable {
 // MARK: LocationCaughtFish
 
 class LocationCaughtFish: Codable {
-    var location: Location
+    let locationName: String
     var caughtFish: Set<FishType>
     
-    init(location: Location, caughtFish: Set<FishType>) {
-        self.location = location
+    init(locationName: String, caughtFish: Set<FishType>) {
+        self.locationName = locationName
         self.caughtFish = caughtFish
     }
 }

@@ -12,6 +12,31 @@ protocol TackleboxRepository {
     func saveTacklebox(_ tacklebox: Tacklebox) throws
 }
 
+// Enums are able to use the upgrade functions
+protocol Upgradable: RawRepresentable, CaseIterable where RawValue == Int {
+    mutating func upgrade()
+    var next: Self? { get }
+}
+
+// Enums can show the next upgrade available for the player to purchase
+protocol Displayable {
+    var displayName: String { get }
+}
+
+// Adds functionality to the Upgradable protocol
+extension Upgradable {
+    var next: Self? {
+        return Self(rawValue: rawValue + 1)
+    }
+
+    mutating func upgrade() {
+        if let nextValue = next {
+            self = nextValue
+        }
+    }
+}
+
+
 class FileTackleboxRepository: TackleboxRepository {
     func loadTacklebox() throws -> Tacklebox {
         guard let tacklebox = try SaveDataManager.shared.load(Tacklebox.self, forKey: "tacklebox") else {
@@ -52,92 +77,55 @@ class Tacklebox: Codable {
 
 
 
-enum Hook: Int, Codable {
+enum Hook: Int, Codable, CaseIterable, Upgradable, Displayable {
     case carvedWood, plastic, steel
     
     var displayName: String {
         switch self {
-        case .carvedWood:
-            return "Carved Wood"
-        case .plastic:
-            return "Plastic"
-        case .steel:
-            return "Steel"
+        case .carvedWood: return "Carved Wood"
+        case .plastic: return "Plastic"
+        case .steel: return "Steel"
         }
-    }
-    
-    /// Determines the upgrade for the fishing hook that the user currently has
-    mutating func upgrade() {
-        guard let nextHook = Hook(rawValue: self.rawValue + 1) else { return }
-        
-        self = nextHook
     }
 }
 
-enum Line: Int, Codable {
+enum Line: Int, Codable, CaseIterable, Upgradable, Displayable {
     case twine, monofilament, fluorocarbon
     
     var displayName: String {
         switch self {
-        case .twine:
-            return "Twine"
-        case .monofilament:
-            return "Monofilament"
-        case .fluorocarbon:
-            return "Fluorocarbon"
+        case .twine: return "Twine"
+        case .monofilament: return "Monofilament"
+        case .fluorocarbon: return "Fluorocarbon"
         }
-    }
-    
-    /// Determines the upgrade for the fishing line that the user currently has
-    mutating func upgrade() {
-        guard let nextLine = Line(rawValue: self.rawValue + 1) else { return }
-        
-        self = nextLine
     }
 }
 
-enum Boat: Int, Codable {
+enum Boat: Int, Codable, CaseIterable, Upgradable, Displayable {
     case rowboat, canoe, sailboat, submarine
     
     var displayName: String {
         switch self {
-        case .rowboat:
-            return "Rowboat"
-        case .canoe:
-            return "Canoe"
-        case .sailboat:
-            return "Sailboat"
-        case .submarine:
-            return "Submarine"
+        case .rowboat: return "Rowboat"
+        case .canoe: return "Canoe"
+        case .sailboat: return "Sailboat"
+        case .submarine: return "Submarine"
         }
-    }
-    
-    /// Determines the upgrade for the fishing boat that the user currently has
-    mutating func upgrade() {
-        guard let nextBoat = Boat(rawValue: self.rawValue + 1) else { return }
-        
-        self = nextBoat
     }
 }
 
-enum FishingLicense: Int, Codable {
+enum FishingLicense: Int, Codable, CaseIterable, Upgradable, Displayable {
     case mountain, river, valley, shore, deepSea
     
     var displayName: String {
         switch self {
-        case .mountain:
-            return "Mountain"
-        case .river:
-            return "River"
-        case .valley:
-            return "Valley"
-        case .shore:
-            return "Shore"
-        case .deepSea:
-            return "Deep Sea"
+        case .mountain: return "Mountain"
+        case .river: return "River"
+        case .valley: return "Valley"
+        case .shore: return "Shore"
+        case .deepSea: return "Deep Sea"
         }
     }
-    
     /// Determines the locations the player can fish at based on the different liscenses they have in their tacklebox
     mutating func upgrade() {
         guard let nextLicense = FishingLicense(rawValue: self.rawValue + 1) else { return }

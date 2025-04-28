@@ -74,22 +74,18 @@ class ShopViewController: UIViewController {
         remainingCashAmountLabel.text = "$\(tacklebox.cash)"
     }
     
-    func updateUpgradeLabel<T: RawRepresentable>(
-        current: T,
-        label: UILabel,
-        displayName: (T) -> String
-    ) where T.RawValue == Int {
-        if let next = T(rawValue: current.rawValue + 1) {
-            label.text = "Next: \(displayName(next))"
+    func updateUpgradeLabel<T: Upgradable & Displayable>(current: T, label: UILabel) {
+        if let next = current.next {
+            label.text = "Next: \(next.displayName)"
         } else {
             label.text = "Fully Upgraded!"
         }
     }
     
     func updateAllUpgradeLabels() {
-        updateUpgradeLabel(current: tacklebox.hook, label: nextHookLabel) { $0.displayName }
-        updateUpgradeLabel(current: tacklebox.line, label: nextLineLabel) { $0.displayName }
-        updateUpgradeLabel(current: tacklebox.boat, label: nextBoatLabel) { $0.displayName }
+        updateUpgradeLabel(current: tacklebox.hook, label: nextHookLabel) 
+        updateUpgradeLabel(current: tacklebox.line, label: nextLineLabel)
+        updateUpgradeLabel(current: tacklebox.boat, label: nextBoatLabel)
     }
 
     @IBAction func debugFreeMoney(_ sender: Any) {
