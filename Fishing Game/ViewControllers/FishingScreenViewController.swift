@@ -60,28 +60,32 @@ class FishingDay {
     }
     /// Called when you run out of bait or time, ending the day
     func endDay(early: Bool) {
-        //stop all timers
-        self.fishAppearsTimer?.stop()
-        self.catchTimeTimer?.stop()
-        self.dayCycleTimer?.stop()
-        
-        // Saves all the fish you've caught
-        if let location {
-            let newFish = caughtFish.filter { fish in
-                !location.caughtFish.contains { $0 == fish.type }
+            //stop all timers
+            self.fishAppearsTimer?.stop()
+            self.catchTimeTimer?.stop()
+            self.dayCycleTimer?.stop()
+            
+            // Saves all the fish you've caught
+            if let location {
+                // Get or create the player's record for this location
+                if location.locationCaughtFish == nil {
+                    location.locationCaughtFish = LocationCaughtFish(location: location, caughtFish: [])
+                }
+                        
+                var record = location.locationCaughtFish!
+
+                // Filter new, unique fish types
+                let newFishTypes = caughtFish
+                    .map { $0.type }
+                    .filter { !record.caughtFish.contains($0) }
+
+                // Update the record
+                record.caughtFish.formUnion(newFishTypes)
+                // Location.save()
+                // Need to refactor saving and loading still
             }
-            
-            let newFishTypes = newFish.map { fish in
-                return fish.type
-            }
-            
-            location.caughtFish.append(contentsOf: newFishTypes)
-            
-            Location.save()
         }
-        self.delegate?.handleEndOfDay(isEarly: early)
        
-    }
     // If bait reaches 0, the day will end
     func checkBait() {
         if self.tacklebox.baitCount <= 0 {
