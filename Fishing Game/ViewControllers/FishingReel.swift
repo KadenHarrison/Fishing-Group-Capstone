@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class FishingReel {
     weak var fishingDay: FishingDay?
