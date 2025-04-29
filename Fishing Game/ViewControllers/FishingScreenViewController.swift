@@ -6,225 +6,6 @@
 
 import UIKit
 
-protocol FishingDayDelegate: AnyObject {
-    func handleEndOfDay(isEarly: Bool)
-    func dayTimeUpdated(time: String)
-}
-
-class FishingDay {
-    weak var fishingReel: FishingReel?
-    weak var viewController: FishingScreenViewController?
-    var delegate: FishingDayDelegate?
-    let tacklebox = Tacklebox.shared
-    // Time the user has to wait until a fish appears
-    var fishAppearsTimer: FishAppearsTimer?
-    // Time the user has to fish until the session ends
-    var dayCycleTimer: DayCycleTimer?
-    // Time the user has to reel the fish in
-    var catchTimeTimer: CatchTimeTimer?
-    
-    var caughtFish: [Fish] = []
-    var location: Location?
-    
-    
-    
-    init(fishAppearsTimer: FishAppearsTimer? = nil, dayCycleTimer: DayCycleTimer? = nil) {
-        self.fishAppearsTimer = fishAppearsTimer
-        self.dayCycleTimer = dayCycleTimer
-        setup()
-    }
-    func setup() {
-        // If there is no day timer, start the day cycle timer
-        if dayCycleTimer == nil {
-            dayCycleTimer = DayCycleTimer(tickHandler: { [weak self] timeSinceStart in
-                guard let self else {return}
-                print("TICK: \(timeSinceStart)")
-                // Calculates the time of day: 0 corresponds to 9:00 AM, with every 15 seconds representing 1 hour; the day ends at midnight
-                let timeOfDay = 9.0 + (timeSinceStart.rounded(toPlaces: 1) / 15)
-                
-                
-                let amOrPm = timeOfDay >= 12.0 ? "PM" : "AM"
-                
-                // Converts the time to a 12-hour format
-                let formattedTime = "\(Int(timeOfDay) % 12 == 0 ? 12 : Int(timeOfDay) % 12):00 \(amOrPm)"
-                
-                self.delegate?.dayTimeUpdated(time: formattedTime)
-                
-                // Ends the day when the timer completes
-            }, completionHandler: {
-                self.endDay(early: false)
-            })
-            
-            dayCycleTimer?.start()
-        }
-    }
-    /// Called when you run out of bait or time, ending the day
-    func endDay(early: Bool) {
-            //stop all timers
-            self.fishAppearsTimer?.stop()
-            self.catchTimeTimer?.stop()
-            self.dayCycleTimer?.stop()
-            
-            // Saves all the fish you've caught
-            if let location {
-                // Get or create the player's record for this location
-                if location.locationCaughtFish == nil {
-                    location.locationCaughtFish = LocationCaughtFish(location: location, caughtFish: [])
-                }
-                        
-                var record = location.locationCaughtFish!
-
-                // Filter new, unique fish types
-                let newFishTypes = caughtFish
-                    .map { $0.type }
-                    .filter { !record.caughtFish.contains($0) }
-
-                // Update the record
-                record.caughtFish.formUnion(newFishTypes)
-                // Location.save()
-                // Need to refactor saving and loading still
-            }
-        }
-       
-    // If bait reaches 0, the day will end
-    func checkBait() {
-        if self.tacklebox.baitCount <= 0 {
-            self.endDay(early: true)
-        }
-    }
-}
-class FishingReel {
-    weak var fishingDay: FishingDay?
-    weak var viewController: FishingScreenViewController?
-    
-    var requiredSpins = 0
-    var reelProgress = 0.0
-    
-    // Time the user has to grab the hook to start catching the fish
-    var hookTimer: HookTimer?
-    
-    // You have a certain amount of time that is calculated based on the fish before it gets away
-    func startHookTimer() {
-        hookTimer = HookTimer() {
-            self.fishGotAway()
-        }
-        
-        hookTimer?.start()
-    }
-    /// haha your a bad fisherman. The fish you "almost" got is gone forever and totally reset for another random fish
-    func fishGotAway() {
-        // I think this resets the fish😉
-        resetFish()
-        viewController?.radarDisplayImageView.image = UIImage(named: "radar")
-        
-        hookTimer?.stop()
-        fishingDay?.catchTimeTimer?.stop()
-        
-        // Gives you 5 seconds to contemplate your fisherman skills
-        fishingDay?.catchTimeTimer = CatchTimeTimer(countdownTime: 5) { timeSinceStart in
-            let timeRemaining = TimeInterval(5) - timeSinceStart
-            self.viewController?.timeRemainingLabel.text = "Missed... \(timeRemaining.rounded(toPlaces: 1))"
-        } completionHandler: {
-            // resets everything after losing
-            self.viewController?.timeRemainingLabel.text = ""
-            self.fishingDay?.checkBait()
-            self.viewController?.toggleBoatHidden(false)
-            self.fishingDay?.fishAppearsTimer?.start()
-        }
-        
-        fishingDay?.catchTimeTimer?.start()
-    }
-    func resetFish() {
-        viewController?.reelingInFish = false
-        viewController?.fishHasAppeared = false
-        viewController?.fish = nil
-        viewController?.totalRotationAngle = 0
-        viewController?.previousTouchPoint = CGPoint()
-        reelProgress = 0
-        requiredSpins = 0
-    }
-    func generateRandomFish() {
-        viewController?.fish = FishFactory.generateRandomFish(from: fishingDay?.location?.availableFish ?? FishType.allCases)
-        let fish = viewController?.fish
-        guard let fish else { return }
-        
-        // Calculates how many spins are needed to acquire the fish
-        requiredSpins = Int(fish.size)
-        
-        NSLog("Generated \(fish))")
-    }
-    /// Starts the timer for how long you have to reel before the fish escapes
-    func startCatchCountdown() {
-        //gets catch time
-        let catchTime = calculateCatchTime()
-        
-                // starts catch time
-        fishingDay?.catchTimeTimer = CatchTimeTimer(countdownTime: catchTime) { timeSinceStart in
-            //counts down timer
-            let timeRemaining = (catchTime) - timeSinceStart
-            // updates timer label
-            self.viewController?.timeRemainingLabel.text = "⏱️ \(Int(timeRemaining.rounded(toPlaces: 1)))s"
-        } completionHandler: {
-            // if time runs out fish gets away
-            self.fishGotAway()
-        }
-        fishingDay?.catchTimeTimer?.start()
-    }
-
-    /// Called when the reel is complete
-    func catchFish() {
-        viewController?.reelingInFish = false
-        viewController?.timeRemainingLabel.text = ""
-        fishingDay?.catchTimeTimer?.stop()
-        viewController?.moveReelToDefaultNoFishPosition()
-        viewController?.transitionToCatchScreen()
-    }
-    // Depending on the fishing line, you get extra time for reeling
-    func calculateCatchTime() -> TimeInterval {
-        let baseCatchTime = TimeInterval(20)
-        
-        var bonusCatchTime: TimeInterval {
-            switch fishingDay?.tacklebox.line {
-            case .twine:
-                return 0
-            case .monofilament:
-                return 5
-            case .fluorocarbon:
-                return 10
-            case .none:
-                return 0
-            }
-        }
-        
-        return baseCatchTime + bonusCatchTime
-    }
-    // Uses one bait when a fish bites
-    func useBait() {
-        print("Used bait")
-        
-        fishingDay?.tacklebox.baitCount -= 1
-        Tacklebox.save()
-        viewController?.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay?.tacklebox.baitCount ?? 0))"
-    }
-}
-extension FishingScreenViewController: FishingDayDelegate {
-    func dayTimeUpdated(time: String) {
-        self.clockLabel.text = time
-    }
-    
-    // Sends you to the corresponding view
-    func handleEndOfDay(isEarly: Bool) {
-        if isEarly {
-            self.performSegue(withIdentifier: "OutOfBaitSegue", sender: nil)
-        } else {
-            self.performSegue(withIdentifier: "ShowSummarySegue", sender: nil)
-        }
-        
-    }
-    
-    
-}
-
 class FishingScreenViewController: UIViewController {
     
     
@@ -408,6 +189,22 @@ class FishingScreenViewController: UIViewController {
             
             destination.caughtFish = self.fishingDay.caughtFish
         }
+    }
+}
+
+extension FishingScreenViewController: FishingDayDelegate {
+    func dayTimeUpdated(time: String) {
+        self.clockLabel.text = time
+    }
+    
+    // Sends you to the corresponding view
+    func handleEndOfDay(isEarly: Bool) {
+        if isEarly {
+            self.performSegue(withIdentifier: "OutOfBaitSegue", sender: nil)
+        } else {
+            self.performSegue(withIdentifier: "ShowSummarySegue", sender: nil)
+        }
+        
     }
 }
 
