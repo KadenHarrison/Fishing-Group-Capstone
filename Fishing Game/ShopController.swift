@@ -17,6 +17,14 @@ class ShopController {
     var boatUpgraded = false
     var licenseUpgraded = false
     
+    /// Pricing for items in the shop
+    var baitCost: Int = 5
+    var hookCost: Int = 100
+    var lineCost: Int = 500
+    var boatCost: Int = 2000
+    var licenseCost: Int = 5000
+    
+    /// Calculates how much is being spent in the shop
     var amountSpent: Int {
         var total = 0
         total += baitCount * 5
@@ -26,6 +34,8 @@ class ShopController {
         total += licenseUpgraded ? 5000 : 0
         return total
     }
+    
+    /// Basic calculations in order to calculate how much is being spent and how much the player has remaining
     var remainingCash: Int {
         tacklebox.cash - amountSpent
     }
@@ -42,19 +52,22 @@ class ShopController {
         FishingLicense(rawValue: tacklebox.fishingLicense.rawValue + 1)
     }
     
+    /// Calculates the amount of bait that the player has after purchasing and using bait
     func decreaseBaitCount() {
         baitCount -= 1
         baitCount = max(baitCount, 0)
     }
     func increaseBaitCount() {
-        let canAffordBait = tacklebox.cash - amountSpent > 5
+        let canAffordBait = tacklebox.cash - amountSpent > baitCost
         
         if canAffordBait {
             baitCount += 1
         }
     }
+    
+    // MARK: Logic for handling whether the player is purchasing the upgrade or not
     func upgradeHook() {
-        let canAffordHook = tacklebox.cash - amountSpent > 100
+        let canAffordHook = tacklebox.cash - amountSpent > hookCost
         
         if !hookUpgraded && canAffordHook {
             hookUpgraded = true
@@ -63,7 +76,7 @@ class ShopController {
         }
     }
     func upgradeLine() {
-        let canAffordLine = tacklebox.cash - amountSpent > 500
+        let canAffordLine = tacklebox.cash - amountSpent > lineCost
         
         if !lineUpgraded && canAffordLine {
             lineUpgraded = true
@@ -72,7 +85,7 @@ class ShopController {
         }
     }
     func upgradeBoat() {
-        let canAffordboat = tacklebox.cash - amountSpent > 2000
+        let canAffordboat = tacklebox.cash - amountSpent > boatCost
 
         if !boatUpgraded && canAffordboat {
             boatUpgraded = true
@@ -81,7 +94,7 @@ class ShopController {
         }
     }
     func upgradeLicense() {
-        let canAffordlicense = tacklebox.cash - amountSpent > 5000
+        let canAffordlicense = tacklebox.cash - amountSpent > licenseCost
 
         if !licenseUpgraded && canAffordlicense {
             licenseUpgraded = true
@@ -90,7 +103,7 @@ class ShopController {
         }
     }
     
-    /// Grabs the total ammount of cash that the user has spent on upgrades and bait, and then subtracts it from the cash that the player has
+    /// Takes the players ammount spent and subtracts it from the players cash. And then checks what the player actually purchased
     func completeCheckout() {
         let tacklebox = tacklebox
         
