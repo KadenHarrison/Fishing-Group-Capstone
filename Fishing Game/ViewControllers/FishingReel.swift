@@ -99,7 +99,7 @@ class FishingReel {
         let baseCatchTime = TimeInterval(20)
         
         var bonusCatchTime: TimeInterval {
-            switch fishingDay?.tacklebox.line {
+            switch fishingDay?.tackleboxService.tacklebox.line {
             case .twine:
                 return 0
             case .monofilament:
@@ -117,8 +117,8 @@ class FishingReel {
     func useBait() {
         print("Used bait")
         
-        fishingDay?.tacklebox.baitCount -= 1
-        Tacklebox.save()
-        viewController?.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay?.tacklebox.baitCount ?? 0))"
+        fishingDay?.tackleboxService.tacklebox.baitCount -= 1
+        TackleboxService.shared.save()
+        viewController?.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay?.tackleboxService.tacklebox.baitCount ?? 0))"
     }
 }

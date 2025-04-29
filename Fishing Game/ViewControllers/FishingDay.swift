@@ -16,7 +16,7 @@ class FishingDay {
     weak var fishingReel: FishingReel?
     weak var viewController: FishingScreenViewController?
     var delegate: FishingDayDelegate?
-    let tacklebox = Tacklebox.shared
+    let tackleboxService = TackleboxService.shared
     // Time the user has to wait until a fish appears
     var fishAppearsTimer: FishAppearsTimer?
     // Time the user has to fish until the session ends
@@ -84,12 +84,13 @@ class FishingDay {
                 record.caughtFish.formUnion(newFishTypes)
                 // Location.save()
                 // Need to refactor saving and loading still
+                delegate?.handleEndOfDay(isEarly: early)
             }
         }
        
     // If bait reaches 0, the day will end
     func checkBait() {
-        if self.tacklebox.baitCount <= 0 {
+        if self.tackleboxService.tacklebox.baitCount <= 0 {
             self.endDay(early: true)
         }
     }

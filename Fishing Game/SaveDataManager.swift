@@ -83,7 +83,7 @@ class LocationService {
         do {
             locations = try repository.loadLocations()
             let records = try repository.loadCaughtFishRecords()
-            caughtFishRecords = Dictionary(uniqueKeysWithValues: records.map { ($0.locationName, $0) })
+            caughtFishRecords = Dictionary(uniqueKeysWithValues: records.map { ($0.location.name, $0) })
         } catch {
             print("Failed to load locations: \(error)")
             locations = []
@@ -104,7 +104,7 @@ class LocationService {
         // Get or create the player's record for this location
         if caughtFishRecords[locationName] == nil {
             // First time catching fish at this location
-            caughtFishRecords[locationName] = LocationCaughtFish(locationName: locationName, caughtFish: Set(fishTypes))
+            caughtFishRecords[locationName] = LocationCaughtFish(location: location, caughtFish: Set(fishTypes))
         } else {
             // Already has a record - update it with new fish
             caughtFishRecords[locationName]?.caughtFish.formUnion(fishTypes)
