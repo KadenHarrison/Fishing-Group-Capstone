@@ -6,7 +6,7 @@
 
 import UIKit
 
-protocol FishingDayProtocol: AnyObject {
+protocol FishingDayDelegate: AnyObject {
     func handleEndOfDay(isEarly: Bool)
     func dayTimeUpdated(time: String)
 }
@@ -14,7 +14,7 @@ protocol FishingDayProtocol: AnyObject {
 class FishingDay {
     weak var fishingReel: FishingReel?
     weak var viewController: FishingScreenViewController?
-    var delegate: FishingDayProtocol?
+    var delegate: FishingDayDelegate?
     let tacklebox = Tacklebox.shared
     // Time the user has to wait until a fish appears
     var fishAppearsTimer: FishAppearsTimer?
@@ -207,7 +207,7 @@ class FishingReel {
         viewController?.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay?.tacklebox.baitCount ?? 0))"
     }
 }
-extension FishingScreenViewController: FishingDayProtocol {
+extension FishingScreenViewController: FishingDayDelegate {
     func dayTimeUpdated(time: String) {
         self.clockLabel.text = time
     }
