@@ -32,6 +32,8 @@
 		0AD4AE462D9DB90F00472881 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4AE452D9DB90F00472881 /* LocationTableViewCell.swift */; };
 		0AFF47622D9C55F0007AF9C3 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */; };
 		472785932DBFC18F003713D4 /* ShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472785922DBFC18F003713D4 /* ShopController.swift */; };
+		DD509D5C2DC11DCA000CFE14 /* FishingDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */; };
+		DD509D5E2DC11DFC000CFE14 /* FishingReel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		0AD4AE452D9DB90F00472881 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		472785922DBFC18F003713D4 /* ShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopController.swift; sourceTree = "<group>"; };
+		DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingDay.swift; sourceTree = "<group>"; };
+		DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingReel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 				0A60E1572D930F9D00CA6AC5 /* AquariumViewController.swift */,
 				0A60E1582D930F9D00CA6AC5 /* FishCaughtViewController.swift */,
 				0A60E1592D930F9D00CA6AC5 /* FishingScreenViewController.swift */,
+				DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */,
+				DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */,
 				0A60E15A2D930F9D00CA6AC5 /* SummaryScreenViewController.swift */,
 				0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */,
 				0A8943E62DA5794300E7B6AF /* SettingsViewController.swift */,
@@ -239,8 +245,10 @@
 				0AD4AE462D9DB90F00472881 /* LocationTableViewCell.swift in Sources */,
 				0A60E1732D930F9D00CA6AC5 /* SceneDelegate.swift in Sources */,
 				0A60E1742D930F9D00CA6AC5 /* SellTotalTableViewCell.swift in Sources */,
+				DD509D5E2DC11DFC000CFE14 /* FishingReel.swift in Sources */,
 				0A60E1752D930F9D00CA6AC5 /* Status.swift in Sources */,
 				0AD4AE442D9DB8CF00472881 /* LocationSelectionViewController.swift in Sources */,
+				DD509D5C2DC11DCA000CFE14 /* FishingDay.swift in Sources */,
 				0A3E67BC2DA44B6F0032AAB2 /* MainMenuViewController.swift in Sources */,
 				0A60E17C2D9445FA00CA6AC5 /* Tacklebox.swift in Sources */,
 				472785932DBFC18F003713D4 /* ShopController.swift in Sources */,
