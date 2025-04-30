@@ -73,7 +73,7 @@ class FishingDay {
                     location.locationCaughtFish = LocationCaughtFish(location: location, caughtFish: [])
                 }
                         
-                var record = location.locationCaughtFish!
+                let record = location.locationCaughtFish!
 
                 // Filter new, unique fish types
                 let newFishTypes = caughtFish
@@ -84,6 +84,7 @@ class FishingDay {
                 record.caughtFish.formUnion(newFishTypes)
                 // Location.save()
                 // Need to refactor saving and loading still
+                delegate?.handleEndOfDay(isEarly: early)
             }
         }
        
