@@ -84,6 +84,7 @@ class FishingDay {
                 record.caughtFish.formUnion(newFishTypes)
                 // Location.save()
                 // Need to refactor saving and loading still
+                delegate?.handleEndOfDay(isEarly: early)
             }
         }
        
