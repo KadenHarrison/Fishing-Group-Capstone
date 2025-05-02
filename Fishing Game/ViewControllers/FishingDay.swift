@@ -70,10 +70,11 @@ class FishingDay {
             if let location {
                 // Get or create the player's record for this location
                 if location.locationCaughtFish == nil {
-                    location.locationCaughtFish = LocationCaughtFish(location: location, caughtFish: [])
+                    print("Making an empty record for \(location.name)")
+                    location.locationCaughtFish = LocationCaughtFish(caughtFish: [])
                 }
-                        
-                var record = location.locationCaughtFish!
+
+                let record = location.locationCaughtFish!
 
                 // Filter new, unique fish types
                 let newFishTypes = caughtFish
@@ -82,8 +83,7 @@ class FishingDay {
 
                 // Update the record
                 record.caughtFish.formUnion(newFishTypes)
-                // Location.save()
-                // Need to refactor saving and loading still
+                LocationService.shared.updateCaughtFish(for: location, with: caughtFish)
                 delegate?.handleEndOfDay(isEarly: early)
             }
         }

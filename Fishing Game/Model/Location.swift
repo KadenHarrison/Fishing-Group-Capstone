@@ -17,6 +17,7 @@ protocol LocationRepository {
 
 class FileLocationRepository: LocationRepository {
     func saveLocations(_ locations: [Location]) throws {
+        print("kbdb: Save Locations")
         try SaveDataManager.shared.save(locations, forKey: "locations")
     }
     
@@ -45,6 +46,10 @@ class Location: Codable {
     var availableFish: [FishType]
 /// Types of fish the user has caught
     var locationCaughtFish: LocationCaughtFish?
+    
+    deinit {
+        print("deinit of location")
+    }
     
     init(name: String, thumbnailName: String, requiredLicense: FishingLicense, requiredBoat: Boat, availableFish: [FishType]) {
         self.name = name
@@ -113,11 +118,11 @@ enum AllLocations: CaseIterable {
 // MARK: LocationCaughtFish
 
 class LocationCaughtFish: Codable {
-    let location: Location
+//    let location: Location
     var caughtFish: Set<FishType>
     
-    init(location: Location, caughtFish: Set<FishType>) {
-        self.location = location
+    init(/*location: Location, */caughtFish: Set<FishType>) {
+//        self.location = location
         self.caughtFish = caughtFish
     }
 }

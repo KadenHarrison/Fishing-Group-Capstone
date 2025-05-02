@@ -70,10 +70,11 @@ class LocationService {
         load()
     }
     
-    func save() {
+    func saveLocation() {
         do {
             try repository.saveLocations(locations)
-            try repository.saveCaughtFishRecords(Array(caughtFishRecords.values))
+            let fishRecords = Array(caughtFishRecords.values)
+            try repository.saveCaughtFishRecords(fishRecords)
         } catch {
             print("Failed to save locationsL \(error)")
         }
@@ -82,8 +83,12 @@ class LocationService {
     func load() {
         do {
             locations = try repository.loadLocations()
-            let records = try repository.loadCaughtFishRecords()
-            caughtFishRecords = Dictionary(uniqueKeysWithValues: records.map { ($0.location.name, $0) })
+//            let records = try repository.loadCaughtFishRecords()
+            locations.forEach { location in
+                if let locationCaughtFish = location.locationCaughtFish {
+                    caughtFishRecords[location.name] = locationCaughtFish
+                }
+            }
         } catch {
             print("Failed to load locations: \(error)")
             locations = []
@@ -94,22 +99,23 @@ class LocationService {
     func resetToDefaults() {
         locations = AllLocations.allCases.map { $0.location }
         caughtFishRecords.removeAll()
-        save()
+        saveLocation()
     }
     
-    func updateCaughtFish(for location: Location, caughtFish: [Fish]) {
-        let locationName = location.name
-        let fishTypes = caughtFish.map { $0.type }
-        
-        // Get or create the player's record for this location
-        if caughtFishRecords[locationName] == nil {
-            // First time catching fish at this location
-            caughtFishRecords[locationName] = LocationCaughtFish(location: location, caughtFish: Set(fishTypes))
-        } else {
-            // Already has a record - update it with new fish
-            caughtFishRecords[locationName]?.caughtFish.formUnion(fishTypes)
+    func updateCaughtFish(for location: Location, with newFish: [Fish]) {
+            guard let index = locations.firstIndex(where: { $0.name == location.name }) else {
+                print("Location not found.")
+                return
+            }
+            if locations[index].locationCaughtFish == nil {
+                let fishTypes = Set(newFish.map { $0.type })
+                locations[index].locationCaughtFish = LocationCaughtFish(caughtFish: fishTypes)
+            } else {
+                let record = locations[index].locationCaughtFish!
+                let newFishTypes = newFish.map { $0.type }.filter { !record.caughtFish.contains($0) }
+                record.caughtFish.formUnion(newFishTypes)
+            }
+            
+            saveLocation()
         }
-        
-        save()
-    }
 }
