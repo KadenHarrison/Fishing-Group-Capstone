@@ -62,7 +62,7 @@ extension LocationSelectionViewController: UITableViewDelegate, UITableViewDataS
         let location = AllLocations.allCases[indexPath.row].location
         
         // User must meet minimum license requirements to call performSegue
-        if location.requiredLicense.rawValue <= Tacklebox.shared.fishingLicense.rawValue {
+        if location.requiredLicense.rawValue <= TackleboxService.shared.tacklebox.fishingLicense.rawValue {
             performSegue(withIdentifier: "goToLocationSegue", sender: indexPath)
         }
     }
