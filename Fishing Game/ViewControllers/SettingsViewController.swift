@@ -15,8 +15,7 @@ class SettingsViewController: UIViewController {
     
 
     @IBAction func resetGame(_ sender: Any) {
-        Tacklebox.shared = Tacklebox()
-        
-        Tacklebox.save()
+        TackleboxService.shared.reset()
+        LocationService.shared.resetToDefaults()
     }
 }

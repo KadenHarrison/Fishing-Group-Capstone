@@ -7,6 +7,33 @@
 
 import Foundation
 
+protocol LocationRepository {
+    func saveLocations(_ locations: [Location]) throws
+    func loadLocations() throws -> [Location]
+    
+    func saveCaughtFishRecords(_ records: [LocationCaughtFish]) throws
+    func loadCaughtFishRecords() throws -> [LocationCaughtFish]
+}
+
+class FileLocationRepository: LocationRepository {
+    func saveLocations(_ locations: [Location]) throws {
+        print("kbdb: Save Locations")
+        try SaveDataManager.shared.save(locations, forKey: "locations")
+    }
+    
+    func loadLocations() throws -> [Location] {
+        return try SaveDataManager.shared.load([Location].self, forKey: "locations") ?? []
+    }
+    
+    func saveCaughtFishRecords(_ records: [LocationCaughtFish]) throws {
+        try SaveDataManager.shared.save(records, forKey: "caughtFishRecords")
+    }
+    
+    func loadCaughtFishRecords() throws -> [LocationCaughtFish] {
+        return try SaveDataManager.shared.load([LocationCaughtFish].self, forKey: "caughtFishRecords") ?? []
+    }
+}
+
 class Location: Codable {
     var name: String
     var thumbnailName: String
@@ -19,7 +46,7 @@ class Location: Codable {
     var availableFish: [FishType]
 /// Types of fish the user has caught
     var locationCaughtFish: LocationCaughtFish?
-    
+        
     init(name: String, thumbnailName: String, requiredLicense: FishingLicense, requiredBoat: Boat, availableFish: [FishType]) {
         self.name = name
         self.thumbnailName = thumbnailName
@@ -87,11 +114,9 @@ enum AllLocations: CaseIterable {
 // MARK: LocationCaughtFish
 
 class LocationCaughtFish: Codable {
-    var location: Location
     var caughtFish: Set<FishType>
     
-    init(location: Location, caughtFish: Set<FishType>) {
-        self.location = location
+    init(caughtFish: Set<FishType>) {
         self.caughtFish = caughtFish
     }
 }

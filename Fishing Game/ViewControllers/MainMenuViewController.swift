@@ -11,8 +11,7 @@ class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        Tacklebox.load()
+        TackleboxService.shared.load()
         // Do any additional setup after loading the view.
     }
 }
