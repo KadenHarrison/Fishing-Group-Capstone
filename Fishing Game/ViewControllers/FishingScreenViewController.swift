@@ -55,10 +55,8 @@ class FishingScreenViewController: UIViewController {
     override func viewDidLoad() {
         fishingProgressView.layer.cornerRadius = 10
         fishRadarView.layer.cornerRadius = 10
-        baitImage.layer.borderColor = UIColor.systemYellow.cgColor
         baitImage.layer.borderWidth = 2
         baitImage.layer.cornerRadius = baitImage.frame.height / 2
-        baitImage.clipsToBounds = true
         baitImage.layer.shadowColor = UIColor.black.cgColor
         baitImage.layer.shadowOpacity = 0.4
         baitImage.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -76,7 +74,6 @@ class FishingScreenViewController: UIViewController {
         baitViewsHStack.layer.cornerRadius = baitViewsHStack.frame.height / 2
         baitViewsHStack.layer.borderWidth = 1
         baitViewsHStack.layer.borderColor = UIColor.white.cgColor
-        baitViewsHStack.layer.backgroundColor = UIColor(red: 0.3, green: 0.4, blue: 0.9, alpha: 0.6).cgColor
         baitViewsHStack.layer.shadowColor = UIColor.black.cgColor
         baitViewsHStack.layer.shadowOpacity = 0.3
         baitViewsHStack.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -123,19 +120,6 @@ class FishingScreenViewController: UIViewController {
         
         moveReelToDefaultNoFishPosition()
     }
-    
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//
-//        baitViewsHStack.isLayoutMarginsRelativeArrangement = true
-//        baitViewsHStack.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 20)
-//
-//        for subview in baitViewsHStack.arrangedSubviews {
-//            if let label = subview as? UILabel {
-//                label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-//            }
-//        }
-//    }
     
     /// When the view is about to appear it makes sure everything is updated and reset for the next fish
     override func viewWillAppear(_ animated: Bool) {
