@@ -20,13 +20,22 @@ class LocationTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupRoundedCorners()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    private func setupRoundedCorners() {
+        self.contentView.layer.cornerRadius = 15
+        self.contentView.layer.masksToBounds = true
+        
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = UIColor.systemGray4.cgColor
     }
     
     func configureCell(for location: Location) {
