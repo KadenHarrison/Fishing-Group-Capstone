@@ -146,11 +146,8 @@ class ShopViewController: UIViewController {
     
 
     func updateUI() {
-        // grab bait count from controller
         baitCountLabel.text = "+\(shopController.baitCount)"
-        // grab hook from controller
-        // update labels
-        // update remainigCashLabel
+
         remainingCashAmountLabel.text = "$\(shopController.remainingCash)"
     }
 }

@@ -118,11 +118,9 @@ enum AllLocations: CaseIterable {
 // MARK: LocationCaughtFish
 
 class LocationCaughtFish: Codable {
-//    let location: Location
     var caughtFish: Set<FishType>
     
-    init(/*location: Location, */caughtFish: Set<FishType>) {
-//        self.location = location
+    init(caughtFish: Set<FishType>) {
         self.caughtFish = caughtFish
     }
 }

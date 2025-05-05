@@ -13,13 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        do {
-//            let l1 = Location(name: "123", thumbnailName: "123", requiredLicense: .deepSea, requiredBoat: .canoe, availableFish: [.anglerfish, .bass])
-//            l1.locationCaughtFish = LocationCaughtFish(location: l1, caughtFish: [.bass])
-//            try SaveDataManager.shared.save([l1], forKey: "locations")
-//        } catch {
-//            print("Error saving data: \(error)")
-//        }
         return true
     }
 
