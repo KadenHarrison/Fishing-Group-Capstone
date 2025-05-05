@@ -46,11 +46,7 @@ class Location: Codable {
     var availableFish: [FishType]
 /// Types of fish the user has caught
     var locationCaughtFish: LocationCaughtFish?
-    
-    deinit {
-        print("deinit of location")
-    }
-    
+        
     init(name: String, thumbnailName: String, requiredLicense: FishingLicense, requiredBoat: Boat, availableFish: [FishType]) {
         self.name = name
         self.thumbnailName = thumbnailName
