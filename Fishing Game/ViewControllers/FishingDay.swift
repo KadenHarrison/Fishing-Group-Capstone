@@ -27,6 +27,9 @@ class FishingDay {
     var caughtFish: [Fish] = []
     var location: Location?
     
+    var totalFishCaughtPrice: Int {
+        caughtFish.reduce(0) { $0 + Int($1.price) }
+    }
     
     
     init(fishAppearsTimer: FishAppearsTimer? = nil, dayCycleTimer: DayCycleTimer? = nil) {

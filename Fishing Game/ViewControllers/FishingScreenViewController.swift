@@ -7,7 +7,7 @@
 import UIKit
 
 class FishingScreenViewController: UIViewController {
-    
+    private let service = TackleboxService.shared
     private let tacklebox = TackleboxService.shared.tacklebox
     //MARK: Timers
     // Time the user has to wait until a fish appears
@@ -171,8 +171,7 @@ class FishingScreenViewController: UIViewController {
     
     // Updates the tackle box with additional cash
     func transitionToCatchScreen() {
-        TackleboxService.shared.tacklebox.cash += fishingDay.caughtFish.reduce(0) { $0 + Int($1.price) }
-        TackleboxService.shared.save()
+        service.addCash(fishingDay.totalFishCaughtPrice)
         performSegue(withIdentifier: "fishCaughtSegue", sender: self)
     }
     

@@ -55,6 +55,12 @@ class TackleboxService {
         tacklebox = Tacklebox()
         save()
     }
+    
+    func addCash(_ amount: Int) {
+        tacklebox.cash += amount
+        save()
+    }
+    
 }
 
 class LocationService {
