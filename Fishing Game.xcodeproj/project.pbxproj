@@ -31,6 +31,7 @@
 		0AD4AE442D9DB8CF00472881 /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4AE432D9DB8CF00472881 /* LocationSelectionViewController.swift */; };
 		0AD4AE462D9DB90F00472881 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4AE452D9DB90F00472881 /* LocationTableViewCell.swift */; };
 		0AFF47622D9C55F0007AF9C3 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */; };
+		472785932DBFC18F003713D4 /* ShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472785922DBFC18F003713D4 /* ShopController.swift */; };
 		DD509D5C2DC11DCA000CFE14 /* FishingDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */; };
 		DD509D5E2DC11DFC000CFE14 /* FishingReel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		0AD4AE432D9DB8CF00472881 /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionViewController.swift; sourceTree = "<group>"; };
 		0AD4AE452D9DB90F00472881 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		472785922DBFC18F003713D4 /* ShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopController.swift; sourceTree = "<group>"; };
 		DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingDay.swift; sourceTree = "<group>"; };
 		DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingReel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 				0A60E1662D930F9D00CA6AC5 /* SceneDelegate.swift */,
 				0A60E1682D930F9D00CA6AC5 /* Status.swift */,
 				0A60E17D2D9446FB00CA6AC5 /* SaveDataManager.swift */,
+				472785922DBFC18F003713D4 /* ShopController.swift */,
 			);
 			path = "Fishing Game";
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				DD509D5C2DC11DCA000CFE14 /* FishingDay.swift in Sources */,
 				0A3E67BC2DA44B6F0032AAB2 /* MainMenuViewController.swift in Sources */,
 				0A60E17C2D9445FA00CA6AC5 /* Tacklebox.swift in Sources */,
+				472785932DBFC18F003713D4 /* ShopController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

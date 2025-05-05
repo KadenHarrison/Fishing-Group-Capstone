@@ -16,7 +16,7 @@ class FishingDay {
     weak var fishingReel: FishingReel?
     weak var viewController: FishingScreenViewController?
     var delegate: FishingDayDelegate?
-    let tacklebox = Tacklebox.shared
+    let tackleboxService = TackleboxService.shared
     // Time the user has to wait until a fish appears
     var fishAppearsTimer: FishAppearsTimer?
     // Time the user has to fish until the session ends
@@ -27,6 +27,9 @@ class FishingDay {
     var caughtFish: [Fish] = []
     var location: Location?
     
+    var totalFishCaughtPrice: Int {
+        caughtFish.reduce(0) { $0 + Int($1.price) }
+    }
     
     
     init(fishAppearsTimer: FishAppearsTimer? = nil, dayCycleTimer: DayCycleTimer? = nil) {
@@ -70,10 +73,11 @@ class FishingDay {
             if let location {
                 // Get or create the player's record for this location
                 if location.locationCaughtFish == nil {
-                    location.locationCaughtFish = LocationCaughtFish(location: location, caughtFish: [])
+                    print("Making an empty record for \(location.name)")
+                    location.locationCaughtFish = LocationCaughtFish(caughtFish: [])
                 }
-                        
-                var record = location.locationCaughtFish!
+
+                let record = location.locationCaughtFish!
 
                 // Filter new, unique fish types
                 let newFishTypes = caughtFish
@@ -82,14 +86,14 @@ class FishingDay {
 
                 // Update the record
                 record.caughtFish.formUnion(newFishTypes)
-                // Location.save()
-                // Need to refactor saving and loading still
+                LocationService.shared.updateCaughtFish(for: location, with: caughtFish)
+                delegate?.handleEndOfDay(isEarly: early)
             }
         }
        
     // If bait reaches 0, the day will end
     func checkBait() {
-        if self.tacklebox.baitCount <= 0 {
+        if self.tackleboxService.tacklebox.baitCount <= 0 {
             self.endDay(early: true)
         }
     }

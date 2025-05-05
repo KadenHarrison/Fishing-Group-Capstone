@@ -34,5 +34,4 @@ class FishCaughtViewController: UIViewController {
         fishSizeLabel.text = "Size: \(fish.size.rounded(toPlaces: 2)) inches"
         fishRarityLabel.text = "Rarity: \(fish.rarity.rawValue.capitalized)"
     }
-
 }
