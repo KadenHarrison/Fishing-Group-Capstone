@@ -7,6 +7,14 @@
 import UIKit
 
 class FishingScreenViewController: UIViewController {
+    
+    #if DEBUG
+    var isDebugFastReelEnabled = true
+    #else
+    let isDebugFastReelEnabled = false
+    #endif
+    
+
     private let service = TackleboxService.shared
     private let tacklebox = TackleboxService.shared.tacklebox
     //MARK: Timers
@@ -18,6 +26,7 @@ class FishingScreenViewController: UIViewController {
     private var catchTimeTimer: CatchTimeTimer?
     // Time the user has to fish until the session ends
     private var dayCycleTimer: DayCycleTimer?
+
     var fishingDay = FishingDay()
     var fishingReel = FishingReel()
     // Tracks the progress and current state of the player
@@ -45,11 +54,42 @@ class FishingScreenViewController: UIViewController {
     @IBOutlet weak var distanceToFishLabel: UILabel!
     @IBOutlet weak var timeRemainingLabel: UILabel!
     @IBOutlet weak var baitRemainingLabel: UILabel!
+    @IBOutlet weak var baitImage: UIImageView!
+    
+    @IBOutlet weak var baitViewsHStack: UIStackView!
+    @IBOutlet weak var fishingProgressView: UIImageView!
+    @IBOutlet weak var fishRadarView: UIImageView!
     
     // Displays your progress in the game
     @IBOutlet var clockLabel: UILabel!
     
     override func viewDidLoad() {
+        fishingProgressView.layer.cornerRadius = 10
+        fishRadarView.layer.cornerRadius = 10
+        baitImage.layer.borderWidth = 2
+        baitImage.layer.cornerRadius = baitImage.frame.height / 2
+        baitImage.layer.shadowColor = UIColor.black.cgColor
+        baitImage.layer.shadowOpacity = 0.4
+        baitImage.layer.shadowOffset = CGSize(width: 0, height: 2)
+        baitImage.layer.shadowRadius = 6
+        
+        baitViewsHStack.isLayoutMarginsRelativeArrangement = true
+        baitViewsHStack.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 20)
+
+        for subview in baitViewsHStack.arrangedSubviews {
+            if let label = subview as? UILabel {
+                label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+            }
+        }
+
+        baitViewsHStack.layer.cornerRadius = baitViewsHStack.frame.height / 2
+        baitViewsHStack.layer.borderWidth = 1
+        baitViewsHStack.layer.borderColor = UIColor.white.cgColor
+        baitViewsHStack.layer.shadowColor = UIColor.black.cgColor
+        baitViewsHStack.layer.shadowOpacity = 0.3
+        baitViewsHStack.layer.shadowOffset = CGSize(width: 0, height: 1)
+        baitViewsHStack.layer.shadowRadius = 4
+        
         fishingReel.viewController = self
         fishingReel.fishingDay = fishingDay
         
@@ -91,6 +131,7 @@ class FishingScreenViewController: UIViewController {
         
         moveReelToDefaultNoFishPosition()
     }
+    
     /// When the view is about to appear it makes sure everything is updated and reset for the next fish
     override func viewWillAppear(_ animated: Bool) {
         fishingReel.resetFish()
@@ -157,12 +198,15 @@ class FishingScreenViewController: UIViewController {
         if sender.state == .began {
             previousTouchPoint = currentTouchPoint
         } else if sender.state == .changed {
-            // Advances the progress as the reel is spun
             spinReel(currentTouchPoint: currentTouchPoint)
+
+            if isDebugFastReelEnabled && sender.numberOfTouches == 1 {
+                totalRotationAngle += .pi // Adds a half spin for debug fun, but not too fast
+            }
+
             updateFishingProgress()
             previousTouchPoint = currentTouchPoint
-            
-            // If you meet the reel requirement, then you catch the fish
+
             if totalRotations >= fishingReel.requiredSpins {
                 fishingReel.catchFish()
             }

@@ -116,9 +116,11 @@ class FishingReel {
     // Uses one bait when a fish bites
     func useBait() {
         print("Used bait")
-        
+
+        guard let bait = fishingDay?.tackleboxService.tacklebox.baitCount, bait > 0 else { return }
         fishingDay?.tackleboxService.tacklebox.baitCount -= 1
         TackleboxService.shared.save()
         viewController?.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay?.tackleboxService.tacklebox.baitCount ?? 0))"
+
     }
 }
