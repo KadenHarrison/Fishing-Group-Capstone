@@ -28,6 +28,7 @@
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="gameStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iRq-vm-iLe"/>
                                     <segue destination="oPc-Z8-wd0" kind="show" id="vu2-ZU-iqU"/>
                                 </connections>
                             </button>
@@ -39,6 +40,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="33" scale="large"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="settingButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Lk-Yc-rU3"/>
                                     <segue destination="2xm-AO-UIU" kind="presentation" id="BAA-0x-fDQ"/>
                                 </connections>
                             </button>
@@ -351,6 +353,7 @@
                                             <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
                                         </buttonConfiguration>
                                         <connections>
+                                            <action selector="goHomeEarlyButton:" destination="uBB-0y-bKi" eventType="touchUpInside" id="LSW-oi-FFw"/>
                                             <segue destination="QoJ-yw-CZB" kind="show" id="Iwv-O9-rcd"/>
                                         </connections>
                                     </button>
@@ -483,6 +486,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Done"/>
                                 <connections>
+                                    <action selector="doneButton:" destination="QoJ-yw-CZB" eventType="touchUpInside" id="yUc-7A-hn1"/>
                                     <segue destination="U0c-Lu-7QV" kind="show" id="qqs-IO-LfY"/>
                                 </connections>
                             </button>
@@ -1059,6 +1063,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Next"/>
                                         <connections>
+                                            <action selector="nextButton:" destination="GN2-YE-0JE" eventType="touchUpInside" id="yMh-ru-6g3"/>
                                             <segue destination="na2-7C-rBE" kind="unwind" unwindAction="unwindSegueFor:sender:" id="8gH-Tm-Fmg"/>
                                         </connections>
                                     </button>
@@ -1110,7 +1115,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gkB-Zk-mVy"/>
+        <segue reference="Iwv-O9-rcd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="FishProgressBar" width="220" height="2000"/>
@@ -1134,19 +1139,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

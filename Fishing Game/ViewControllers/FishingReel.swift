@@ -38,6 +38,7 @@ class FishingReel {
         // Gives you 5 seconds to contemplate your fisherman skills
         fishingDay?.catchTimeTimer = CatchTimeTimer(countdownTime: 5) { timeSinceStart in
             let timeRemaining = TimeInterval(5) - timeSinceStart
+            
             self.viewController?.timeRemainingLabel.text = "Missed... \(timeRemaining.rounded(toPlaces: 1))"
         } completionHandler: {
             // resets everything after losing
@@ -116,7 +117,7 @@ class FishingReel {
     // Uses one bait when a fish bites
     func useBait() {
         print("Used bait")
-
+        SoundManager.shared.playSound(sound: .bubble2)
         guard let bait = fishingDay?.tackleboxService.tacklebox.baitCount, bait > 0 else { return }
         fishingDay?.tackleboxService.tacklebox.baitCount -= 1
         TackleboxService.shared.save()

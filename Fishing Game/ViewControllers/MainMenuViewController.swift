@@ -14,4 +14,11 @@ class MainMenuViewController: UIViewController {
         TackleboxService.shared.load()
         // Do any additional setup after loading the view.
     }
+    @IBAction func gameStartButton(_ sender: Any) {
+        SoundManager.shared.playSound(sound: .bubble4)
+    }
+    @IBAction func settingButton(_ sender: Any) {
+        SoundManager.shared.playSound(sound: .bubble2)
+    }
+    
 }

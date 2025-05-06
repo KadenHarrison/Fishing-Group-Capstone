@@ -25,6 +25,9 @@ class SummaryScreenViewController: UIViewController {
         backgroundView.alpha = 0.5
         tableView.backgroundView = backgroundView
     }
+    @IBAction func doneButton(_ sender: Any) {
+        SoundManager.shared.playSound(sound: .bubble2)
+    }
 }
 
 extension SummaryScreenViewController: UITableViewDelegate, UITableViewDataSource {
