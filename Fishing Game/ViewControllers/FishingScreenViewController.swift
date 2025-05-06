@@ -14,10 +14,21 @@ class FishingScreenViewController: UIViewController {
     let isDebugFastReelEnabled = false
     #endif
     
+
+    private let service = TackleboxService.shared
+    private let tacklebox = TackleboxService.shared.tacklebox
+    //MARK: Timers
+    // Time the user has to wait until a fish appears
+    private var fishAppearsTimer: FishAppearsTimer?
+    // Tine the user has to grab the hook to start catching the fish
+    private var hookTimer: HookTimer?
+    // Time the user has to reel the fish in
+    private var catchTimeTimer: CatchTimeTimer?
+    // Time the user has to fish until the session ends
+    private var dayCycleTimer: DayCycleTimer?
+
     var fishingDay = FishingDay()
     var fishingReel = FishingReel()
-    
-    
     // Tracks the progress and current state of the player
     var fishHasAppeared = false
     var reelingInFish = false
@@ -88,7 +99,7 @@ class FishingScreenViewController: UIViewController {
         toggleBoatHidden(false)
         
         // Updates the displayed bait count
-        self.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay.tacklebox.baitCount))"
+        self.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay.tackleboxService.tacklebox.baitCount))"
         
         // Sets the background image based on the fishing location
         self.boatImageView.image = UIImage(named: fishingDay.location?.backgroundName ?? "boat")
@@ -98,7 +109,7 @@ class FishingScreenViewController: UIViewController {
         
         // Determines the maximum time for a fish to bite based on the hook type
         var maxTimeUntilFishAppears: TimeInterval {
-            switch fishingDay.tacklebox.hook {
+            switch fishingDay.tackleboxService.tacklebox.hook {
             case .carvedWood:
                 return 60
             case .plastic:
@@ -158,7 +169,6 @@ class FishingScreenViewController: UIViewController {
         fishingReel.startCatchCountdown()
     }
     
-    
     // Toggles the boat's visibility on screen
     func toggleBoatHidden(_ hidden: Bool) {
         self.boatImageView.isHidden = hidden
@@ -205,8 +215,7 @@ class FishingScreenViewController: UIViewController {
     
     // Updates the tackle box with additional cash
     func transitionToCatchScreen() {
-        Tacklebox.shared.cash += fishingDay.caughtFish.reduce(0) { $0 + Int($1.price) }
-        Tacklebox.save()
+        service.addCash(fishingDay.totalFishCaughtPrice)
         performSegue(withIdentifier: "fishCaughtSegue", sender: self)
     }
     
