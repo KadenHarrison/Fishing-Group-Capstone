@@ -86,6 +86,8 @@ class FishingDay {
 
                 // Update the record
                 record.caughtFish.formUnion(newFishTypes)
+               
+
                 LocationService.shared.updateCaughtFish(for: location, with: caughtFish)
                 delegate?.handleEndOfDay(isEarly: early)
             }

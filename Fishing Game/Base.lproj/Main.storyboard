@@ -230,7 +230,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fishingreel" translatesAutoresizingMaskIntoConstraints="NO" id="RTC-mk-6uY">
-                                <rect key="frame" x="180.66666666666666" y="416.66666666666669" width="40.666666666666657" height="40.666666666666686"/>
+                                <rect key="frame" x="180.66666666666666" y="474.66666666666669" width="40.666666666666657" height="40.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RTC-mk-6uY" secondAttribute="height" multiplier="1:1" id="U5x-cy-fGt"/>
                                 </constraints>
@@ -261,6 +261,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <color key="backgroundColor" systemColor="systemCyanColor"/>
                                     </stackView>
                                 </subviews>
                             </stackView>
@@ -276,8 +277,9 @@
                             <constraint firstItem="ITP-zf-gIe" firstAttribute="leading" secondItem="j2p-NJ-M0a" secondAttribute="leading" id="7al-Yu-STQ"/>
                             <constraint firstItem="j2p-NJ-M0a" firstAttribute="trailing" secondItem="kQZ-UY-ogS" secondAttribute="trailing" constant="16" id="Hfe-pH-7Ez"/>
                             <constraint firstAttribute="bottom" secondItem="ITP-zf-gIe" secondAttribute="bottom" id="K0u-9h-gKi"/>
+                            <constraint firstItem="Bb3-Fi-ISc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="j2p-NJ-M0a" secondAttribute="leading" symbolic="YES" id="K1d-K8-reF"/>
                             <constraint firstItem="o30-1j-za8" firstAttribute="centerX" secondItem="WaY-Sk-2zO" secondAttribute="centerX" id="MH3-xO-RfA"/>
-                            <constraint firstItem="RTC-mk-6uY" firstAttribute="centerY" secondItem="WaY-Sk-2zO" secondAttribute="centerY" id="QTA-Xt-bqB"/>
+                            <constraint firstItem="RTC-mk-6uY" firstAttribute="centerY" secondItem="WaY-Sk-2zO" secondAttribute="centerY" constant="58.000000000001251" id="QTA-Xt-bqB"/>
                             <constraint firstItem="kQZ-UY-ogS" firstAttribute="top" secondItem="j2p-NJ-M0a" secondAttribute="top" id="Qig-wF-tQM"/>
                             <constraint firstItem="j2p-NJ-M0a" firstAttribute="bottom" secondItem="o30-1j-za8" secondAttribute="bottom" constant="20" id="RE7-pe-Qcp"/>
                             <constraint firstItem="ITP-zf-gIe" firstAttribute="top" secondItem="WaY-Sk-2zO" secondAttribute="top" id="bFR-pO-nSQ"/>
@@ -285,7 +287,7 @@
                             <constraint firstItem="RTC-mk-6uY" firstAttribute="centerX" secondItem="WaY-Sk-2zO" secondAttribute="centerX" id="ecy-Qc-DNr"/>
                             <constraint firstItem="j2p-NJ-M0a" firstAttribute="right" secondItem="Bb3-Fi-ISc" secondAttribute="right" constant="26" id="iDQ-uC-ZYI"/>
                             <constraint firstItem="RTC-mk-6uY" firstAttribute="height" relation="lessThanOrEqual" secondItem="WaY-Sk-2zO" secondAttribute="height" multiplier="0.2" id="vl5-lX-gn1"/>
-                            <constraint firstItem="RTC-mk-6uY" firstAttribute="top" secondItem="kQZ-UY-ogS" secondAttribute="bottom" constant="16" id="z9n-qY-24l"/>
+                            <constraint firstItem="RTC-mk-6uY" firstAttribute="top" secondItem="kQZ-UY-ogS" secondAttribute="bottom" constant="74" id="z9n-qY-24l"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="kmX-8L-fLh" appends="YES" id="uRZ-AE-wOz"/>
@@ -293,11 +295,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="SdJ-gD-5c0"/>
                     <connections>
+                        <outlet property="baitImage" destination="2A3-NI-G1i" id="8Pu-et-UEv"/>
                         <outlet property="baitRemainingLabel" destination="tHC-2v-JK8" id="ksX-bB-8WR"/>
+                        <outlet property="baitViewsHStack" destination="KXi-Dx-gMe" id="Jrj-im-aeu"/>
                         <outlet property="boatImageView" destination="ITP-zf-gIe" id="zJH-le-PaY"/>
                         <outlet property="clockLabel" destination="Bb3-Fi-ISc" id="jfp-OB-pa5"/>
                         <outlet property="distanceToFishLabel" destination="Fmb-6i-vvG" id="tdS-P5-fBV"/>
+                        <outlet property="fishRadarView" destination="cTv-zc-bef" id="czY-MK-eUf"/>
                         <outlet property="fishingProgressImageView" destination="aBZ-OB-TGs" id="vTb-72-E7D"/>
+                        <outlet property="fishingProgressView" destination="aBZ-OB-TGs" id="6sw-O0-9lu"/>
                         <outlet property="gestureRecognizer" destination="kmX-8L-fLh" id="7Og-ls-E25"/>
                         <outlet property="radarDisplayImageView" destination="cTv-zc-bef" id="CzJ-5p-SG3"/>
                         <outlet property="spinningReelImageView" destination="RTC-mk-6uY" id="hdc-nb-vMi"/>
@@ -1099,13 +1105,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Iwv-O9-rcd"/>
+        <segue reference="gkB-Zk-mVy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="FishProgressBar" width="220" height="2000"/>
         <image name="Fishing Game Logo" width="500" height="350"/>
         <image name="arrowshape.up" catalog="system" width="123" height="128"/>
-        <image name="bait" width="240" height="240"/>
+        <image name="bait" width="1024" height="1024"/>
         <image name="boat" width="1350" height="1800"/>
         <image name="boatIcon" width="240" height="240"/>
         <image name="fishingLicense" width="240" height="240"/>
@@ -1122,16 +1128,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
