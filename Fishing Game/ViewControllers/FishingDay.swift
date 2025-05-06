@@ -76,7 +76,7 @@ class FishingDay {
                     print("Making an empty record for \(location.name)")
                     location.locationCaughtFish = LocationCaughtFish(caughtFish: [])
                 }
-
+              
                 let record = location.locationCaughtFish!
 
                 // Filter new, unique fish types
@@ -86,9 +86,9 @@ class FishingDay {
 
                 // Update the record
                 record.caughtFish.formUnion(newFishTypes)
-               
 
                 LocationService.shared.updateCaughtFish(for: location, with: caughtFish)
+
                 delegate?.handleEndOfDay(isEarly: early)
             }
         }
