@@ -20,6 +20,21 @@ class ShopViewController: UIViewController {
     @IBOutlet weak var nextBoatLabel: UILabel!
     @IBOutlet weak var nextFishingLicenseLabel: UILabel!
     
+    /// Table views for each item in the shop
+    @IBOutlet weak var baitStackView: UIStackView!
+    @IBOutlet weak var hookStackView: UIStackView!
+    @IBOutlet weak var lineStackView: UIStackView!
+    @IBOutlet weak var boatStackView: UIStackView!
+    @IBOutlet weak var licenseStackView: UIStackView!
+    @IBOutlet weak var checkoutStackView: UIStackView!
+    
+    /// Images for each item in the shop
+    @IBOutlet weak var baitImage: UIImageView!
+    @IBOutlet weak var hookImage: UIImageView!
+    @IBOutlet weak var lineImage: UIImageView!
+    @IBOutlet weak var boatImage: UIImageView!
+    @IBOutlet weak var licenseImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateAllUpgradeLabels()
@@ -33,6 +48,21 @@ class ShopViewController: UIViewController {
         }
         
         remainingCashAmountLabel.text = "$\(tacklebox.cash)"
+        
+        /// Applies the capsule design to the stack views
+        DesignHelper.applyCapsuleDesign(baitStackView)
+        DesignHelper.applyCapsuleDesign(hookStackView)
+        DesignHelper.applyCapsuleDesign(lineStackView)
+        DesignHelper.applyCapsuleDesign(boatStackView)
+        DesignHelper.applyCapsuleDesign(licenseStackView)
+        DesignHelper.applyCapsuleDesign(checkoutStackView)
+        
+        /// Applies the image design to the stack views
+        DesignHelper.applyImageDesign(baitImage)
+        DesignHelper.applyImageDesign(hookImage)
+        DesignHelper.applyImageDesign(lineImage)
+        DesignHelper.applyImageDesign(boatImage)
+        DesignHelper.applyImageDesign(licenseImage)
     }
     
     func updateUpgradeLabel<T: Upgradable & Displayable>(current: T, label: UILabel) {

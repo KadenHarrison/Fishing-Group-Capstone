@@ -66,12 +66,7 @@ class FishingScreenViewController: UIViewController {
     override func viewDidLoad() {
         fishingProgressView.layer.cornerRadius = 10
         fishRadarView.layer.cornerRadius = 10
-        baitImage.layer.borderWidth = 2
-        baitImage.layer.cornerRadius = baitImage.frame.height / 2
-        baitImage.layer.shadowColor = UIColor.black.cgColor
-        baitImage.layer.shadowOpacity = 0.4
-        baitImage.layer.shadowOffset = CGSize(width: 0, height: 2)
-        baitImage.layer.shadowRadius = 6
+        DesignHelper.applyImageDesign(baitImage)
         
         baitViewsHStack.isLayoutMarginsRelativeArrangement = true
         baitViewsHStack.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 20)
@@ -82,13 +77,7 @@ class FishingScreenViewController: UIViewController {
             }
         }
 
-        baitViewsHStack.layer.cornerRadius = baitViewsHStack.frame.height / 2
-        baitViewsHStack.layer.borderWidth = 1
-        baitViewsHStack.layer.borderColor = UIColor.white.cgColor
-        baitViewsHStack.layer.shadowColor = UIColor.black.cgColor
-        baitViewsHStack.layer.shadowOpacity = 0.3
-        baitViewsHStack.layer.shadowOffset = CGSize(width: 0, height: 1)
-        baitViewsHStack.layer.shadowRadius = 4
+        DesignHelper.applyCapsuleDesign(baitViewsHStack)
         
         fishingReel.viewController = self
         fishingReel.fishingDay = fishingDay

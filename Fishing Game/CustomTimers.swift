@@ -178,7 +178,7 @@ class CatchTimeTimer: GameTimer {
 class DayCycleTimer: GameTimer {
     private var baseTimer = BaseTimer(timeInterval: 15)
     private var startTime = Date.now
-    private var countdownTime: TimeInterval = 225 // Default full cycle time
+    private var countdownTime: TimeInterval = 10 // Default full cycle time 225 CHANGE BEFORE PR!!
     private let timeInterval: TimeInterval = 15
     private let tickHandler: (TimeInterval) -> Void
     private let completionHandler: () -> Void
