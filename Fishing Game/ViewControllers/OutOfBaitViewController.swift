@@ -21,4 +21,7 @@ class OutOfBaitViewController: UIViewController {
         destination.caughtFish = caughtFish
     }
     
+    @IBAction func goHomeEarlyButton(_ sender: Any) {
+        SoundManager.shared.playSound(named: "bubble1")
+    }
 }

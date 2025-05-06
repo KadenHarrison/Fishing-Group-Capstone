@@ -24,6 +24,7 @@ class LocationSelectionViewController: UIViewController {
     }
 
     @IBSegueAction func goToLocation(_ coder: NSCoder, sender: Any?) -> FishingScreenViewController? {
+        SoundManager.shared.playSound(named: "bubble3")
         let fishingScreenViewController = FishingScreenViewController(coder: coder)
         
         guard let indexPath = sender as? IndexPath else {

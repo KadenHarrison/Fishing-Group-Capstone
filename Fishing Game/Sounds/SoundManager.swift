@@ -11,6 +11,7 @@ import AVFoundation
 class SoundManager {
     static let shared = SoundManager()
     private var audioPlayer: AVAudioPlayer?
+    private var reelPlayer: AVAudioPlayer? // For reel-only sound
 
     private init() {}
 
@@ -23,5 +24,21 @@ class SoundManager {
                 print("Failed to play sound: \(error)")
             }
         }
+    }
+
+    func startReelSound() {
+        guard let url = Bundle.main.url(forResource: "reelSound", withExtension: "mp3") else { return }
+        do {
+            reelPlayer = try AVAudioPlayer(contentsOf: url)
+            reelPlayer?.numberOfLoops = -1 // loop until stopped
+            reelPlayer?.play()
+        } catch {
+            print("Failed to start reel sound: \(error)")
+        }
+    }
+
+    func stopReelSound() {
+        reelPlayer?.stop()
+        reelPlayer = nil
     }
 }

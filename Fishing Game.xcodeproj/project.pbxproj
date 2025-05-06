@@ -34,8 +34,13 @@
 		472785932DBFC18F003713D4 /* ShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472785922DBFC18F003713D4 /* ShopController.swift */; };
 		DD509D5C2DC11DCA000CFE14 /* FishingDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */; };
 		DD509D5E2DC11DFC000CFE14 /* FishingReel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */; };
-		DDB66A922DC91BEC00A68A81 /* bubblePop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDB66A912DC91BEC00A68A81 /* bubblePop.mp3 */; };
+		DDB66A922DC91BEC00A68A81 /* bubble4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDB66A912DC91BEC00A68A81 /* bubble4.mp3 */; };
 		DDB66A942DC91D4700A68A81 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB66A932DC91D4700A68A81 /* SoundManager.swift */; };
+		DDBAA2562DCA63000048243F /* reelSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDBAA2552DCA63000048243F /* reelSound.mp3 */; };
+		DDED84DD2DCA593900B3832B /* bubble2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDED84DA2DCA593800B3832B /* bubble2.mp3 */; };
+		DDED84DE2DCA593900B3832B /* bubble1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDED84D92DCA593800B3832B /* bubble1.mp3 */; };
+		DDED84DF2DCA593900B3832B /* bubbleEngine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDED84DC2DCA593800B3832B /* bubbleEngine.mp3 */; };
+		DDED84E02DCA593900B3832B /* bubble3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDED84DB2DCA593800B3832B /* bubble3.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +73,13 @@
 		472785922DBFC18F003713D4 /* ShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopController.swift; sourceTree = "<group>"; };
 		DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingDay.swift; sourceTree = "<group>"; };
 		DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingReel.swift; sourceTree = "<group>"; };
-		DDB66A912DC91BEC00A68A81 /* bubblePop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubblePop.mp3; sourceTree = "<group>"; };
+		DDB66A912DC91BEC00A68A81 /* bubble4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble4.mp3; sourceTree = "<group>"; };
 		DDB66A932DC91D4700A68A81 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		DDBAA2552DCA63000048243F /* reelSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = reelSound.mp3; sourceTree = "<group>"; };
+		DDED84D92DCA593800B3832B /* bubble1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble1.mp3; sourceTree = "<group>"; };
+		DDED84DA2DCA593800B3832B /* bubble2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble2.mp3; sourceTree = "<group>"; };
+		DDED84DB2DCA593800B3832B /* bubble3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble3.mp3; sourceTree = "<group>"; };
+		DDED84DC2DCA593800B3832B /* bubbleEngine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubbleEngine.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +172,12 @@
 		DDB66A902DC91BDC00A68A81 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				DDB66A912DC91BEC00A68A81 /* bubblePop.mp3 */,
+				DDBAA2552DCA63000048243F /* reelSound.mp3 */,
+				DDED84D92DCA593800B3832B /* bubble1.mp3 */,
+				DDED84DA2DCA593800B3832B /* bubble2.mp3 */,
+				DDED84DB2DCA593800B3832B /* bubble3.mp3 */,
+				DDED84DC2DCA593800B3832B /* bubbleEngine.mp3 */,
+				DDB66A912DC91BEC00A68A81 /* bubble4.mp3 */,
 				DDB66A932DC91D4700A68A81 /* SoundManager.swift */,
 			);
 			path = Sounds;
@@ -229,9 +244,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDED84DD2DCA593900B3832B /* bubble2.mp3 in Resources */,
+				DDBAA2562DCA63000048243F /* reelSound.mp3 in Resources */,
+				DDED84DE2DCA593900B3832B /* bubble1.mp3 in Resources */,
+				DDED84DF2DCA593900B3832B /* bubbleEngine.mp3 in Resources */,
+				DDED84E02DCA593900B3832B /* bubble3.mp3 in Resources */,
 				0A60E1762D930F9D00CA6AC5 /* Assets.xcassets in Resources */,
 				0A60E1782D930F9D00CA6AC5 /* LaunchScreen.storyboard in Resources */,
-				DDB66A922DC91BEC00A68A81 /* bubblePop.mp3 in Resources */,
+				DDB66A922DC91BEC00A68A81 /* bubble4.mp3 in Resources */,
 				0A60E1792D930F9D00CA6AC5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
