@@ -7,15 +7,21 @@
 
 import UIKit
 
+import UIKit
+import AVFoundation
+
 class SettingsViewController: UIViewController {
+    
+    var audioPlayer: AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
 
     @IBAction func resetGame(_ sender: Any) {
         TackleboxService.shared.reset()
         LocationService.shared.resetToDefaults()
+        
+        SoundManager.shared.playSound(named: "bubblePop")
     }
 }
