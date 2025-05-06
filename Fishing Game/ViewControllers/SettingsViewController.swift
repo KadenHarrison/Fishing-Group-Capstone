@@ -22,6 +22,6 @@ class SettingsViewController: UIViewController {
         TackleboxService.shared.reset()
         LocationService.shared.resetToDefaults()
         
-        SoundManager.shared.playSound(named: "bubble3")
+        SoundManager.shared.playSound(sound: .bubble3)
     }
 }

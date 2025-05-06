@@ -59,20 +59,20 @@ class ShopViewController: UIViewController {
     @IBAction func decreaseBaitCount(_ sender: Any) {
         shopController.decreaseBaitCount()
         updateUI()
-        SoundManager.shared.playSound(named: "bubble2")
+        SoundManager.shared.playSound(sound: .bubble2)
     }
     
     /// Removes cash from the player and exchanges it for bait that the user can use
     @IBAction func increaseBaitCount(_ sender: Any) {
         shopController.increaseBaitCount()
         updateUI()
-        SoundManager.shared.playSound(named: "bubble4")
+        SoundManager.shared.playSound(sound: .bubble4)
     }
     
     /// Determines whether or not the player has selected to upgrade their hook.
     @IBAction func upgradeHook(_ sender: UIButton) {
         shopController.upgradeHook()
-        SoundManager.shared.playSound(named: "bubble3")
+        SoundManager.shared.playSound(sound: .bubble3)
         if shopController.hookUpgraded {
             nextHookLabel.text = "Purchased!"
         } else if let next = shopController.nextHook {
@@ -88,7 +88,7 @@ class ShopViewController: UIViewController {
     /// Determines whether or not the player has selected to upgrade their line.
     @IBAction func upgradeLine(_ sender: UIButton) {
         shopController.upgradeLine()
-        SoundManager.shared.playSound(named: "bubble4")
+        SoundManager.shared.playSound(sound: .bubble4)
         if shopController.lineUpgraded {
             nextLineLabel.text = "Purchased!"
         } else if let next = shopController.nextLine {
@@ -104,7 +104,7 @@ class ShopViewController: UIViewController {
     /// Determines whether or not the player has selected to upgrade their boat.
     @IBAction func upgradeBoat(_ sender: UIButton) {
         shopController.upgradeBoat()
-        SoundManager.shared.playSound(named: "bubble1")
+        SoundManager.shared.playSound(sound: .bubble1)
         if shopController.boatUpgraded {
             nextBoatLabel.text = "Purchased!"
         } else if let next = shopController.nextBoat {
@@ -120,7 +120,7 @@ class ShopViewController: UIViewController {
     /// Determines whether or not the player has selected to upgrade their license.
     @IBAction func upgradeLicense(_ sender: UIButton) {
         shopController.upgradeLicense()
-        SoundManager.shared.playSound(named: "bubble3")
+        SoundManager.shared.playSound(sound: .bubble3)
         if shopController.licenseUpgraded {
             nextFishingLicenseLabel.text = "Purchased!"
         } else if let next = shopController.nextFishingLicense {
@@ -135,7 +135,7 @@ class ShopViewController: UIViewController {
     
     /// Asks you to confirm that you are finished shopping, and then call the completeCheckout function
     @IBAction func checkout(_ sender: Any) {
-        SoundManager.shared.playSound(named: "bubble4")
+        SoundManager.shared.playSound(sound: .bubble4)
         let alert = UIAlertController(title: "Checkout", message: "Are you sure you want to checkout?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Yes", style: .default) { _ in
             self.shopController.completeCheckout()

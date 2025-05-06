@@ -22,6 +22,6 @@ class OutOfBaitViewController: UIViewController {
     }
     
     @IBAction func goHomeEarlyButton(_ sender: Any) {
-        SoundManager.shared.playSound(named: "bubble1")
+        SoundManager.shared.playSound(sound: .bubble1)
     }
 }

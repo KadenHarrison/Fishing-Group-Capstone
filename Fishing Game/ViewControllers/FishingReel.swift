@@ -117,7 +117,7 @@ class FishingReel {
     // Uses one bait when a fish bites
     func useBait() {
         print("Used bait")
-        SoundManager.shared.playSound(named: "bubble2")
+        SoundManager.shared.playSound(sound: .bubble2)
         guard let bait = fishingDay?.tackleboxService.tacklebox.baitCount, bait > 0 else { return }
         fishingDay?.tackleboxService.tacklebox.baitCount -= 1
         TackleboxService.shared.save()

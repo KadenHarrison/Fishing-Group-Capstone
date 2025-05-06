@@ -26,7 +26,7 @@ class SummaryScreenViewController: UIViewController {
         tableView.backgroundView = backgroundView
     }
     @IBAction func doneButton(_ sender: Any) {
-        SoundManager.shared.playSound(named: "bubble2")
+        SoundManager.shared.playSound(sound: .bubble2)
     }
 }
 

@@ -35,6 +35,6 @@ class FishCaughtViewController: UIViewController {
         fishRarityLabel.text = "Rarity: \(fish.rarity.rawValue.capitalized)"
     }
     @IBAction func nextButton(_ sender: Any) {
-        SoundManager.shared.playSound(named: "bubble4")
+        SoundManager.shared.playSound(sound: .bubble4)
     }
 }

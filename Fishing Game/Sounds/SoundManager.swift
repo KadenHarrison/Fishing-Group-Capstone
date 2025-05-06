@@ -8,15 +8,18 @@
 import Foundation
 import AVFoundation
 
+enum Sound: String {
+    case bubble1, bubble2, bubble3, bubble4, bubbleEngine
+}
+
 class SoundManager {
     static let shared = SoundManager()
     private var audioPlayer: AVAudioPlayer?
-    private var reelPlayer: AVAudioPlayer? // For reel-only sound
 
     private init() {}
 
-    func playSound(named name: String, withExtension ext: String = "mp3") {
-        if let url = Bundle.main.url(forResource: name, withExtension: ext) {
+    func playSound(sound: Sound, withExtension ext: String = "mp3") {
+        if let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ext) {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: url)
                 audioPlayer?.play()
@@ -26,19 +29,4 @@ class SoundManager {
         }
     }
 
-    func startReelSound() {
-        guard let url = Bundle.main.url(forResource: "reelSound", withExtension: "mp3") else { return }
-        do {
-            reelPlayer = try AVAudioPlayer(contentsOf: url)
-            reelPlayer?.numberOfLoops = -1 // loop until stopped
-            reelPlayer?.play()
-        } catch {
-            print("Failed to start reel sound: \(error)")
-        }
-    }
-
-    func stopReelSound() {
-        reelPlayer?.stop()
-        reelPlayer = nil
-    }
 }

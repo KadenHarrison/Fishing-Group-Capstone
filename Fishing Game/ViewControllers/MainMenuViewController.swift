@@ -15,10 +15,10 @@ class MainMenuViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func gameStartButton(_ sender: Any) {
-        SoundManager.shared.playSound(named: "bubble4")
+        SoundManager.shared.playSound(sound: .bubble4)
     }
     @IBAction func settingButton(_ sender: Any) {
-        SoundManager.shared.playSound(named: "bubble2")
+        SoundManager.shared.playSound(sound: .bubble2)
     }
     
 }
