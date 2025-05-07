@@ -99,7 +99,7 @@ class FishingScreenViewController: UIViewController {
         toggleBoatHidden(false)
         
         // Updates the displayed bait count
-        self.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay.tackleboxService.tacklebox.baitCount))"
+        self.baitRemainingLabel.text = "\("Bait Remaining:".localized()) \(String(describing: fishingDay.tackleboxService.tacklebox.baitCount))"
         
         // Sets the background image based on the fishing location
         self.boatImageView.image = UIImage(named: fishingDay.location?.backgroundName ?? "boat")

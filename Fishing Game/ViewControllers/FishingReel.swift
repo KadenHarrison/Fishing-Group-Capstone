@@ -121,7 +121,7 @@ class FishingReel {
         guard let bait = fishingDay?.tackleboxService.tacklebox.baitCount, bait > 0 else { return }
         fishingDay?.tackleboxService.tacklebox.baitCount -= 1
         TackleboxService.shared.save()
-        viewController?.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay?.tackleboxService.tacklebox.baitCount ?? 0))"
+        viewController?.baitRemainingLabel.text = "\("Bait Remaining:".localized()) \(String(describing: fishingDay?.tackleboxService.tacklebox.baitCount ?? 0))"
 
     }
 }

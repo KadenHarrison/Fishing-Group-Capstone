@@ -1,0 +1,167 @@
+/* Class = "UILabel"; text = "Next: Plastic"; ObjectID = "1YT-qj-4RR"; */
+"1YT-qj-4RR.text" = "Siguiente: Plástico";
+
+"Hello" = "hola";
+"Bait Remaining:" = "Cebo restante:";
+/* Class = "UIButton"; configuration.title = "$$$"; ObjectID = "250-jP-gTy"; */
+"250-jP-gTy.configuration.title" = "$$$";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "250-jP-gTy"; */
+"250-jP-gTy.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "You caught a (fish)!"; ObjectID = "2wd-Uh-zG1"; */
+"2wd-Uh-zG1.text" = "¡Has atrapado un (pez)!";
+
+/* Class = "UIButton"; configuration.title = "Next"; ObjectID = "4LB-xS-Vu5"; */
+"4LB-xS-Vu5.configuration.title" = "Siguiente";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4LB-xS-Vu5"; */
+"4LB-xS-Vu5.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "Today's Haul"; ObjectID = "4Yu-Zo-zA5"; */
+"4Yu-Zo-zA5.text" = "Captura de Hoy";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4n8-zi-98W"; */
+"4n8-zi-98W.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "$100"; ObjectID = "5RL-av-A4P"; */
+"5RL-av-A4P.text" = "$100";
+
+/* Class = "UILabel"; text = "Next: Sailboat"; ObjectID = "67e-I0-9dp"; */
+"67e-I0-9dp.text" = "Siguiente: Velero";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7e0-ic-M7Q"; */
+"7e0-ic-M7Q.text" = "Etiqueta";
+
+/* Class = "UIButton"; configuration.title = "Go home early"; ObjectID = "8Zs-Te-YSe"; */
+"8Zs-Te-YSe.configuration.title" = "Ir a casa temprano";
+
+/* Class = "UIButton"; normalTitle = "Go home early"; ObjectID = "8Zs-Te-YSe"; */
+"8Zs-Te-YSe.normalTitle" = "Ir a casa temprano";
+
+/* Class = "UILabel"; text = "Size:"; ObjectID = "9Sj-vr-OPB"; */
+"9Sj-vr-OPB.text" = "Tamaño:";
+
+/* Class = "UIButton"; configuration.title = "Checkout"; ObjectID = "9eq-p1-VbX"; */
+"9eq-p1-VbX.configuration.title" = "Pagar";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "9eq-p1-VbX"; */
+"9eq-p1-VbX.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "⏱️ 30s "; ObjectID = "A7M-YA-RZl"; */
+"A7M-YA-RZl.text" = "⏱️ 30s";
+
+/* Class = "UILabel"; text = "$100"; ObjectID = "BFv-Kh-GXj"; */
+"BFv-Kh-GXj.text" = "$100";
+
+/* Class = "UILabel"; text = "9:00 AM"; ObjectID = "Bb3-Fi-ISc"; */
+"Bb3-Fi-ISc.text" = "9:00 AM";
+
+/* Class = "UILabel"; text = "$500"; ObjectID = "Bzb-yr-N5j"; */
+"Bzb-yr-N5j.text" = "$500";
+
+/* Class = "UILabel"; text = "Inventory: 0"; ObjectID = "EEi-Fy-Jfk"; */
+"EEi-Fy-Jfk.text" = "Inventario: 0";
+
+/* Class = "UILabel"; text = "+0"; ObjectID = "Fi2-xk-1kC"; */
+"Fi2-xk-1kC.text" = "+0";
+
+/* Class = "UILabel"; text = "0/20"; ObjectID = "Fmb-6i-vvG"; */
+"Fmb-6i-vvG.text" = "0/20";
+
+/* Class = "UILabel"; text = "Boat"; ObjectID = "G3q-hg-h0H"; */
+"G3q-hg-h0H.text" = "Barco";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ITv-Rf-KoG"; */
+"ITv-Rf-KoG.text" = "Etiqueta";
+
+/* Class = "UILabel"; text = "Hook"; ObjectID = "LN4-D7-Phl"; */
+"LN4-D7-Phl.text" = "Anzuelo";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LS7-GZ-1Q2"; */
+"LS7-GZ-1Q2.text" = "Etiqueta";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Nb0-U9-BXV"; */
+"Nb0-U9-BXV.normalTitle" = "Botón";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "NiA-wx-BJb"; */
+"NiA-wx-BJb.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "Remaining Cash"; ObjectID = "Oj8-fQ-eCU"; */
+"Oj8-fQ-eCU.text" = "Dinero Restante";
+
+/* Class = "UILabel"; text = "Bait"; ObjectID = "QjS-Pr-qqt"; */
+"QjS-Pr-qqt.text" = "Cebo";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TYp-hi-sG3"; */
+"TYp-hi-sG3.text" = "Etiqueta";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "X1P-BH-PdI"; */
+"X1P-BH-PdI.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "Rarity:"; ObjectID = "c45-90-Mz8"; */
+"c45-90-Mz8.text" = "Rareza:";
+
+/* Class = "UILabel"; text = "Next: Lake"; ObjectID = "ei2-Ft-a5b"; */
+"ei2-Ft-a5b.text" = "Siguiente: Lago";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ex7-hu-gVw"; */
+"ex7-hu-gVw.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "TOTAL"; ObjectID = "fby-ri-fEE"; */
+"fby-ri-fEE.text" = "TOTAL";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fuL-9G-76v"; */
+"fuL-9G-76v.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "Next: Plastic"; ObjectID = "fvf-uO-0Ys"; */
+"fvf-uO-0Ys.text" = "Siguiente: Plástico";
+
+/* Class = "UILabel"; text = "Line"; ObjectID = "gjJ-sc-mQj"; */
+"gjJ-sc-mQj.text" = "Línea";
+
+/* Class = "UILabel"; text = "OUT OF BAIT!"; ObjectID = "gtm-Ad-I5N"; */
+"gtm-Ad-I5N.text" = "¡SIN CEBOS!";
+
+/* Class = "UILabel"; text = "Where to?"; ObjectID = "htp-uU-Txv"; */
+"htp-uU-Txv.text" = "¿A dónde?";
+
+/* Class = "UILabel"; text = "$2000"; ObjectID = "lSY-oy-Go8"; */
+"lSY-oy-Go8.text" = "$2000";
+
+/* Class = "UIButton"; configuration.title = "Let's Fish!"; ObjectID = "m9s-dV-hdl"; */
+"m9s-dV-hdl.configuration.title" = "¡A pescar!";
+//"Let's Fish!" = "¡A pescar!";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "m9s-dV-hdl"; */
+"m9s-dV-hdl.normalTitle" = "Botón";
+
+/* Class = "UIButton"; configuration.title = "Done"; ObjectID = "nWB-sz-O57"; */
+"nWB-sz-O57.configuration.title" = "Listo";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "nWB-sz-O57"; */
+"nWB-sz-O57.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "$5 ea"; ObjectID = "oSH-P9-d1c"; */
+"oSH-P9-d1c.text" = "$5 c/u";
+
+/* Class = "UIButton"; configuration.title = "Reset Game"; ObjectID = "pY1-Fp-tJc"; */
+"pY1-Fp-tJc.configuration.title" = "Reiniciar Juego";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "pY1-Fp-tJc"; */
+"pY1-Fp-tJc.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "Bait Remaining: 15"; ObjectID = "tHC-2v-JK8"; */
+"tHC-2v-JK8.text" = "Cebo Restante: 15";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "tgF-qf-1B5"; */
+"tgF-qf-1B5.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "$5000"; ObjectID = "uwC-GH-lgn"; */
+"uwC-GH-lgn.text" = "$5000";
+
+/* Class = "UILabel"; text = "License"; ObjectID = "vaI-Cs-Wqc"; */
+"vaI-Cs-Wqc.text" = "Licencia";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yLI-T0-pa7"; */
+"yLI-T0-pa7.text" = "Etiqueta";

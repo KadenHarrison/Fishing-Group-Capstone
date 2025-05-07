@@ -58,6 +58,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="69f-vt-ELr"/>
+                    <connections>
+                        <outlet property="startGameButton" destination="m9s-dV-hdl" id="usQ-Hj-quJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -1134,7 +1137,7 @@
         <image name="minus.rectangle" catalog="system" width="128" height="93"/>
         <image name="plus.rectangle" catalog="system" width="128" height="93"/>
         <image name="radar" width="500" height="600"/>
-        <image name="shopsign" width="479" height="315"/>
+        <image name="shopsign" width="1024" height="1024"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
