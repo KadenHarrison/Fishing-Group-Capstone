@@ -30,9 +30,9 @@ class FishCaughtViewController: UIViewController {
         // Set the image for the fish
         fishDisplayImageView.image = fish.image
         
-        fishNameLabel.text = "You caught a \(fish.type.rawValue.capitalized)!"
-        fishSizeLabel.text = "Size: \(fish.size.rounded(toPlaces: 2)) inches"
-        fishRarityLabel.text = "Rarity: \(fish.rarity.rawValue.capitalized)"
+        fishNameLabel.text = "You caught a ".localized() + fish.type.rawValue.capitalized.localized() + "!"
+        fishSizeLabel.text = "Size: ".localized() + "\(fish.size.rounded(toPlaces: 2)) " + "inches".localized()
+        fishRarityLabel.text = "Rarity: ".localized() + fish.rarity.rawValue.capitalized.localized()
     }
     @IBAction func nextButton(_ sender: Any) {
         SoundManager.shared.playSound(sound: .bubble4)

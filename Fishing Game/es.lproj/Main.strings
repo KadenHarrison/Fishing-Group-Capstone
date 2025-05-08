@@ -16,6 +16,11 @@
 "Plastic" = "Plástico";
 "Monofilament" = "Monofilamento";
 "Sailboat" = "Velero";
+"You caught a " = "Atrapaste un ";
+"Size: " = "Tamaño ";
+"Rarity: " = "Rareza ";
+"inches" = "pulgadas";
+"Rare" = "Extraño";
 
 
 /* Class = "UILabel"; text = "Next: Plastic"; ObjectID = "1YT-qj-4RR"; */
@@ -184,3 +189,20 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "yLI-T0-pa7"; */
 "yLI-T0-pa7.text" = "Etiqueta";
+
+"Salmon" = "Salmón";
+"Trout" = "Trucha";
+"Cod" = "Bacalao";
+"Tuna" = "Atún";
+"Perch" = "Perca";
+"Catfish" = "Bagre";
+"Bass" = "Lobina";
+"Loach" = "Locha";
+"Piranha" = "Piraña";
+"Anglerfish" = "Rape";
+"Eel" = "Anguila";
+"Bluegill" = "Bluegill";
+"Carp" = "Carpa";
+"Koi" = "Koi";
+"Walleye" = "Lucio";
+"Spacefish" = "Pez espacial";
