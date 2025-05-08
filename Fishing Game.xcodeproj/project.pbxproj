@@ -73,7 +73,6 @@
 		DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingDay.swift; sourceTree = "<group>"; };
 		DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingReel.swift; sourceTree = "<group>"; };
 		DDB405E32DCBBD6700CFBD24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		DDB405E42DCBBDC900CFBD24 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		DDB405E62DCBBE4400CFBD24 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		DDB66A912DC91BEC00A68A81 /* bubble4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble4.mp3; sourceTree = "<group>"; };
 		DDB66A932DC91D4700A68A81 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
@@ -308,7 +307,6 @@
 			children = (
 				0A60E1642D930F9D00CA6AC5 /* Base */,
 				DDB405E32DCBBD6700CFBD24 /* en */,
-				DDB405E42DCBBDC900CFBD24 /* fr */,
 				DDB405E62DCBBE4400CFBD24 /* es */,
 			);
 			name = Main.storyboard;

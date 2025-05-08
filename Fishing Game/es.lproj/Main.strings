@@ -1,7 +1,26 @@
+"Mountain" = "Montaña";
+"River" = "Río";
+"Valley" = "Valle";
+"Shore" = "Costa";
+"Deep Sea" = "mar profundo";
+"Requires license" = "Requiere licencia";
+"and" = "y";
+"Fish caught: " = "pescado capturado";
+"Purchased!" = "¡Comprado!";
+"Next:" = "Próximo: ";
+"Checkout" = "Verificar";
+"Are you sure you want to checkout?" = "¿Estás seguro de que quieres pagar?";
+"Yes" = "Sí";
+"Fully Upgraded!" = "Completamente actualizado!";
+"Inventory:" = "Inventario:";
+"Plastic" = "Plástico";
+"Monofilament" = "Monofilamento";
+"Sailboat" = "Velero";
+
+
 /* Class = "UILabel"; text = "Next: Plastic"; ObjectID = "1YT-qj-4RR"; */
 "1YT-qj-4RR.text" = "Siguiente: Plástico";
 
-"Hello" = "hola";
 "Bait Remaining:" = "Cebo restante:";
 /* Class = "UIButton"; configuration.title = "$$$"; ObjectID = "250-jP-gTy"; */
 "250-jP-gTy.configuration.title" = "$$$";

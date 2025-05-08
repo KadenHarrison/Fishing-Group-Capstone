@@ -69,7 +69,7 @@ enum AllLocations: CaseIterable {
         switch self {
         case .mountain:
             return Location(
-                name: "Mountain",
+                name: "Mountain".localized(),
                 thumbnailName: "mountainlake",
                 requiredLicense: .mountain,
                 requiredBoat: .canoe,
@@ -77,7 +77,7 @@ enum AllLocations: CaseIterable {
             )
         case .river:
             return Location(
-                name: "River",
+                name: "River".localized(),
                 thumbnailName: "mountainlake",
                 requiredLicense: .river,
                 requiredBoat: .rowboat,
@@ -85,7 +85,7 @@ enum AllLocations: CaseIterable {
             )
         case .valley:
             return Location(
-                name: "Valley",
+                name: "Valley".localized(),
                 thumbnailName: "mountainlake",
                 requiredLicense: .valley,
                 requiredBoat: .canoe,
@@ -93,7 +93,7 @@ enum AllLocations: CaseIterable {
             )
         case .shore:
             return Location(
-                name: "Shore",
+                name: "Shore".localized(),
                 thumbnailName: "mountainlake",
                 requiredLicense: .shore,
                 requiredBoat: .rowboat,
@@ -101,7 +101,7 @@ enum AllLocations: CaseIterable {
             )
         case .deepSea:
             return Location(
-                name: "Deep Sea",
+                name: "Deep Sea".localized(),
                 thumbnailName: "deepsea",
                 requiredLicense: .deepSea,
                 requiredBoat: .submarine,

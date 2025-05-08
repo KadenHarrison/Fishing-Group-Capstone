@@ -24,12 +24,12 @@ class ShopViewController: UIViewController {
         super.viewDidLoad()
         updateAllUpgradeLabels()
         
-        baitInventoryLabel.text = "Inventory: \(tacklebox.baitCount)"
+        baitInventoryLabel.text = "\("Inventory:".localized()) \(tacklebox.baitCount)"
 
         if let nextFishingLicense = FishingLicense(rawValue: tacklebox.fishingLicense.rawValue + 1) {
-            nextFishingLicenseLabel.text = "Next: \(nextFishingLicense.displayName)"
+            nextFishingLicenseLabel.text = "\("Next:".localized()) \(nextFishingLicense.displayName.localized())"
         } else {
-            nextFishingLicenseLabel.text = "Fully Upgraded!"
+            nextFishingLicenseLabel.text = "Fully Upgraded!".localized()
         }
         
         remainingCashAmountLabel.text = "$\(tacklebox.cash)"
@@ -37,9 +37,9 @@ class ShopViewController: UIViewController {
     
     func updateUpgradeLabel<T: Upgradable & Displayable>(current: T, label: UILabel) {
         if let next = current.next {
-            label.text = "Next: \(next.displayName)"
+            label.text = "\("Next:".localized()) \(next.displayName.localized())"
         } else {
-            label.text = "Fully Upgraded!"
+            label.text = "Fully Upgraded!".localized()
         }
     }
     
@@ -52,7 +52,7 @@ class ShopViewController: UIViewController {
     @IBAction func debugFreeMoney(_ sender: Any) {
         // For testing only, remove when no longer needed
         tacklebox.cash += 1000
-        remainingCashAmountLabel.text = "$\(tacklebox.cash)"
+        remainingCashAmountLabel.text = "\("$".localized())\(tacklebox.cash)"
     }
     
     /// Decreases the bait count of the user once called
@@ -74,9 +74,9 @@ class ShopViewController: UIViewController {
         shopController.upgradeHook()
         SoundManager.shared.playSound(sound: .bubble3)
         if shopController.hookUpgraded {
-            nextHookLabel.text = "Purchased!"
+            nextHookLabel.text = "Purchased!".localized()
         } else if let next = shopController.nextHook {
-            nextHookLabel.text = "Next: \(next.displayName)"
+            nextHookLabel.text = "\("Next:".localized()) \(next.displayName.localized())"
         }
         
         let imageName = shopController.hookUpgraded ? "arrowshape.up.fill" : "arrowshape.up"
@@ -90,9 +90,9 @@ class ShopViewController: UIViewController {
         shopController.upgradeLine()
         SoundManager.shared.playSound(sound: .bubble4)
         if shopController.lineUpgraded {
-            nextLineLabel.text = "Purchased!"
+            nextLineLabel.text = "Purchased!".localized()
         } else if let next = shopController.nextLine {
-            nextLineLabel.text = "Next: \(next.displayName)"
+            nextLineLabel.text = "\("Next:".localized()) \(next.displayName.localized())"
         }
         
         let imageName = shopController.lineUpgraded ? "arrowshape.up.fill" : "arrowshape.up"
@@ -106,9 +106,9 @@ class ShopViewController: UIViewController {
         shopController.upgradeBoat()
         SoundManager.shared.playSound(sound: .bubble1)
         if shopController.boatUpgraded {
-            nextBoatLabel.text = "Purchased!"
+            nextBoatLabel.text = "Purchased!".localized()
         } else if let next = shopController.nextBoat {
-            nextBoatLabel.text = "Next: \(next.displayName)"
+            nextBoatLabel.text = "\("Next:".localized()) \(next.displayName.localized())"
         }
         
         let imageName = shopController.boatUpgraded ? "arrowshape.up.fill" : "arrowshape.up"
@@ -122,9 +122,9 @@ class ShopViewController: UIViewController {
         shopController.upgradeLicense()
         SoundManager.shared.playSound(sound: .bubble3)
         if shopController.licenseUpgraded {
-            nextFishingLicenseLabel.text = "Purchased!"
+            nextFishingLicenseLabel.text = "Purchased!".localized()
         } else if let next = shopController.nextFishingLicense {
-            nextFishingLicenseLabel.text = "Next: \(next.displayName)"
+            nextFishingLicenseLabel.text = "\("Next:".localized()) \(next.displayName)"
         }
         
         let imageName = shopController.licenseUpgraded ? "arrowshape.up.fill" : "arrowshape.up"
@@ -136,12 +136,12 @@ class ShopViewController: UIViewController {
     /// Asks you to confirm that you are finished shopping, and then call the completeCheckout function
     @IBAction func checkout(_ sender: Any) {
         SoundManager.shared.playSound(sound: .bubble4)
-        let alert = UIAlertController(title: "Checkout", message: "Are you sure you want to checkout?", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "Yes", style: .default) { _ in
+        let alert = UIAlertController(title: "Checkout".localized(), message: "Are you sure you want to checkout?".localized(), preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Yes".localized(), style: .default) { _ in
             self.shopController.completeCheckout()
             self.performSegue(withIdentifier: "unwindToLocationSelection", sender: nil)
         }
-        let cancelAction = UIAlertAction(title: "No", style: .cancel)
+        let cancelAction = UIAlertAction(title: "No".localized(), style: .cancel)
         alert.addAction(confirmAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
