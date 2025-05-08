@@ -353,24 +353,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="k1e-n8-VI9">
-                                <rect key="frame" x="16" y="140" width="370" height="650"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="k1e-n8-VI9">
+                                <rect key="frame" x="0.0" y="144" width="402" height="710"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OUT OF BAIT!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtm-Ad-I5N">
-                                        <rect key="frame" x="41.666666666666657" y="0.0" width="287" height="216.66666666666666"/>
+                                        <rect key="frame" x="57.666666666666657" y="0.0" width="287" height="44"/>
                                         <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="38"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyBait" translatesAutoresizingMaskIntoConstraints="NO" id="Oca-ig-jrv">
-                                        <rect key="frame" x="0.0" y="216.66666666666669" width="370" height="216.66666666666669"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="emptyBait" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oca-ig-jrv">
+                                        <rect key="frame" x="0.0" y="44.000000000000028" width="402" height="425.66666666666674"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zs-Te-YSe">
-                                        <rect key="frame" x="104" y="433.33333333333343" width="162" height="216.66666666666669"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zs-Te-YSe">
+                                        <rect key="frame" x="120" y="469.66666666666663" width="162" height="40.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="tintColor" red="0.58431375029999999" green="0.38431376220000002" blue="0.22745099660000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Go home early"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Go home early">
+                                        <buttonConfiguration key="configuration" style="filled" title="Go home early">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -378,16 +379,25 @@
                                             <segue destination="QoJ-yw-CZB" kind="show" id="Iwv-O9-rcd"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQf-ij-EcM">
+                                        <rect key="frame" x="81" y="510" width="240" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="4uo-YS-kzV"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="dQf-ij-EcM" firstAttribute="top" secondItem="8Zs-Te-YSe" secondAttribute="bottom" id="asG-yE-fPy"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Aei-yy-Qat"/>
                         <color key="backgroundColor" red="0.15370900130000001" green="0.36199832009999999" blue="0.74856623310000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="k1e-n8-VI9" firstAttribute="top" secondItem="Aei-yy-Qat" secondAttribute="top" constant="16" id="3KA-Yz-tRt"/>
-                            <constraint firstItem="k1e-n8-VI9" firstAttribute="leading" secondItem="Aei-yy-Qat" secondAttribute="leading" constant="16" id="7CO-if-JEC"/>
-                            <constraint firstItem="Aei-yy-Qat" firstAttribute="trailing" secondItem="k1e-n8-VI9" secondAttribute="trailing" constant="16" id="8XM-dV-dRy"/>
-                            <constraint firstItem="Aei-yy-Qat" firstAttribute="bottom" secondItem="k1e-n8-VI9" secondAttribute="bottom" constant="16" id="L80-SP-TTs"/>
+                            <constraint firstAttribute="trailing" secondItem="k1e-n8-VI9" secondAttribute="trailing" id="0is-jd-Dsc"/>
+                            <constraint firstItem="k1e-n8-VI9" firstAttribute="top" secondItem="Aei-yy-Qat" secondAttribute="top" constant="20" id="OJb-yM-fyX"/>
+                            <constraint firstItem="k1e-n8-VI9" firstAttribute="leading" secondItem="Aei-yy-Qat" secondAttribute="leading" id="yW9-r2-ikc"/>
+                            <constraint firstAttribute="bottom" secondItem="k1e-n8-VI9" secondAttribute="bottom" constant="20" id="z4r-Al-Uac"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Q8I-Kn-Dl4"/>
