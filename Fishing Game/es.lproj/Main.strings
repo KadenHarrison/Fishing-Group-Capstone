@@ -21,6 +21,10 @@
 "Rarity: " = "Rareza ";
 "inches" = "pulgadas";
 "Rare" = "Extraño";
+"Missed..." = "Omitido...";
+"Rowboat" = "Bote de remos";
+"Canoe" = "Canoa";
+"Submarine" = "Submarino";
 
 
 /* Class = "UILabel"; text = "Next: Plastic"; ObjectID = "1YT-qj-4RR"; */

@@ -39,7 +39,7 @@ class FishingReel {
         fishingDay?.catchTimeTimer = CatchTimeTimer(countdownTime: 5) { timeSinceStart in
             let timeRemaining = TimeInterval(5) - timeSinceStart
             
-            self.viewController?.timeRemainingLabel.text = "Missed... \(timeRemaining.rounded(toPlaces: 1))"
+            self.viewController?.timeRemainingLabel.text = ("\("Missed...".localized()) \(timeRemaining.rounded(toPlaces: 1))")
         } completionHandler: {
             // resets everything after losing
             self.viewController?.timeRemainingLabel.text = ""
