@@ -52,7 +52,6 @@ class LocationTableViewCell: UITableViewCell {
         
         if unlockedLicense && unlockedBoat {
             lockIconImageView.isHidden = true
-            print("kbdb: \(location.locationCaughtFish?.caughtFish.count)")
             availabilityLabel.text = "Fish caught: \(caughtFish) / \(totalFish)"
         } else {
             lockIconImageView.isHidden = false
