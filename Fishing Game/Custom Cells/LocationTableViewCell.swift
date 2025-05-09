@@ -52,10 +52,11 @@ class LocationTableViewCell: UITableViewCell {
         
         if unlockedLicense && unlockedBoat {
             lockIconImageView.isHidden = true
-            availabilityLabel.text = "Fish caught: \(caughtFish) / \(totalFish)"
+            print("kbdb: \(location.locationCaughtFish?.caughtFish.count)")
+            availabilityLabel.text = "\("Fish caught: ".localized()) \(caughtFish) / \(totalFish)"
         } else {
             lockIconImageView.isHidden = false
-            availabilityLabel.text = "Requires license \(location.requiredLicense.displayName) and \(location.requiredBoat.displayName)"
+            availabilityLabel.text = ("\("Requires license".localized()) \(location.requiredLicense.displayName.localized()) \("and".localized()) \(location.requiredBoat.displayName.localized())")
         }
     }
 }
