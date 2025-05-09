@@ -39,7 +39,7 @@ class FishingReel {
         fishingDay?.catchTimeTimer = CatchTimeTimer(countdownTime: 5) { timeSinceStart in
             let timeRemaining = TimeInterval(5) - timeSinceStart
             
-            self.viewController?.timeRemainingLabel.text = "Missed... \(timeRemaining.rounded(toPlaces: 1))"
+            self.viewController?.timeRemainingLabel.text = ("\("Missed...".localized()) \(timeRemaining.rounded(toPlaces: 1))")
         } completionHandler: {
             // resets everything after losing
             self.viewController?.timeRemainingLabel.text = ""
@@ -121,7 +121,7 @@ class FishingReel {
         guard let bait = fishingDay?.tackleboxService.tacklebox.baitCount, bait > 0 else { return }
         fishingDay?.tackleboxService.tacklebox.baitCount -= 1
         TackleboxService.shared.save()
-        viewController?.baitRemainingLabel.text = "Bait Remaining: \(String(describing: fishingDay?.tackleboxService.tacklebox.baitCount ?? 0))"
+        viewController?.baitRemainingLabel.text = "\("Bait Remaining:".localized()) \(String(describing: fishingDay?.tackleboxService.tacklebox.baitCount ?? 0))"
 
     }
 }

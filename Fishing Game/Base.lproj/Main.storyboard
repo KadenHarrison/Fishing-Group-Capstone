@@ -65,6 +65,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="69f-vt-ELr"/>
+                    <connections>
+                        <outlet property="startGameButton" destination="m9s-dV-hdl" id="usQ-Hj-quJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
