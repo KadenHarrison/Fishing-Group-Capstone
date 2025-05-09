@@ -33,7 +33,6 @@
 		0AFF47622D9C55F0007AF9C3 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */; };
 		472785932DBFC18F003713D4 /* ShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472785922DBFC18F003713D4 /* ShopController.swift */; };
 		476202822DCA770C0004B66E /* DesignHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476202812DCA770C0004B66E /* DesignHelper.swift */; };
-		47D54DD42DCE468E00FE30F6 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54DD32DCE468E00FE30F6 /* Inventory.swift */; };
 		DD509D5C2DC11DCA000CFE14 /* FishingDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */; };
 		DD509D5E2DC11DFC000CFE14 /* FishingReel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */; };
 		DDB66A922DC91BEC00A68A81 /* bubble4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDB66A912DC91BEC00A68A81 /* bubble4.mp3 */; };
@@ -73,7 +72,6 @@
 		0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		472785922DBFC18F003713D4 /* ShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopController.swift; sourceTree = "<group>"; };
 		476202812DCA770C0004B66E /* DesignHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignHelper.swift; sourceTree = "<group>"; };
-		47D54DD32DCE468E00FE30F6 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingDay.swift; sourceTree = "<group>"; };
 		DD509D5D2DC11DFC000CFE14 /* FishingReel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingReel.swift; sourceTree = "<group>"; };
 		DDB405E32DCBBD6700CFBD24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				0A60E1552D930F9D00CA6AC5 /* Fish.swift */,
 				0A60E17B2D9445FA00CA6AC5 /* Tacklebox.swift */,
 				0AD4AE412D9DA36200472881 /* Location.swift */,
-				47D54DD32DCE468E00FE30F6 /* Inventory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,7 +269,6 @@
 				0A60E16A2D930F9D00CA6AC5 /* Fish.swift in Sources */,
 				0A60E16B2D930F9D00CA6AC5 /* AquariumViewController.swift in Sources */,
 				0AD4AE422D9DA36200472881 /* Location.swift in Sources */,
-				47D54DD42DCE468E00FE30F6 /* Inventory.swift in Sources */,
 				0A8943E72DA5794300E7B6AF /* SettingsViewController.swift in Sources */,
 				0AFF47622D9C55F0007AF9C3 /* ShopViewController.swift in Sources */,
 				0A60E16C2D930F9D00CA6AC5 /* FishCaughtViewController.swift in Sources */,
