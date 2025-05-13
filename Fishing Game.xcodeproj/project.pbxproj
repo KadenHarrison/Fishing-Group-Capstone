@@ -31,6 +31,7 @@
 		0AD4AE442D9DB8CF00472881 /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4AE432D9DB8CF00472881 /* LocationSelectionViewController.swift */; };
 		0AD4AE462D9DB90F00472881 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4AE452D9DB90F00472881 /* LocationTableViewCell.swift */; };
 		0AFF47622D9C55F0007AF9C3 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */; };
+		46C915C12DD3874E008DDF4C /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C915C02DD3874E008DDF4C /* Journal.swift */; };
 		472785932DBFC18F003713D4 /* ShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472785922DBFC18F003713D4 /* ShopController.swift */; };
 		476202822DCA770C0004B66E /* DesignHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476202812DCA770C0004B66E /* DesignHelper.swift */; };
 		DD509D5C2DC11DCA000CFE14 /* FishingDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */; };
@@ -70,6 +71,7 @@
 		0AD4AE432D9DB8CF00472881 /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionViewController.swift; sourceTree = "<group>"; };
 		0AD4AE452D9DB90F00472881 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		46C915C02DD3874E008DDF4C /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
 		472785922DBFC18F003713D4 /* ShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopController.swift; sourceTree = "<group>"; };
 		476202812DCA770C0004B66E /* DesignHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignHelper.swift; sourceTree = "<group>"; };
 		DD509D5B2DC11DCA000CFE14 /* FishingDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingDay.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				0A60E1552D930F9D00CA6AC5 /* Fish.swift */,
 				0A60E17B2D9445FA00CA6AC5 /* Tacklebox.swift */,
 				0AD4AE412D9DA36200472881 /* Location.swift */,
+				46C915C02DD3874E008DDF4C /* Journal.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			files = (
 				0A60E16A2D930F9D00CA6AC5 /* Fish.swift in Sources */,
 				0A60E16B2D930F9D00CA6AC5 /* AquariumViewController.swift in Sources */,
+				46C915C12DD3874E008DDF4C /* Journal.swift in Sources */,
 				0AD4AE422D9DA36200472881 /* Location.swift in Sources */,
 				0A8943E72DA5794300E7B6AF /* SettingsViewController.swift in Sources */,
 				0AFF47622D9C55F0007AF9C3 /* ShopViewController.swift in Sources */,

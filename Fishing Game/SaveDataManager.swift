@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: SaveDataManager
+
 final class SaveDataManager {
     static let shared = SaveDataManager()
     
@@ -24,6 +26,8 @@ final class SaveDataManager {
         return try jsonDecoder.decode(T.self, from: jsonData)
     }
 }
+
+// MARK: TackleboxService
 
 class TackleboxService {
     static let shared = TackleboxService(repository: FileTackleboxRepository())
@@ -62,6 +66,8 @@ class TackleboxService {
     }
     
 }
+
+// MARK: LocationService
 
 class LocationService {
     static let shared = LocationService(repository: FileLocationRepository())
@@ -125,3 +131,47 @@ class LocationService {
             saveLocation()
         }
 }
+
+// MARK: JournalService
+
+final class JournalService {
+    static let shared = JournalService(repository: FileJournalRepository())
+
+    private let repository: JournalRepository
+    private(set) var journal: Journal
+
+    init(repository: JournalRepository) {
+        self.repository = repository
+        self.journal = Journal()
+        load()
+    }
+
+    /// Load journal from saved storage
+    func load() {
+        if let loaded = try? repository.loadJournal() {
+            journal = loaded
+        }
+    }
+
+    /// Save journal to storage
+    func save() {
+        do {
+            try repository.saveJournal(journal)
+        } catch {
+            print("Failed to save journal: \(error)")
+        }
+    }
+
+    /// Clear and reset the journal
+    func reset() {
+        journal = Journal()
+        save()
+    }
+
+    /// Add an individual fish catch to the journal
+    func recordCatch(_ fish: Fish, at location: Location) {
+        journal.recordCatch(fish: fish, at: location)
+        save()
+    }
+}
+
