@@ -89,11 +89,19 @@ class FishingReel {
 
     /// Called when the reel is complete
     func catchFish() {
-        viewController?.reelingInFish = false
-        viewController?.timeRemainingLabel.text = ""
+        guard let viewController = viewController,
+              let fish = viewController.fish,
+              let location = viewController.fishingDay.location else { return }
+
+        viewController.reelingInFish = false
+        viewController.timeRemainingLabel.text = ""
         fishingDay?.catchTimeTimer?.stop()
-        viewController?.moveReelToDefaultNoFishPosition()
-        viewController?.transitionToCatchScreen()
+        viewController.moveReelToDefaultNoFishPosition()
+        
+        JournalService.shared.recordCatch(fish, at: location)
+        print(JournalService.shared.journal.entries.count)
+
+        viewController.transitionToCatchScreen()
     }
     // Depending on the fishing line, you get extra time for reeling
     func calculateCatchTime() -> TimeInterval {

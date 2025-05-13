@@ -171,6 +171,7 @@ final class JournalService {
     /// Add an individual fish catch to the journal
     func recordCatch(_ fish: Fish, at location: Location) {
         journal.recordCatch(fish: fish, at: location)
+        print("Fish type: \(fish.type.rawValue) of rarity: \(fish.rarity.rawValue) caught at \(location.name) added to the Journal")
         save()
     }
 }
