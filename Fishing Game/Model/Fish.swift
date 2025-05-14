@@ -8,8 +8,35 @@
 import Foundation
 import UIKit
 
-enum FishRarity: String, Codable {
-    case normal, rare
+enum Rarity: String, Codable {
+    case normal, rare, junk
+}
+
+enum JunkType: String, Codable, CaseIterable {
+    case newspaper, oldBoot, tire, glassBottle, plasticBag, gold, seaweed, oldCan, ring
+    
+    var price: Double {
+        switch self {
+        case .newspaper:
+            return 1.0
+        case .oldBoot:
+            return 5.0
+        case .tire:
+            return 10.0
+        case .glassBottle:
+            return 5.0
+        case .plasticBag:
+            return 1.0
+        case .gold:
+            return 100.0
+        case .seaweed:
+            return 1.0
+        case .oldCan:
+            return 2.0
+        case .ring:
+            return 25.0
+        }
+    }
 }
 
 enum FishType: String, Codable, CaseIterable {
@@ -92,11 +119,28 @@ enum FishType: String, Codable, CaseIterable {
     }
 }
 
+struct Junk: Codable {
+    var type: JunkType
+    var rarity: Rarity
+    var price: Double {
+        return type.price
+    }
+    
+    var description: String {
+        "\(rarity.rawValue.capitalized) \(type.rawValue.capitalized)"
+    }
+    
+    init(type: JunkType, rarity: Rarity) {
+        self.type = type
+        self.rarity = rarity
+    }
+}
+
 /// This detirmines what fish it is and how rare and big the fish is and gets the price from 10% of fish type base price and the random size
 struct Fish: Codable, CustomStringConvertible {
     // Data needed to create the fish. price is 10% of base price times size as a general pricing for fish
     var type: FishType
-    var rarity: FishRarity
+    var rarity: Rarity
     var size: Double
     var price: Double {
         return type.basePrice * size * 0.1
@@ -107,7 +151,7 @@ struct Fish: Codable, CustomStringConvertible {
         "\(rarity.rawValue.capitalized) \(type.rawValue.capitalized), size \(size)"
     }
     
-    init(type: FishType, rarity: FishRarity, size: Double) {
+    init(type: FishType, rarity: Rarity, size: Double) {
         self.type = type
         self.rarity = rarity
         self.size = size
@@ -125,27 +169,35 @@ struct Fish: Codable, CustomStringConvertible {
 
 class FishFactory {
     // Generates the data from helper functions
-    static func generateRandomFish(from types: [FishType]) -> Fish {
+    static func generateRandomFish(from types: [FishType], rarity: Rarity) -> Fish {
         let type = types.randomElement() ?? .salmon
-        let rarity = randomRarity()
         let size = randomSize(rarity: rarity, fishType: type)
         
         return Fish(type: type, rarity: rarity, size: size)
     }
     
+    static func generateRandomJunk(from types: [JunkType]) -> Junk {
+        let type = types.randomElement() ?? .newspaper
+        let rarity = Rarity.junk
+        
+        return Junk(type: type, rarity: rarity)
+    }
+    
     /// Gets the fishes rarity based on a random int generator
-    static func randomRarity() -> FishRarity {
+    static func randomRarity() -> Rarity {
         let r = Int.random(in: 1...100)
         
-        if r < 85 {
+        if r < 85 && r > 25 {
             return .normal
-        } else {
+        } else if r >= 85 {
             return .rare
+        } else {
+            return .junk
         }
     }
     
     /// Creates a random size for the fish
-    static func randomSize(rarity: FishRarity, fishType: FishType) -> Double {
+    static func randomSize(rarity: Rarity, fishType: FishType) -> Double {
         Double.random(in: rarity == .normal ? fishType.sizeRange.average : fishType.sizeRange.rare)
     }
 }

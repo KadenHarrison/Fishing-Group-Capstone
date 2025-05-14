@@ -53,29 +53,35 @@ class FileTackleboxRepository: TackleboxRepository {
 class Tacklebox: Codable {
     var cash: Int
     var baitCount: Int
+    var coffee: Int
+    var lures: Int
     var hook: Hook
     var line: Line
     var boat: Boat
+    var activeSpeedLure: Bool = false
+    var activeRarityLure: Bool = false
+    var activeSizeLure: Bool = false
     var fishingLicense: FishingLicense
     
-    init(
-        cash: Int = 0,
-        baitCount: Int = 10,
-        hook: Hook = .carvedWood,
-        line: Line = .twine,
-        boat: Boat = .canoe,
-        fishingLicense: FishingLicense = .mountain
+    init(cash: Int = 0,
+         baitCount: Int = 10,
+         coffee: Int = 0,
+         lures: Int = 0,
+         hook: Hook = .carvedWood,
+         line: Line = .twine,
+         boat: Boat = .canoe,
+         fishingLicense: FishingLicense = .mountain
     ) {
         self.cash = cash
         self.baitCount = baitCount
+        self.coffee = coffee
+        self.lures = lures
         self.hook = hook
         self.line = line
         self.boat = boat
         self.fishingLicense = fishingLicense
     }
 }
-
-
 
 enum Hook: Int, Codable, CaseIterable, Upgradable, Displayable {
     case carvedWood, plastic, steel

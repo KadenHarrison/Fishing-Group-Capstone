@@ -12,7 +12,7 @@ class SummaryScreenViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    var caughtFish: [Fish] = []
+    var caughtItems: [CaughtItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,22 +36,27 @@ extension SummaryScreenViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return caughtFish.count + 1
+        return caughtItems.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Once every fish has been displayed, a cell summarizing the total value of all caught fish is displayed
-        if indexPath.section <= caughtFish.count - 1 {
+        if indexPath.section <= caughtItems.count - 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CaughtFishCell") as! CaughtFishTableViewCell
             
-            let fish = caughtFish[indexPath.section]
+            let item = caughtItems[indexPath.section]
             
-            cell.setFish(fish: fish)
+            switch item {
+            case .fish(let fish):
+                cell.setFish(fish: fish)
+            case .junk(let junk):
+                cell.setJunk(junk: junk)
+            }
             
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SellTotalCell") as! SellTotalTableViewCell
-            let total = caughtFish.reduce(0) { $0 + $1.price }
+            let total = caughtItems.reduce(0) {$0 + $1.price}
             
             let totalPrice = total.formatted(.currency(code: "USD"))
             cell.setTotal(totalPrice)

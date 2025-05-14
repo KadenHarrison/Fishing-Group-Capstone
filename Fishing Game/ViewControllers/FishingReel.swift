@@ -59,15 +59,30 @@ class FishingReel {
         reelProgress = 0
         requiredSpins = 0
     }
-    func generateRandomFish() {
-        viewController?.fish = FishFactory.generateRandomFish(from: fishingDay?.location?.availableFish ?? FishType.allCases)
+    func generateRandomItem() {
+        let rarity = FishFactory.randomRarity()
+        let junk = viewController?.junk
         let fish = viewController?.fish
-        guard let fish else { return }
-        
-        // Calculates how many spins are needed to acquire the fish
-        requiredSpins = Int(fish.size)
-        
-        NSLog("Generated \(fish))")
+        if rarity == .junk {
+            viewController?.junk = FishFactory.generateRandomJunk(from: fishingDay?.location?.availableJunk ?? JunkType.allCases)
+            viewController?.fish = nil
+        } else {
+            let types = fishingDay?.location?.availableFish ?? FishType.allCases
+            viewController?.fish = FishFactory.generateRandomFish(from: types, rarity: rarity)
+            viewController?.junk = nil
+
+        }
+        var spins: Int = 10
+        if let fish {
+            spins = Int(fish.size)
+            NSLog("Generated \(fish))")
+        } else if let junk { // junk
+            spins = 10
+            NSLog("Generated JUNK\(junk.type))")
+        } else {
+            return
+        }
+        requiredSpins = spins
     }
     /// Starts the timer for how long you have to reel before the fish escapes
     func startCatchCountdown() {

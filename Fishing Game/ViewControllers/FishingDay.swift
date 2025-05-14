@@ -24,11 +24,11 @@ class FishingDay {
     // Time the user has to reel the fish in
     var catchTimeTimer: CatchTimeTimer?
     
-    var caughtFish: [Fish] = []
+    var caughtItems: [CaughtItem] = []
     var location: Location?
     
     var totalFishCaughtPrice: Int {
-        caughtFish.reduce(0) { $0 + Int($1.price) }
+        caughtItems.reduce(0) { $0 + Int($1.price) }
     }
     
     
@@ -80,14 +80,14 @@ class FishingDay {
                 let record = location.locationCaughtFish!
 
                 // Filter new, unique fish types
-                let newFishTypes = caughtFish
-                    .map { $0.type }
+                let newFishTypes = caughtItems
+                    .compactMap { $0.fishType }
                     .filter { !record.caughtFish.contains($0) }
 
                 // Update the record
                 record.caughtFish.formUnion(newFishTypes)
 
-                LocationService.shared.updateCaughtFish(for: location, with: caughtFish)
+                LocationService.shared.updateCaughtFish(for: location, with: caughtItems.caughtFish)
 
                 delegate?.handleEndOfDay(isEarly: early)
             }
