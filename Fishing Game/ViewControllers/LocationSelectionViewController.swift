@@ -4,8 +4,8 @@
 //
 //  Created by Jane Madsen on 4/2/25.
 //
-// THIS WOEKDED
 import UIKit
+import SwiftUI
 
 /// View controller that displays a list of fishing locations for user selection. Bars access to a location if the user doesn't meet minimum requirements.
 class LocationSelectionViewController: UIViewController {
@@ -17,6 +17,11 @@ class LocationSelectionViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    @IBAction func consumableItemShopButtonPressed(_ sender: Any) {
+        let swiftUIView = ConsumableItemsShop()
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        self.navigationController?.pushViewController(hostingController, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
