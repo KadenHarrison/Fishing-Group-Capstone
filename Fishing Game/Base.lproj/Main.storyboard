@@ -124,17 +124,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gu5-Fs-k9L">
-                                <rect key="frame" x="86.000000000000014" y="124.00000000000001" width="230.33333333333337" height="48.666666666666671"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gu5-Fs-k9L">
+                                <rect key="frame" x="0.0" y="124.00000000000001" width="402" height="48.666666666666671"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where to?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htp-uU-Txv">
-                                        <rect key="frame" x="0.0" y="0.0" width="177.33333333333334" height="48.666666666666664"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Where to?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htp-uU-Txv">
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="48.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="38"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCp-cx-rIo">
-                                        <rect key="frame" x="177.33333333333331" y="0.0" width="53" height="48.666666666666664"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCp-cx-rIo">
+                                        <rect key="frame" x="349" y="7.3333333333333428" width="53" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="book" catalog="system"/>
                                         <connections>
@@ -142,9 +142,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="OCp-cx-rIo" secondAttribute="trailing" constant="2.8421709430404007e-14" id="4jJ-Rd-ClQ"/>
-                                </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eFh-Qe-QHg">
                                 <rect key="frame" x="16" y="188.66666666666669" width="370" height="601.33333333333326"/>
@@ -216,6 +213,8 @@
                             <constraint firstItem="gu5-Fs-k9L" firstAttribute="top" secondItem="cye-Tb-I2Q" secondAttribute="top" id="Ghj-jm-sZ3"/>
                             <constraint firstItem="cye-Tb-I2Q" firstAttribute="bottom" secondItem="eFh-Qe-QHg" secondAttribute="bottom" constant="16" id="Hdj-cA-eWt"/>
                             <constraint firstItem="cye-Tb-I2Q" firstAttribute="trailing" secondItem="eFh-Qe-QHg" secondAttribute="trailing" constant="16" id="JCk-qj-uAx"/>
+                            <constraint firstItem="gu5-Fs-k9L" firstAttribute="leading" secondItem="cye-Tb-I2Q" secondAttribute="leading" id="LjS-Tt-ucL"/>
+                            <constraint firstItem="cye-Tb-I2Q" firstAttribute="trailing" secondItem="gu5-Fs-k9L" secondAttribute="trailing" id="NEq-Ra-0kf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hUZ-xF-ive"/>
