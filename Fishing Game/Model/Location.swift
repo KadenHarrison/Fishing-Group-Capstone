@@ -17,6 +17,7 @@ protocol LocationRepository {
 
 class FileLocationRepository: LocationRepository {
     func saveLocations(_ locations: [Location]) throws {
+        print("Saving Locations")
         try SaveDataManager.shared.save(locations, forKey: "locations")
     }
     

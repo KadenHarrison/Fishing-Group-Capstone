@@ -68,11 +68,11 @@ class FishingReel {
             let types = fishingDay?.location?.availableFish ?? FishType.allCases
             viewController?.fish = FishFactory.generateRandomFish(from: types, rarity: rarity)
             viewController?.junk = nil
-
+            
         }
         let junk = viewController?.junk
         let fish = viewController?.fish
-
+        
         if let fish {
             requiredSpins = Int(fish.size)
             NSLog("Generated \(fish))")
@@ -87,7 +87,7 @@ class FishingReel {
         //gets catch time
         let catchTime = calculateCatchTime()
         
-                // starts catch time
+        // starts catch time
         fishingDay?.catchTimeTimer = CatchTimeTimer(countdownTime: catchTime) { timeSinceStart in
             //counts down timer
             let timeRemaining = (catchTime) - timeSinceStart
@@ -99,14 +99,26 @@ class FishingReel {
         }
         fishingDay?.catchTimeTimer?.start()
     }
-
+    
     /// Called when the reel is complete
     func catchFish() {
-        viewController?.reelingInFish = false
-        viewController?.timeRemainingLabel.text = ""
-        fishingDay?.catchTimeTimer?.stop()
-        viewController?.moveReelToDefaultNoFishPosition()
-        viewController?.transitionToCatchScreen()
+        if let viewController = viewController {
+            viewController.reelingInFish = false
+            viewController.timeRemainingLabel.text = ""
+            fishingDay?.catchTimeTimer?.stop()
+            viewController.moveReelToDefaultNoFishPosition()
+            
+            if let fish = viewController.fish {
+                if let location = viewController.fishingDay.location {
+                    JournalService.shared.recordCatch(fish, at: location)
+                    print(JournalService.shared.journal.entries.count)
+                }
+            }
+            
+            viewController.transitionToCatchScreen()
+        }
+        
+        
     }
     // Depending on the fishing line, you get extra time for reeling
     func calculateCatchTime() -> TimeInterval {
@@ -135,6 +147,6 @@ class FishingReel {
         fishingDay?.tackleboxService.tacklebox.baitCount -= 1
         TackleboxService.shared.save()
         viewController?.baitRemainingLabel.text = "\("Bait Remaining:".localized()) \(String(describing: fishingDay?.tackleboxService.tacklebox.baitCount ?? 0))"
-
+        
     }
 }

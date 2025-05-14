@@ -136,6 +136,20 @@ struct Junk: Codable {
     }
 }
 
+/// Helper extension to get correct size range
+extension FishType {
+    func sizeRangeFor(rarity: Rarity) -> ClosedRange<Double> {
+        switch rarity {
+        case .normal:
+            return self.sizeRange.average
+        case .rare:
+            return self.sizeRange.rare
+        case .junk:
+            return 0...0
+        }
+    }
+}
+
 /// This detirmines what fish it is and how rare and big the fish is and gets the price from 10% of fish type base price and the random size
 struct Fish: Codable, CustomStringConvertible {
     // Data needed to create the fish. price is 10% of base price times size as a general pricing for fish
