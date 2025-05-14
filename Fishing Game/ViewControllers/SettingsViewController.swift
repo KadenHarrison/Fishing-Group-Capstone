@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController {
     @IBAction func resetGame(_ sender: Any) {
         TackleboxService.shared.reset()
         LocationService.shared.resetToDefaults()
+        JournalService.shared.reset()
         
         SoundManager.shared.playSound(sound: .bubble3)
     }
