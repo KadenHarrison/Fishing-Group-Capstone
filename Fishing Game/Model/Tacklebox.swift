@@ -53,20 +53,19 @@ class FileTackleboxRepository: TackleboxRepository {
 class Tacklebox: Codable {
     var cash: Int
     var baitCount: Int
-    var coffee: Int
-    var lures: Int
     var hook: Hook
     var line: Line
     var boat: Boat
-    var activeSpeedLure: Bool = false
-    var activeRarityLure: Bool = false
-    var activeSizeLure: Bool = false
     var fishingLicense: FishingLicense
+    /// Inventory Upgrades
+    var hasCoffee: Bool = false
+    var hasReelSpeedUp: Bool = false
+    var hasRarityLure: Bool = false
+    var hasLargeLure: Bool = false
+    var spaceBait: Int = 0
     
     init(cash: Int = 0,
          baitCount: Int = 10,
-         coffee: Int = 0,
-         lures: Int = 0,
          hook: Hook = .carvedWood,
          line: Line = .twine,
          boat: Boat = .canoe,
@@ -74,8 +73,6 @@ class Tacklebox: Codable {
     ) {
         self.cash = cash
         self.baitCount = baitCount
-        self.coffee = coffee
-        self.lures = lures
         self.hook = hook
         self.line = line
         self.boat = boat
