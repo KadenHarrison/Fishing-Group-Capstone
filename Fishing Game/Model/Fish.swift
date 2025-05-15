@@ -140,15 +140,20 @@ class FishFactory {
     static func generateRandomFish(from types: [FishType]) -> Fish {
         let type = types.randomElement() ?? .salmon
         let rarity = randomRarity()
-        let size = randomSize(rarity: rarity, fishType: type)
+        var size = randomSize(rarity: rarity, fishType: type)
+        if TackleboxService.shared.tacklebox.hasLargeLure {
+            size += Double(Int.random(in: 5...25))
+        }
         
         return Fish(type: type, rarity: rarity, size: size)
     }
     
     /// Gets the fishes rarity based on a random int generator
     static func randomRarity() -> FishRarity {
-        let r = Int.random(in: 1...100)
-        
+        var r = Int.random(in: 1...100)
+        if TackleboxService.shared.tacklebox.hasCoffee {
+            r += 15
+        }
         if r < 85 {
             return .normal
         } else {

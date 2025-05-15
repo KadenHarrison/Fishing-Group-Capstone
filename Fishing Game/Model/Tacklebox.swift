@@ -51,6 +51,12 @@ class FileTackleboxRepository: TackleboxRepository {
 }
 
 class Tacklebox: Codable {
+    var hasCoffee: Bool = false
+    var hasReelSpeedUp: Bool = false
+    var hasLargeLure: Bool = false
+    var hasRarityLure: Bool = false
+    var spaceBait: Int = 0
+    
     var cash: Int
     var baitCount: Int
     var hook: Hook

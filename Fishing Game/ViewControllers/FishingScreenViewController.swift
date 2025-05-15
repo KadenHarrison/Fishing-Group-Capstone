@@ -8,12 +8,6 @@ import UIKit
 
 class FishingScreenViewController: UIViewController {
     
-    #if DEBUG
-    var isDebugFastReelEnabled = true
-    #else
-    let isDebugFastReelEnabled = false
-    #endif
-    
 
     private let service = TackleboxService.shared
     private let tacklebox = TackleboxService.shared.tacklebox
@@ -29,6 +23,7 @@ class FishingScreenViewController: UIViewController {
 
     var fishingDay = FishingDay()
     var fishingReel = FishingReel()
+    
     // Tracks the progress and current state of the player
     var fishHasAppeared = false
     var reelingInFish = false
@@ -107,6 +102,7 @@ class FishingScreenViewController: UIViewController {
                 return 40
             }
         }
+    
         
         // Starts the timer for the next fish appearance
         fishingDay.fishAppearsTimer = FishAppearsTimer(maxTime: maxTimeUntilFishAppears) {
@@ -189,10 +185,14 @@ class FishingScreenViewController: UIViewController {
         } else if sender.state == .changed {
             spinReel(currentTouchPoint: currentTouchPoint)
 
-            if isDebugFastReelEnabled && sender.numberOfTouches == 1 {
-                totalRotationAngle += .pi // Adds a half spin for debug fun, but not too fast
+//            if isDebugFastReelEnabled && sender.numberOfTouches == 1 {
+//                totalRotationAngle += .pi
+//            }
+            if TackleboxService.shared.tacklebox.hasReelSpeedUp && sender.numberOfTouches == 1 {
+                totalRotationAngle += 1
+                print("Fast Reel Enabled")
             }
-
+            
             updateFishingProgress()
             previousTouchPoint = currentTouchPoint
 
