@@ -51,18 +51,17 @@ class FileTackleboxRepository: TackleboxRepository {
 }
 
 class Tacklebox: Codable {
-    var hasCoffee: Bool = false
-    var hasReelSpeedUp: Bool = false
-    var hasLargeLure: Bool = false
-    var hasRarityLure: Bool = false
-    var spaceBait: Int = 0
-    
     var cash: Int
     var baitCount: Int
     var hook: Hook
     var line: Line
     var boat: Boat
     var fishingLicense: FishingLicense
+    var hasCoffee: Bool = false
+    var hasReelSpeedUp: Bool = false
+    var hasLargeLure: Bool = false
+    var hasRarityLure: Bool = false
+    var spaceBait: Int = 0
     
     init(
         cash: Int = 0,

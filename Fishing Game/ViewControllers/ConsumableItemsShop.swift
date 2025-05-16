@@ -28,6 +28,7 @@ struct ConsumableItemsShop: View {
 //    @Binding var koiBait: Int
 
     @State private var showConfirmation = false
+    @State private var showInsufficientFunds = false
 
     var body: some View {
         NavigationView {
@@ -39,13 +40,13 @@ struct ConsumableItemsShop: View {
                             cash += 1000
                             TackleboxService.shared.tacklebox.cash = cash
                         }) {
-                            Text("Add 1000₿")
+                            Text("Add $1000")
                                 .foregroundColor(ShopTheme.text)
                                 .padding()
                                 .background(ShopTheme.accent)
                                 .cornerRadius(8)
                         }
-                        Text("\(cash)")
+                        Text("$\(cash)")
                         Text("UPGRADES")
                             .font(.caption)
                             .foregroundColor(.white.opacity(0.8))
@@ -57,7 +58,7 @@ struct ConsumableItemsShop: View {
                                 .fill(ShopTheme.tile)
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text("Coffee - 50₿")
+                                    Text("Coffee - $50")
                                         .font(.headline)
                                         .foregroundColor(ShopTheme.text)
                                     Text("Day last lasts longer")
@@ -66,6 +67,7 @@ struct ConsumableItemsShop: View {
                                 }
                                 Spacer()
                                 Toggle("", isOn: $coffee)
+                                    .disabled(TackleboxService.shared.tacklebox.hasCoffee)
                                     .onChange(of: coffee) { newValue in
                                         cashSpent += newValue ? 50 : -50
                                     }
@@ -81,7 +83,7 @@ struct ConsumableItemsShop: View {
                                 .fill(ShopTheme.tile)
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text("Reel Speed Up - 100₿")
+                                    Text("Reel Speed Up - $100")
                                         .font(.headline)
                                         .foregroundColor(ShopTheme.text)
                                     Text("Speeds up reeling")
@@ -90,6 +92,7 @@ struct ConsumableItemsShop: View {
                                 }
                                 Spacer()
                                 Toggle("", isOn: $reelSpeedUp)
+                                    .disabled(TackleboxService.shared.tacklebox.hasReelSpeedUp)
                                     .onChange(of: reelSpeedUp) { newValue in
                                         cashSpent += newValue ? 100 : -100
                                     }
@@ -105,7 +108,7 @@ struct ConsumableItemsShop: View {
                                 .fill(ShopTheme.tile)
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text("Rarity Lure - 200₿")
+                                    Text("Rarity Lure - $200")
                                         .font(.headline)
                                         .foregroundColor(ShopTheme.text)
                                     Text("Increases rare fish chance")
@@ -114,6 +117,10 @@ struct ConsumableItemsShop: View {
                                 }
                                 Spacer()
                                 Toggle("", isOn: $rarityLure)
+                                    .disabled(TackleboxService.shared.tacklebox.hasRarityLure)
+                                    .onChange(of: rarityLure) { newValue in
+                                        cashSpent += newValue ? 100 : -100
+                                    }
                                     .labelsHidden()
                             }
                             .padding()
@@ -126,7 +133,7 @@ struct ConsumableItemsShop: View {
                                 .fill(ShopTheme.tile)
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text("Large Lure - 150₿")
+                                    Text("Large Lure - $150")
                                         .font(.headline)
                                         .foregroundColor(ShopTheme.text)
                                     Text("Attracts bigger fish")
@@ -135,6 +142,10 @@ struct ConsumableItemsShop: View {
                                 }
                                 Spacer()
                                 Toggle("", isOn: $largeLure)
+                                    .disabled(TackleboxService.shared.tacklebox.hasLargeLure)
+                                    .onChange(of: largeLure) { newValue in
+                                        cashSpent += newValue ? 100 : -100
+                                    }
                                     .labelsHidden()
                             }
                             .padding()
@@ -153,13 +164,13 @@ struct ConsumableItemsShop: View {
                                 .fill(ShopTheme.tile)
                             VStack(alignment: .leading) {
                                 HStack {
-                                    Text("Space Bait - 10₿")
+                                    Text("Space Bait - $10")
                                         .font(.headline)
                                         .foregroundColor(ShopTheme.text)
                                     Spacer()
-                                    Stepper("Quantity: \(spaceBait)", value: $spaceBait, in: 0...99)
+                                    Stepper("Quantity: \(spaceBait)", value: $spaceBait, in: TackleboxService.shared.tacklebox.spaceBait...99)
                                         .onChange(of: spaceBait) { newValue in
-                                            cashSpent = newValue * 10
+                                            cashSpent = (newValue - TackleboxService.shared.tacklebox.spaceBait) * 10
                                         }
                                         .foregroundColor(ShopTheme.text)
                                 }
@@ -225,14 +236,22 @@ struct ConsumableItemsShop: View {
                         }
                         .alert("Confirm Purchase", isPresented: $showConfirmation) {
                             Button("Confirm") {
-                                TackleboxService.shared.tacklebox.cash -= cashSpent
-                                TackleboxService.shared.tacklebox.hasCoffee = coffee
-                                TackleboxService.shared.tacklebox.hasReelSpeedUp = reelSpeedUp
-                                TackleboxService.shared.tacklebox.spaceBait = spaceBait
-                                TackleboxService.shared.tacklebox.hasLargeLure = largeLure
-                                TackleboxService.shared.tacklebox.hasRarityLure = rarityLure
+                                if cashSpent > TackleboxService.shared.tacklebox.cash {
+                                    showInsufficientFunds = true
+                                } else {
+                                    TackleboxService.shared.tacklebox.cash -= cashSpent
+                                    TackleboxService.shared.tacklebox.hasCoffee = coffee
+                                    TackleboxService.shared.tacklebox.hasReelSpeedUp = reelSpeedUp
+                                    TackleboxService.shared.tacklebox.spaceBait = spaceBait
+                                    TackleboxService.shared.tacklebox.hasLargeLure = largeLure
+                                    TackleboxService.shared.tacklebox.hasRarityLure = rarityLure
+                                    cash = TackleboxService.shared.tacklebox.cash
+                                }
                             }
                             Button("Cancel", role: .cancel) {}
+                        }
+                        .alert("Not enough money", isPresented: $showInsufficientFunds) {
+                            Button("OK", role: .cancel) {}
                         }
                         .frame(maxWidth: .infinity)
                         .foregroundColor(ShopTheme.text)
