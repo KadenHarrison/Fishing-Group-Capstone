@@ -31,6 +31,7 @@
 		0AD4AE442D9DB8CF00472881 /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4AE432D9DB8CF00472881 /* LocationSelectionViewController.swift */; };
 		0AD4AE462D9DB90F00472881 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4AE452D9DB90F00472881 /* LocationTableViewCell.swift */; };
 		0AFF47622D9C55F0007AF9C3 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */; };
+		463BFF122DD646650098B5C0 /* DynamicTypeFontHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BFF112DD646650098B5C0 /* DynamicTypeFontHelper.swift */; };
 		46C915C12DD3874E008DDF4C /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C915C02DD3874E008DDF4C /* Journal.swift */; };
 		46C915C32DD3A005008DDF4C /* JournalHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C915C22DD3A005008DDF4C /* JournalHostingController.swift */; };
 		46C915C52DD3A13A008DDF4C /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C915C42DD3A13A008DDF4C /* JournalView.swift */; };
@@ -73,6 +74,7 @@
 		0AD4AE432D9DB8CF00472881 /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionViewController.swift; sourceTree = "<group>"; };
 		0AD4AE452D9DB90F00472881 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		0AFF47612D9C55F0007AF9C3 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		463BFF112DD646650098B5C0 /* DynamicTypeFontHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTypeFontHelper.swift; sourceTree = "<group>"; };
 		46C915C02DD3874E008DDF4C /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
 		46C915C22DD3A005008DDF4C /* JournalHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalHostingController.swift; sourceTree = "<group>"; };
 		46C915C42DD3A13A008DDF4C /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				476202812DCA770C0004B66E /* DesignHelper.swift */,
 				46C915C22DD3A005008DDF4C /* JournalHostingController.swift */,
 				46C915C42DD3A13A008DDF4C /* JournalView.swift */,
+				463BFF112DD646650098B5C0 /* DynamicTypeFontHelper.swift */,
 			);
 			path = "Fishing Game";
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				0A60E1702D930F9D00CA6AC5 /* CaughtFishTableViewCell.swift in Sources */,
 				476202822DCA770C0004B66E /* DesignHelper.swift in Sources */,
 				0A60E1712D930F9D00CA6AC5 /* CustomTimers.swift in Sources */,
+				463BFF122DD646650098B5C0 /* DynamicTypeFontHelper.swift in Sources */,
 				0A60E17E2D9446FB00CA6AC5 /* SaveDataManager.swift in Sources */,
 				0A60E1722D930F9D00CA6AC5 /* Double+Extensions.swift in Sources */,
 				0AD4AE462D9DB90F00472881 /* LocationTableViewCell.swift in Sources */,
