@@ -61,15 +61,15 @@ class Tacklebox: Codable {
     var hasReelSpeedUp: Bool = false
     var hasLargeLure: Bool = false
     var hasRarityLure: Bool = false
+
     var spaceBait: Int = 0
     
-    init(
-        cash: Int = 0,
-        baitCount: Int = 10,
-        hook: Hook = .carvedWood,
-        line: Line = .twine,
-        boat: Boat = .canoe,
-        fishingLicense: FishingLicense = .mountain
+    init(cash: Int = 0,
+         baitCount: Int = 10,
+         hook: Hook = .carvedWood,
+         line: Line = .twine,
+         boat: Boat = .canoe,
+         fishingLicense: FishingLicense = .mountain
     ) {
         self.cash = cash
         self.baitCount = baitCount
@@ -79,8 +79,6 @@ class Tacklebox: Codable {
         self.fishingLicense = fishingLicense
     }
 }
-
-
 
 enum Hook: Int, Codable, CaseIterable, Upgradable, Displayable {
     case carvedWood, plastic, steel
