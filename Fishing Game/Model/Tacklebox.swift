@@ -57,11 +57,11 @@ class Tacklebox: Codable {
     var line: Line
     var boat: Boat
     var fishingLicense: FishingLicense
-    /// Inventory Upgrades
     var hasCoffee: Bool = false
     var hasReelSpeedUp: Bool = false
-    var hasRarityLure: Bool = false
     var hasLargeLure: Bool = false
+    var hasRarityLure: Bool = false
+
     var spaceBait: Int = 0
     
     init(cash: Int = 0,

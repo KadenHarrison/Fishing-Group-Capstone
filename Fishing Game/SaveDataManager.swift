@@ -64,6 +64,7 @@ class TackleboxService {
         tacklebox.cash += amount
         save()
     }
+
     
 }
 

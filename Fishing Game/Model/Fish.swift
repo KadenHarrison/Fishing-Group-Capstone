@@ -185,7 +185,13 @@ class FishFactory {
     // Generates the data from helper functions
     static func generateRandomFish(from types: [FishType], rarity: Rarity) -> Fish {
         let type = types.randomElement() ?? .salmon
-        let size = randomSize(rarity: rarity, fishType: type)
+
+        let rarity = randomRarity()
+        var size = randomSize(rarity: rarity, fishType: type)
+        if TackleboxService.shared.tacklebox.hasLargeLure {
+            size += Double(Int.random(in: 5...25))
+        }
+
         
         return Fish(type: type, rarity: rarity, size: size)
     }
@@ -198,10 +204,13 @@ class FishFactory {
     }
     
     /// Gets the fishes rarity based on a random int generator
-    static func randomRarity() -> Rarity {
-        let r = Int.random(in: 1...100)
-        
-        if r < 85 && r > 25 {
+    static func randomRarity() -> FishRarity {
+        var r = Int.random(in: 1...100)
+        if TackleboxService.shared.tacklebox.hasCoffee {
+            r += 15
+        }
+        if r < 85 {
+
             return .normal
         } else if r >= 85 {
             return .rare
