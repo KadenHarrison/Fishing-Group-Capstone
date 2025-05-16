@@ -17,6 +17,8 @@ class CaughtFishTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        DynamicTypeFontHelper().applyDynamicFont(fontName: "GillSans-UltraBold", size: 22, textStyle: .title2, to: fishNameLabel)
+        DynamicTypeFontHelper().applyDynamicFont(fontName: "GillSans", size: 18, textStyle: .title3, to: fishPriceLabel)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

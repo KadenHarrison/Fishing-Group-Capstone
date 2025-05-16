@@ -22,6 +22,9 @@ class LocationTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setupRoundedCorners()
         // Initialization code
+        
+        DynamicTypeFontHelper().applyDynamicFont(fontName: "GillSans-UltraBold", size: 24, textStyle: .title2, to: locationLabel)
+        DynamicTypeFontHelper().applyDynamicFont(fontName: "GillSans-SemiBold", size: 18, textStyle: .title3, to: availabilityLabel)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

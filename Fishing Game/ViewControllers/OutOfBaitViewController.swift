@@ -9,10 +9,14 @@ import UIKit
 
 class OutOfBaitViewController: UIViewController {
 
+    @IBOutlet weak var outOfBaitLabel: UILabel!
+  
     var caughtItems: [CaughtItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DynamicTypeFontHelper().applyDynamicFont(fontName: "GillSans-Bold", size: 38, textStyle: .largeTitle, to: outOfBaitLabel)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

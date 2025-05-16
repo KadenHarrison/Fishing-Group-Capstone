@@ -18,12 +18,15 @@ class LocationSelectionViewController: UIViewController {
     let shopData = ConsumableShopData()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var whereToLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        DynamicTypeFontHelper().applyDynamicFont(fontName: "Futura-CondensedExtraBold", size: 38, textStyle: .largeTitle, to: whereToLabel)
     }
     
     @IBAction func consumableItemShopButtonPressed(_ sender: Any) {
