@@ -24,8 +24,6 @@ struct ConsumableItemsShop: View {
     @State var largeLure: Bool = TackleboxService.shared.tacklebox.hasLargeLure
 //
     @State var spaceBait: Int = TackleboxService.shared.tacklebox.spaceBait
-//    @Binding var eelBait: Int
-//    @Binding var koiBait: Int
 
     @State private var showConfirmation = false
     @State private var showInsufficientFunds = false
