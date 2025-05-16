@@ -10,8 +10,8 @@ import UIKit
 class OutOfBaitViewController: UIViewController {
 
     @IBOutlet weak var outOfBaitLabel: UILabel!
-    
-    var caughtFish: [Fish] = []
+  
+    var caughtItems: [CaughtItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class OutOfBaitViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? SummaryScreenViewController else { return }
         
-        destination.caughtFish = caughtFish
+        destination.caughtItems = caughtItems
     }
     
     @IBAction func goHomeEarlyButton(_ sender: Any) {

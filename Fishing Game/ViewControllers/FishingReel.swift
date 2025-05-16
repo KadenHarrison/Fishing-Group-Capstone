@@ -59,22 +59,35 @@ class FishingReel {
         reelProgress = 0
         requiredSpins = 0
     }
-    func generateRandomFish() {
-        viewController?.fish = FishFactory.generateRandomFish(from: fishingDay?.location?.availableFish ?? FishType.allCases)
+    func generateRandomItem() {
+        let rarity = FishFactory.randomRarity()
+        if rarity == .junk {
+            viewController?.junk = FishFactory.generateRandomJunk(from: fishingDay?.location?.availableJunk ?? JunkType.allCases)
+            viewController?.fish = nil
+        } else {
+            let types = fishingDay?.location?.availableFish ?? FishType.allCases
+            viewController?.fish = FishFactory.generateRandomFish(from: types, rarity: rarity)
+            viewController?.junk = nil
+            
+        }
+        let junk = viewController?.junk
         let fish = viewController?.fish
-        guard let fish else { return }
         
-        // Calculates how many spins are needed to acquire the fish
-        requiredSpins = Int(fish.size)
-        
-        NSLog("Generated \(fish))")
+        if let fish {
+            requiredSpins = Int(fish.size)
+            NSLog("Generated \(fish))")
+        } else if let junk { // junk
+            requiredSpins = 10
+            NSLog("Generated JUNK\(junk.type))")
+        }
     }
+    
     /// Starts the timer for how long you have to reel before the fish escapes
     func startCatchCountdown() {
         //gets catch time
         let catchTime = calculateCatchTime()
         
-                // starts catch time
+        // starts catch time
         fishingDay?.catchTimeTimer = CatchTimeTimer(countdownTime: catchTime) { timeSinceStart in
             //counts down timer
             let timeRemaining = (catchTime) - timeSinceStart
@@ -86,22 +99,26 @@ class FishingReel {
         }
         fishingDay?.catchTimeTimer?.start()
     }
-
+    
     /// Called when the reel is complete
     func catchFish() {
-        guard let viewController = viewController,
-              let fish = viewController.fish,
-              let location = viewController.fishingDay.location else { return }
-
-        viewController.reelingInFish = false
-        viewController.timeRemainingLabel.text = ""
-        fishingDay?.catchTimeTimer?.stop()
-        viewController.moveReelToDefaultNoFishPosition()
+        if let viewController = viewController {
+            viewController.reelingInFish = false
+            viewController.timeRemainingLabel.text = ""
+            fishingDay?.catchTimeTimer?.stop()
+            viewController.moveReelToDefaultNoFishPosition()
+            
+            if let fish = viewController.fish {
+                if let location = viewController.fishingDay.location {
+                    JournalService.shared.recordCatch(fish, at: location)
+                    print(JournalService.shared.journal.entries.count)
+                }
+            }
+            
+            viewController.transitionToCatchScreen()
+        }
         
-        JournalService.shared.recordCatch(fish, at: location)
-        print(JournalService.shared.journal.entries.count)
-
-        viewController.transitionToCatchScreen()
+        
     }
     // Depending on the fishing line, you get extra time for reeling
     func calculateCatchTime() -> TimeInterval {
@@ -130,6 +147,6 @@ class FishingReel {
         fishingDay?.tackleboxService.tacklebox.baitCount -= 1
         TackleboxService.shared.save()
         viewController?.baitRemainingLabel.text = "\("Bait Remaining:".localized()) \(String(describing: fishingDay?.tackleboxService.tacklebox.baitCount ?? 0))"
-
+        
     }
 }

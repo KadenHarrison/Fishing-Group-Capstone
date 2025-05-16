@@ -8,12 +8,6 @@ import UIKit
 
 class FishingScreenViewController: UIViewController {
     
-    #if DEBUG
-    var isDebugFastReelEnabled = true
-    #else
-    let isDebugFastReelEnabled = false
-    #endif
-    
 
     private let service = TackleboxService.shared
     private let tacklebox = TackleboxService.shared.tacklebox
@@ -29,10 +23,12 @@ class FishingScreenViewController: UIViewController {
 
     var fishingDay = FishingDay()
     var fishingReel = FishingReel()
+    
     // Tracks the progress and current state of the player
     var fishHasAppeared = false
     var reelingInFish = false
     var fish: Fish? = nil
+    var junk: Junk?
     
     
     // Tracks how many times the rod has been rotated by the user
@@ -107,10 +103,11 @@ class FishingScreenViewController: UIViewController {
                 return 40
             }
         }
+    
         
         // Starts the timer for the next fish appearance
         fishingDay.fishAppearsTimer = FishAppearsTimer(maxTime: maxTimeUntilFishAppears) {
-            self.fishingReel.generateRandomFish()
+            self.fishingReel.generateRandomItem()
             self.fishingReel.useBait()
             self.showFishAppeared()
             self.fishingReel.startHookTimer()
@@ -189,10 +186,14 @@ class FishingScreenViewController: UIViewController {
         } else if sender.state == .changed {
             spinReel(currentTouchPoint: currentTouchPoint)
 
-            if isDebugFastReelEnabled && sender.numberOfTouches == 1 {
-                totalRotationAngle += .pi // Adds a half spin for debug fun, but not too fast
+//            if isDebugFastReelEnabled && sender.numberOfTouches == 1 {
+//                totalRotationAngle += .pi
+//            }
+            if TackleboxService.shared.tacklebox.hasReelSpeedUp && sender.numberOfTouches == 1 {
+                totalRotationAngle += 1
+                print("Fast Reel Enabled")
             }
-
+            
             updateFishingProgress()
             previousTouchPoint = currentTouchPoint
 
@@ -211,7 +212,9 @@ class FishingScreenViewController: UIViewController {
     // Updates the list of caught fish
     @IBAction func unwindSegue(for: UIStoryboardSegue, sender: Any?) {
         if let fish {
-            fishingDay.caughtFish.append(fish)
+            fishingDay.caughtItems.append(CaughtItem.fish(fish))
+        } else if let junk {
+            fishingDay.caughtItems.append(CaughtItem.junk(junk))
         }
     }
     // Determines which screen to navigate to
@@ -219,13 +222,17 @@ class FishingScreenViewController: UIViewController {
         if segue.identifier == "fishCaughtSegue" {
             guard let destination = segue.destination as? FishCaughtViewController else { return }
             
-            destination.fish = self.fish
+            if let fish {
+                destination.caughtItem = .fish(fish)
+            } else if let junk {
+                destination.caughtItem = .junk(junk)
+            }
         } else if segue.identifier == "ShowSummarySegue" {
             
             
             guard let destination = segue.destination as? SummaryScreenViewController else { return }
             
-            destination.caughtFish = self.fishingDay.caughtFish
+            destination.caughtItems = self.fishingDay.caughtItems
         }
     }
 }

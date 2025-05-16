@@ -4,11 +4,18 @@
 //
 //  Created by Jane Madsen on 4/2/25.
 //
-// THIS WOEKDED
 import UIKit
+import SwiftUI
+
+class ConsumableShopData: ObservableObject {
+    @Published var coffee: Bool = false
+    @Published var spaceBait: Int = 0
+}
 
 /// View controller that displays a list of fishing locations for user selection. Bars access to a location if the user doesn't meet minimum requirements.
 class LocationSelectionViewController: UIViewController {
+
+    let shopData = ConsumableShopData()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var whereToLabel: UILabel!
@@ -20,6 +27,16 @@ class LocationSelectionViewController: UIViewController {
         tableView.dataSource = self
         
         DynamicTypeFontHelper().applyDynamicFont(fontName: "Futura-CondensedExtraBold", size: 38, textStyle: .largeTitle, to: whereToLabel)
+    }
+    
+    @IBAction func consumableItemShopButtonPressed(_ sender: Any) {
+        // shopData is now a persistent property of the class
+        let swiftUIView = ConsumableItemsShop(
+//            coffee: Binding(get: { self.shopData.coffee }, set: { self.shopData.coffee = $0 }),
+//            spaceBait: Binding(get: { self.shopData.spaceBait }, set: { self.shopData.spaceBait = $0 })
+        )
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        self.navigationController?.pushViewController(hostingController, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {

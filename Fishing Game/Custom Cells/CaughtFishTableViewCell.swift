@@ -33,5 +33,12 @@ class CaughtFishTableViewCell: UITableViewCell {
         let fishPrice = fish.price.formatted(.currency(code: "USD"))
         fishPriceLabel.text = fishPrice
     }
+    
+    func setJunk(junk: Junk) {
+        fishImageView.image
+        fishNameLabel.text = junk.type.rawValue.uppercased()
+        let junkPrice = junk.price.formatted(.currency(code: "USD"))
+        fishPriceLabel.text = junkPrice
+    }
 
 }
