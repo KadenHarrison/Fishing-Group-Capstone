@@ -181,53 +181,6 @@ struct ConsumableItemsShop: View {
                         .padding(.horizontal)
                         .frame(height: 100)
 
-//                        ZStack {
-//                            RoundedRectangle(cornerRadius: 16)
-//                                .fill(ShopTheme.tile)
-//                            VStack(alignment: .leading) {
-//                                HStack {
-//                                    Text("Eel Bait - 5₿")
-//                                        .font(.headline)
-//                                        .foregroundColor(ShopTheme.text)
-//                                    Spacer()
-////                                    Stepper("", value: $eelBait, in: 0...99)
-//                                        .labelsHidden()
-//                                }
-//                                Text("Perfect for eels")
-//                                    .font(.caption)
-//                                    .foregroundColor(.white.opacity(0.7))
-////                                Text("Quantity: \(eelBait)")
-//                                    .font(.subheadline)
-//                                    .foregroundColor(ShopTheme.text)
-//                            }
-//                            .padding()
-//                        }
-//                        .padding(.horizontal)
-//                        .frame(height: 100)
-//
-//                        ZStack {
-//                            RoundedRectangle(cornerRadius: 16)
-//                                .fill(ShopTheme.tile)
-//                            VStack(alignment: .leading) {
-//                                HStack {
-//                                    Text("Koi Bait - 7₿")
-//                                        .font(.headline)
-//                                        .foregroundColor(ShopTheme.text)
-//                                    Spacer()
-////                                    Stepper("", value: $koiBait, in: 0...99)
-//                                        .labelsHidden()
-//                                }
-//                                Text("Best for koi ponds")
-//                                    .font(.caption)
-//                                    .foregroundColor(.white.opacity(0.7))
-////                                Text("Quantity: \(koiBait)")
-//                                    .font(.subheadline)
-//                                    .foregroundColor(ShopTheme.text)
-//                            }
-//                            .padding()
-//                        }
-//                        .padding(.horizontal)
-//                        .frame(height: 100)
 
                         Button("Checkout") {
                             showConfirmation = true
