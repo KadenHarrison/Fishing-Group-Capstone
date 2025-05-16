@@ -44,15 +44,23 @@ class Location: Codable {
     var requiredBoat: Boat
 /// Types of fish that can be caught at this location
     var availableFish: [FishType]
+    var availableJunk: [JunkType]
 /// Types of fish the user has caught
     var locationCaughtFish: LocationCaughtFish?
         
-    init(name: String, thumbnailName: String, requiredLicense: FishingLicense, requiredBoat: Boat, availableFish: [FishType]) {
+    init(name: String,
+         thumbnailName: String,
+         requiredLicense: FishingLicense,
+         requiredBoat: Boat,
+         availableFish: [FishType],
+         availableJunk: [JunkType] = JunkType.allCases
+    ) {
         self.name = name
         self.thumbnailName = thumbnailName
         self.requiredLicense = requiredLicense
         self.requiredBoat = requiredBoat
         self.availableFish = availableFish
+        self.availableJunk = availableJunk
     }
 }
 

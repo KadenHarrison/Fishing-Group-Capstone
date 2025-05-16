@@ -28,7 +28,7 @@ struct JournalView: View {
         }
     }
 
-    private var groupedEntries: [FishType: [FishRarity: [JournalEntry]]] {
+    private var groupedEntries: [FishType: [Rarity: [JournalEntry]]] {
         Dictionary(grouping: JournalService.shared.journal.entries) { $0.fishType }
             .mapValues { Dictionary(grouping: $0, by: { $0.rarity }) }
     }
@@ -133,7 +133,7 @@ struct FishDetailView: View {
 struct FishSummary: Identifiable {
     let id = UUID()
     let type: FishType
-    let rarity: FishRarity
+    let rarity: Rarity
     let entries: [JournalEntry]
 
     var count: Int { entries.count }

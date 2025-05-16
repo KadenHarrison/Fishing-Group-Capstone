@@ -18,22 +18,22 @@ class Journal: Codable {
     }
 
     /// All catches of a specific fish type and rarity
-    func catches(for type: FishType, rarity: FishRarity) -> [JournalEntry] {
+    func catches(for type: FishType, rarity: Rarity) -> [JournalEntry] {
         entries.filter { $0.fishType == type && $0.rarity == rarity }
     }
 
     /// Count of how many times a fish of a given type and rarity has been caught
-    func catchCount(for type: FishType, rarity: FishRarity) -> Int {
+    func catchCount(for type: FishType, rarity: Rarity) -> Int {
         catches(for: type, rarity: rarity).count
     }
 
     /// All unique locations a fish of a given type and rarity has been caught at
-    func locations(for type: FishType, rarity: FishRarity) -> Set<String> {
+    func locations(for type: FishType, rarity: Rarity) -> Set<String> {
         Set(catches(for: type, rarity: rarity).map { $0.location.name })
     }
 
     /// Smallest and largest sizes caught of a given fish type and rarity
-    func sizeExtremes(for type: FishType, rarity: FishRarity) -> (smallest: Double?, largest: Double?) {
+    func sizeExtremes(for type: FishType, rarity: Rarity) -> (smallest: Double?, largest: Double?) {
         let sizes = catches(for: type, rarity: rarity).map { $0.size }
         return (sizes.min(), sizes.max())
     }
@@ -48,7 +48,7 @@ struct JournalEntry: Codable {
 
     var size: Double { fish.size }
     var fishType: FishType { fish.type }
-    var rarity: FishRarity { fish.rarity }
+    var rarity: Rarity { fish.rarity }
 
     var possibleSizeRange: ClosedRange<Double> {
         fishType.sizeRangeFor(rarity: rarity)
